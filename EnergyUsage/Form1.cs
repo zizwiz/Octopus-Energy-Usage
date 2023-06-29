@@ -83,44 +83,25 @@ namespace EnergyUsage
             }
             else if (rdobtn_electricity.Checked)
             {
-                chart_electric_usage.Series.Clear();// clear the chart
-                chart_electric_usage.Legends.Clear(); // We do not need a legend
-                chart_electric_usage.ChartAreas[0].AxisX.IsMarginVisible = false;
-
-                seriesElectric = chart_electric_usage.Series.Add("");
-                if (chkbx_Electric_lineChart.Checked) seriesElectric.ChartType = SeriesChartType.FastLine; //type of chart
-                seriesElectric.Color = Color.Red;
-
-               Utilities.ZoomChart(chart_electric_usage.ChartAreas[seriesElectric.ChartArea]);
+                seriesElectric = Utilities.CreateCharts(chart_electric_usage, chart_electric_usage.Series.Add(""), Color.Red, chkbx_Electric_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
-             
+
             }
             else if (rdobtn_gas.Checked)
             {
-                chart_gas_usage.Series.Clear();// clear the chart
-                chart_gas_usage.Legends.Clear(); // We do not need a legend
-                chart_gas_usage.ChartAreas[0].AxisX.IsMarginVisible = false;
-
-                seriesGas = chart_gas_usage.Series.Add("");
-                if (chkbx_Gas_lineChart.Checked) seriesGas.ChartType = SeriesChartType.FastLine; //type of chart
-                seriesGas.Color = Color.Blue;
-
-                Utilities.ZoomChart(chart_gas_usage.ChartAreas[seriesGas.ChartArea]);
+                seriesGas = Utilities.CreateCharts(chart_gas_usage, chart_gas_usage.Series.Add(""), Color.Blue, chkbx_Gas_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" + txtbx_gas_serial_num.Text + "/consumption/?period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
             }
 
 
-            string userName = txtbx_api_key.Text;
-            string userPassword = ""; //not required leave blank.
-
             var request = WebRequest.Create(uri);
-            request.Headers["Authorization"] =
-                "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(userName + ":" + userPassword));
 
+            request.Headers["Authorization"] =
+                "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(txtbx_api_key.Text + ":"));
 
             myOctopusDeserializeData =
                 JsonConvert.DeserializeObject<Rootobject>(
@@ -146,7 +127,7 @@ namespace EnergyUsage
 
                     seriesElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
                         myOctopusDeserializeData.results[i].consumption);
-                    
+
                 }
                 else if (rdobtn_gas.Checked)
                 {
@@ -178,7 +159,6 @@ namespace EnergyUsage
             }
         }
 
-        
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //save all the settings so they are used again next time
@@ -206,6 +186,7 @@ namespace EnergyUsage
         private void btn_fill_data_Click(object sender, EventArgs e)
         {
             //Add your info here
+           
         }
 
         private void chart_electric_usage_MouseMove(object sender, MouseEventArgs e)

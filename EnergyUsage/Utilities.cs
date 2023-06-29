@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -41,6 +42,21 @@ namespace EnergyUsage
                     tooltip.Show(((double)yVal).ToString(), myChart, pos.X, pos.Y - 15);
                 }
             }
+        }
+
+        public static Series CreateCharts(Chart myChart, Series mySeries, Color myColor, bool LineChart)
+        {
+            myChart.Series.Clear();// clear the chart
+            myChart.Legends.Clear(); // We do not need a legend
+            myChart.ChartAreas[0].AxisX.IsMarginVisible = false;
+
+            mySeries = myChart.Series.Add("");
+            if (LineChart) mySeries.ChartType = SeriesChartType.FastLine; //type of chart
+            mySeries.Color = myColor;
+
+            ZoomChart(myChart.ChartAreas[mySeries.ChartArea]);
+
+            return mySeries;
         }
 
 
