@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33529.622
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyUsage", "EnergyUsage\EnergyUsage.csproj", "{95CE523C-A022-4747-9042-E3E10015DF2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95CE523C-A022-4747-9042-E3E10015DF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CE523C-A022-4747-9042-E3E10015DF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CE523C-A022-4747-9042-E3E10015DF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CE523C-A022-4747-9042-E3E10015DF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE1E0C2C-4A2C-45C2-BAA8-E106B938A6BA}
+	EndGlobalSection
+EndGlobal
