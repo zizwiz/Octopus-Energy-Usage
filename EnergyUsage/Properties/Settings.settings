@@ -17,9 +17,6 @@
     <Setting Name="Gas_meter_ser_num" Type="System.String" Scope="User">
       <Value Profile="(Default)">123456</Value>
     </Setting>
-    <Setting Name="Dual_fuel" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="Electrcity" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>

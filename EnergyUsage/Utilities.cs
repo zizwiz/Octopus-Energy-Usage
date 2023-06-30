@@ -68,7 +68,12 @@ namespace EnergyUsage
           }));
          */
 
-
+        /*
+         * JObject o1 = JObject.Parse(file);
+           JObject o2 = JObject.Parse(file);
+           
+           o1.Merge(o2)
+         */
 
 
     }

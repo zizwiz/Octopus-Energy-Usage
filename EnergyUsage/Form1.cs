@@ -31,7 +31,6 @@ namespace EnergyUsage
             txtbx_gas_serial_num.Text = settings.Gas_meter_ser_num;
             txtbx_electric_mpan.Text = settings.MPAN;
             txtbx_gas_mprn.Text = settings.MPRN;
-            rdobtn_dual_Fuel.Checked = settings.Dual_fuel;
             rdobtn_electricity.Checked = settings.Electrcity;
             rdobtn_gas.Checked = settings.Gas;
 
@@ -77,16 +76,12 @@ namespace EnergyUsage
             string dt_To = dtPicker_date_to.Text + "T" + cmbobx_hour_to.Text + ":" + cmbobx_minute_to.Text + "Z";
 
 
-            if (rdobtn_dual_Fuel.Checked)
-            {
-                //Still to do
-            }
-            else if (rdobtn_electricity.Checked)
+            if (rdobtn_electricity.Checked)
             {
                 seriesElectric = Utilities.CreateCharts(chart_electric_usage, chart_electric_usage.Series.Add(""), Color.Red, chkbx_Electric_lineChart.Checked);
 
                 uri = new Uri(
-                    "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
+                    "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
 
             }
             else if (rdobtn_gas.Checked)
@@ -94,10 +89,9 @@ namespace EnergyUsage
                 seriesGas = Utilities.CreateCharts(chart_gas_usage, chart_gas_usage.Series.Add(""), Color.Blue, chkbx_Gas_lineChart.Checked);
 
                 uri = new Uri(
-                    "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" + txtbx_gas_serial_num.Text + "/consumption/?period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
+                    "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" + txtbx_gas_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
             }
-
-
+            
             var request = WebRequest.Create(uri);
 
             request.Headers["Authorization"] =
@@ -107,54 +101,52 @@ namespace EnergyUsage
                 JsonConvert.DeserializeObject<Rootobject>(
                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
 
+            if (myOctopusDeserializeData.count > 100)
+            {
+                MessageBox.Show("Number = " + myOctopusDeserializeData.count + "\r" + myOctopusDeserializeData.next);
+                rchtxtbx_data.AppendText(myOctopusDeserializeData.next + "\r");
+            }
+
+
+
 
             rchtxtbx_data.AppendText(myOctopusDeserializeData.count + "\r");
 
-            for (int i = 0; i < myOctopusDeserializeData.count; i++)
-            {
+            //for (int i = 0; i < myOctopusDeserializeData.count; i++)
+            for (int i = 0; i < 100; i++)
+                {
                 rchtxtbx_data.AppendText(myOctopusDeserializeData.results[i].interval_end + " : " +
                                          myOctopusDeserializeData.results[i].consumption + "\r");
 
-
                 //add data to chart
-                if (rdobtn_dual_Fuel.Checked)
-                {
-
-                }
-                else if (rdobtn_electricity.Checked)
+                if (rdobtn_electricity.Checked)
                 {
                     totalElectricConsumed += myOctopusDeserializeData.results[i].consumption;
-
+                    
                     seriesElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
-                        myOctopusDeserializeData.results[i].consumption);
+                         myOctopusDeserializeData.results[i].consumption);
 
                 }
                 else if (rdobtn_gas.Checked)
                 {
                     totalGasConsumed += myOctopusDeserializeData.results[i].consumption;
-
+                    
                     seriesGas.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
                          myOctopusDeserializeData.results[i].consumption);
                 }
-
-
             }
 
             //add totals to UI
-            if (rdobtn_dual_Fuel.Checked)
-            {
-
-            }
-            else if (rdobtn_electricity.Checked)
+            if (rdobtn_electricity.Checked)
             {
                 rchtxtbx_data.AppendText("Total Electric Consumed = " + totalElectricConsumed + " kwh\r");
-
+                
                 lbl_electricity_usage.Text = "Electricity = " + totalElectricConsumed + " kwh";
-
             }
             else if (rdobtn_gas.Checked)
             {
                 rchtxtbx_data.AppendText("Total Gas Consumed = " + totalGasConsumed + " kwh\r");
+                
                 lbl_gas_usage.Text = "Gas = " + totalGasConsumed + " kwh";
             }
         }
@@ -168,7 +160,6 @@ namespace EnergyUsage
             settings.MPAN = txtbx_electric_mpan.Text;
             settings.MPRN = txtbx_gas_mprn.Text;
 
-            settings.Dual_fuel = rdobtn_dual_Fuel.Checked;
             settings.Electrcity = rdobtn_electricity.Checked;
             settings.Gas = rdobtn_gas.Checked;
 
