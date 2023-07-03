@@ -29,9 +29,10 @@ namespace EnergyUsage
             txtbx_api_key.Text = settings.API_Key;
             txtbx_electric_serial_num.Text = settings.Electric_meter_ser_num;
             txtbx_gas_serial_num.Text = settings.Gas_meter_ser_num;
-            txtbx_electric_mpan.Text = settings.MPAN;
+            txtbx_electric_import_mpan.Text = settings.Import_MPAN;
+            txtbx_electric_export_mpan.Text = settings.Export_MPAN;
             txtbx_gas_mprn.Text = settings.MPRN;
-            rdobtn_electricity.Checked = settings.Electrcity;
+            rdobtn_electricity_import.Checked = settings.Electrcity;
             rdobtn_gas.Checked = settings.Gas;
 
             dtPicker_date_from.Value = settings.Date_from;
@@ -43,8 +44,9 @@ namespace EnergyUsage
             cmbobx_minute_to.Text = settings.Minutes_to;
 
             //remove all chart legends
-            chart_electric_usage.Legends.Clear();
-            chart_gas_usage.Legends.Clear();
+            chart_electric_import.Legends.Clear();
+            chart_electric_export.Legends.Clear();
+            chart_gas_import.Legends.Clear();
 
         }
 
@@ -64,11 +66,14 @@ namespace EnergyUsage
 
         private void btn_getinfo_Click(object sender, EventArgs e)
         {
-            double totalElectricConsumed = 0;
+            double totalElectricImported = 0; 
+            double totalElectricExported = 0;
+            double totalElectricNet = 0;
             double totalGasConsumed = 0;
             Uri uri = new Uri("https://p.com");                     //Just a placeholder not real URI
             Series seriesGas = new Series();                        //Just Initialise
-            Series seriesElectric = new Series();                   //Just Initialise
+            Series seriesImportElectric = new Series();             //Just Initialise
+            Series seriesExportElectric = new Series();             //Just Initialise
             Rootobject myOctopusDeserializeData = new Rootobject(); //Just Initialise 
 
 
@@ -76,17 +81,25 @@ namespace EnergyUsage
             string dt_To = dtPicker_date_to.Text + "T" + cmbobx_hour_to.Text + ":" + cmbobx_minute_to.Text + "Z";
 
 
-            if (rdobtn_electricity.Checked)
+            if (rdobtn_electricity_import.Checked)
             {
-                seriesElectric = Utilities.CreateCharts(chart_electric_usage, chart_electric_usage.Series.Add(""), Color.Red, chkbx_Electric_lineChart.Checked);
+                seriesImportElectric = Utilities.CreateCharts(chart_electric_import, chart_electric_import.Series.Add(""), Color.Red, chkbx_Imported_Electric_lineChart.Checked);
 
                 uri = new Uri(
-                    "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
+                    "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_import_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
+
+            }
+            else if (rdobtn_electricity_export.Checked)
+            {
+                seriesExportElectric = Utilities.CreateCharts(chart_electric_export, chart_electric_export.Series.Add(""), Color.Green, chkbx_Exported_Electric_lineChart.Checked);
+
+                uri = new Uri(
+                    "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_export_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
 
             }
             else if (rdobtn_gas.Checked)
             {
-                seriesGas = Utilities.CreateCharts(chart_gas_usage, chart_gas_usage.Series.Add(""), Color.Blue, chkbx_Gas_lineChart.Checked);
+                seriesGas = Utilities.CreateCharts(chart_gas_import, chart_gas_import.Series.Add(""), Color.Blue, chkbx_Gas_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" + txtbx_gas_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
@@ -97,34 +110,52 @@ namespace EnergyUsage
             request.Headers["Authorization"] =
                 "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(txtbx_api_key.Text + ":"));
 
+          //  StreamReader myStream = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd().ToString()); 
+
             myOctopusDeserializeData =
                 JsonConvert.DeserializeObject<Rootobject>(
                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
 
-            if (myOctopusDeserializeData.count > 100)
-            {
-                MessageBox.Show("Number = " + myOctopusDeserializeData.count + "\r" + myOctopusDeserializeData.next);
-                rchtxtbx_data.AppendText(myOctopusDeserializeData.next + "\r");
-            }
+            // Multipages
+
+            //if (myOctopusDeserializeData.count > 100)
+            //{
+            //    MessageBox.Show("Number = " + myOctopusDeserializeData.count + "\r" + myOctopusDeserializeData.next);
+            //    rchtxtbx_data.AppendText(myOctopusDeserializeData.next + "\r");
+
+                
+            //    using (Stream s = File.Create("abc.json"))
+            //    {
+            //        myStream.CopyTo(s);
+            //    }
+            //}
 
 
 
 
             rchtxtbx_data.AppendText(myOctopusDeserializeData.count + "\r");
 
-            //for (int i = 0; i < myOctopusDeserializeData.count; i++)
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < myOctopusDeserializeData.count; i++)
+           // for (int i = 0; i < 100; i++)
                 {
                 rchtxtbx_data.AppendText(myOctopusDeserializeData.results[i].interval_end + " : " +
                                          myOctopusDeserializeData.results[i].consumption + "\r");
 
                 //add data to chart
-                if (rdobtn_electricity.Checked)
+                if (rdobtn_electricity_import.Checked)
                 {
-                    totalElectricConsumed += myOctopusDeserializeData.results[i].consumption;
+                    totalElectricImported += myOctopusDeserializeData.results[i].consumption;
                     
-                    seriesElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
+                    seriesImportElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
                          myOctopusDeserializeData.results[i].consumption);
+
+                }
+                else if (rdobtn_electricity_export.Checked)
+                {
+                    totalElectricExported += myOctopusDeserializeData.results[i].consumption;
+
+                    seriesExportElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
+                        myOctopusDeserializeData.results[i].consumption);
 
                 }
                 else if (rdobtn_gas.Checked)
@@ -137,11 +168,17 @@ namespace EnergyUsage
             }
 
             //add totals to UI
-            if (rdobtn_electricity.Checked)
+            if (rdobtn_electricity_import.Checked)
             {
-                rchtxtbx_data.AppendText("Total Electric Consumed = " + totalElectricConsumed + " kwh\r");
+                rchtxtbx_data.AppendText("Total Electric Imported = " + totalElectricImported + " kwh\r");
                 
-                lbl_electricity_usage.Text = "Electricity = " + totalElectricConsumed + " kwh";
+                lbl_electricity_imported.Text = "Electricity Imported = " + totalElectricImported + " kwh";
+            }
+            else if (rdobtn_electricity_export.Checked)
+            {
+                rchtxtbx_data.AppendText("Total Electric Exported = " + totalElectricExported + " kwh\r");
+
+                lbl_electricity_exported.Text = "Electricity Exported = " + totalElectricExported + " kwh";
             }
             else if (rdobtn_gas.Checked)
             {
@@ -157,10 +194,11 @@ namespace EnergyUsage
             settings.API_Key = txtbx_api_key.Text;
             settings.Electric_meter_ser_num = txtbx_electric_serial_num.Text;
             settings.Gas_meter_ser_num = txtbx_gas_serial_num.Text;
-            settings.MPAN = txtbx_electric_mpan.Text;
+            settings.Import_MPAN = txtbx_electric_import_mpan.Text;
+            settings.Export_MPAN = txtbx_electric_export_mpan.Text;
             settings.MPRN = txtbx_gas_mprn.Text;
 
-            settings.Electrcity = rdobtn_electricity.Checked;
+            settings.Electrcity = rdobtn_electricity_import.Checked;
             settings.Gas = rdobtn_gas.Checked;
 
             settings.Date_from = dtPicker_date_from.Value;
@@ -182,12 +220,12 @@ namespace EnergyUsage
 
         private void chart_electric_usage_MouseMove(object sender, MouseEventArgs e)
         {
-            Utilities.ChartDataPoints(sender, e, chart_electric_usage);
+            Utilities.ChartDataPoints(sender, e, chart_electric_import);
         }
 
         private void chart_gas_usage_MouseMove(object sender, MouseEventArgs e)
         {
-            Utilities.ChartDataPoints(sender, e, chart_gas_usage);
+            Utilities.ChartDataPoints(sender, e, chart_gas_import);
         }
     }
 

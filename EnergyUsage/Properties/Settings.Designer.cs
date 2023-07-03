@@ -38,12 +38,12 @@ namespace EnergyUsage.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("123456")]
-        public string MPAN {
+        public string Import_MPAN {
             get {
-                return ((string)(this["MPAN"]));
+                return ((string)(this["Import_MPAN"]));
             }
             set {
-                this["MPAN"] = value;
+                this["Import_MPAN"] = value;
             }
         }
         
@@ -176,6 +176,18 @@ namespace EnergyUsage.Properties {
             }
             set {
                 this["Minutes_to"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("123456")]
+        public string Export_MPAN {
+            get {
+                return ((string)(this["Export_MPAN"]));
+            }
+            set {
+                this["Export_MPAN"] = value;
             }
         }
     }

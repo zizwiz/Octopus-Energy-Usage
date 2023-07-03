@@ -5,7 +5,7 @@
     <Setting Name="API_Key" Type="System.String" Scope="User">
       <Value Profile="(Default)">123456</Value>
     </Setting>
-    <Setting Name="MPAN" Type="System.String" Scope="User">
+    <Setting Name="Import_MPAN" Type="System.String" Scope="User">
       <Value Profile="(Default)">123456</Value>
     </Setting>
     <Setting Name="MPRN" Type="System.String" Scope="User">
@@ -40,6 +40,9 @@
     </Setting>
     <Setting Name="Minutes_to" Type="System.String" Scope="User">
       <Value Profile="(Default)">00</Value>
+    </Setting>
+    <Setting Name="Export_MPAN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123456</Value>
     </Setting>
   </Settings>
 </SettingsFile>
