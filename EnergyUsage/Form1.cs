@@ -64,15 +64,19 @@ namespace EnergyUsage
             Close();
         }
 
+
+        double totalElectricImported;
+        double totalElectricExported;
+        double totalGasConsumed;
+
         private void btn_getinfo_Click(object sender, EventArgs e)
         {
-            double totalElectricImported = 0; 
-            double totalElectricExported = 0;
-            double totalElectricNet = 0;
-            double totalGasConsumed = 0;
+
+            double totalElectricNet;
             Uri uri = new Uri("https://p.com");                     //Just a placeholder not real URI
             Series seriesGas = new Series();                        //Just Initialise
             Series seriesImportElectric = new Series();             //Just Initialise
+            Series seriesCombinedElectric = new Series();           //Just Initialise
             Series seriesExportElectric = new Series();             //Just Initialise
             Rootobject myOctopusDeserializeData = new Rootobject(); //Just Initialise 
 
@@ -84,6 +88,7 @@ namespace EnergyUsage
             if (rdobtn_electricity_import.Checked)
             {
                 seriesImportElectric = Utilities.CreateCharts(chart_electric_import, chart_electric_import.Series.Add(""), Color.Red, chkbx_Imported_Electric_lineChart.Checked);
+                seriesCombinedElectric = Utilities.CreateCharts(chart_electric_combined, chart_electric_combined.Series.Add(""), Color.Red, chkbx_Combined_Electric_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_import_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
@@ -92,6 +97,7 @@ namespace EnergyUsage
             else if (rdobtn_electricity_export.Checked)
             {
                 seriesExportElectric = Utilities.CreateCharts(chart_electric_export, chart_electric_export.Series.Add(""), Color.Green, chkbx_Exported_Electric_lineChart.Checked);
+                seriesCombinedElectric = Utilities.CreateCharts(chart_electric_combined, chart_electric_combined.Series.Add(""), Color.Green, chkbx_Combined_Electric_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_export_mpan.Text + "/meters/" + txtbx_electric_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
@@ -104,13 +110,13 @@ namespace EnergyUsage
                 uri = new Uri(
                     "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" + txtbx_gas_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
             }
-            
+
             var request = WebRequest.Create(uri);
 
             request.Headers["Authorization"] =
                 "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(txtbx_api_key.Text + ":"));
 
-          //  StreamReader myStream = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd().ToString()); 
+            //  StreamReader myStream = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd().ToString()); 
 
             myOctopusDeserializeData =
                 JsonConvert.DeserializeObject<Rootobject>(
@@ -123,7 +129,7 @@ namespace EnergyUsage
             //    MessageBox.Show("Number = " + myOctopusDeserializeData.count + "\r" + myOctopusDeserializeData.next);
             //    rchtxtbx_data.AppendText(myOctopusDeserializeData.next + "\r");
 
-                
+
             //    using (Stream s = File.Create("abc.json"))
             //    {
             //        myStream.CopyTo(s);
@@ -136,8 +142,8 @@ namespace EnergyUsage
             rchtxtbx_data.AppendText(myOctopusDeserializeData.count + "\r");
 
             for (int i = 0; i < myOctopusDeserializeData.count; i++)
-           // for (int i = 0; i < 100; i++)
-                {
+            // for (int i = 0; i < 100; i++)
+            {
                 rchtxtbx_data.AppendText(myOctopusDeserializeData.results[i].interval_end + " : " +
                                          myOctopusDeserializeData.results[i].consumption + "\r");
 
@@ -145,9 +151,12 @@ namespace EnergyUsage
                 if (rdobtn_electricity_import.Checked)
                 {
                     totalElectricImported += myOctopusDeserializeData.results[i].consumption;
-                    
+
                     seriesImportElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
                          myOctopusDeserializeData.results[i].consumption);
+
+                    seriesCombinedElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
+                        myOctopusDeserializeData.results[i].consumption);
 
                 }
                 else if (rdobtn_electricity_export.Checked)
@@ -157,11 +166,14 @@ namespace EnergyUsage
                     seriesExportElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
                         myOctopusDeserializeData.results[i].consumption);
 
+                    seriesCombinedElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
+                        myOctopusDeserializeData.results[i].consumption);
+
                 }
                 else if (rdobtn_gas.Checked)
                 {
                     totalGasConsumed += myOctopusDeserializeData.results[i].consumption;
-                    
+
                     seriesGas.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
                          myOctopusDeserializeData.results[i].consumption);
                 }
@@ -171,21 +183,25 @@ namespace EnergyUsage
             if (rdobtn_electricity_import.Checked)
             {
                 rchtxtbx_data.AppendText("Total Electric Imported = " + totalElectricImported + " kwh\r");
-                
-                lbl_electricity_imported.Text = "Electricity Imported = " + totalElectricImported + " kwh";
+                lbl_electricity_imported.Text = totalElectricImported.ToString();
+                totalElectricImported = 0;
             }
             else if (rdobtn_electricity_export.Checked)
             {
                 rchtxtbx_data.AppendText("Total Electric Exported = " + totalElectricExported + " kwh\r");
-
-                lbl_electricity_exported.Text = "Electricity Exported = " + totalElectricExported + " kwh";
+                lbl_electricity_exported.Text = totalElectricExported.ToString();
+                totalElectricExported = 0;
             }
             else if (rdobtn_gas.Checked)
             {
                 rchtxtbx_data.AppendText("Total Gas Consumed = " + totalGasConsumed + " kwh\r");
-                
                 lbl_gas_usage.Text = "Gas = " + totalGasConsumed + " kwh";
+                totalGasConsumed = 0;
             }
+
+            totalElectricNet = double.Parse(lbl_electricity_exported.Text) - double.Parse(lbl_electricity_imported.Text);
+            lbl_electricity_net.Text = "Electricity Sold = " + totalElectricNet + "kwh";
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -215,7 +231,7 @@ namespace EnergyUsage
         private void btn_fill_data_Click(object sender, EventArgs e)
         {
             //Add your info here
-           
+            
         }
 
         private void chart_electric_usage_MouseMove(object sender, MouseEventArgs e)
@@ -227,6 +243,39 @@ namespace EnergyUsage
         {
             Utilities.ChartDataPoints(sender, e, chart_gas_import);
         }
+
+
+        private void chart_electric_export_MouseMove(object sender, MouseEventArgs e)
+        {
+            Utilities.ChartDataPoints(sender, e, chart_electric_export);
+        }
+
+        private void chart_electric_combined_MouseMove(object sender, MouseEventArgs e)
+        {
+            Utilities.ChartDataPoints(sender, e, chart_electric_combined);
+        }
+
+        private void btn_print_chart_Click(object sender, EventArgs e)
+        {
+            if (TabControl1.SelectedTab.Name == "tab_electric_import")
+            {
+                Utilities.PrintChart(chart_electric_import);
+            }
+            else if (TabControl1.SelectedTab.Name == "tab_electric_export")
+            {
+                Utilities.PrintChart(chart_electric_export);
+            }
+            else if (TabControl1.SelectedTab.Name == "tab_combined_electricity")
+            {
+                Utilities.PrintChart(chart_electric_combined);
+            }
+            else if (TabControl1.SelectedTab.Name == "tab_gas_import")
+            {
+                Utilities.PrintChart(chart_gas_import);
+            }
+        }
+
+
     }
 
     /// <summary>
