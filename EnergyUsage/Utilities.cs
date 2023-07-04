@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Net;
+using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Newtonsoft.Json;
 
 namespace EnergyUsage
 {
@@ -106,6 +110,48 @@ namespace EnergyUsage
                 }
             }
         }
+
+
+        public static void SaveFileStream(String path, Stream stream)
+        {
+            var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            stream.CopyTo(fileStream);
+            fileStream.Dispose();
+        }
+
+
+        public static string LoadJson(string myFile)
+        {
+            using (StreamReader r = new StreamReader(myFile))
+            {
+                //string json = r.ReadToEnd();
+
+                //var openB = json.IndexOf("[");
+                //json = json.Substring(openB + 1, json.Length - openB - 1);
+
+                //var closeB = json.LastIndexOf("]");
+                //json = json.Substring(0, closeB);
+
+                //return json;
+                return r.ReadToEnd();
+
+            }
+        }
+
+        public static Rootobject GetData(Uri myURI, string myApiKey)
+        {
+            Rootobject myOctopusDeserializeData = new Rootobject();
+            var request = WebRequest.Create(myURI);
+
+            request.Headers["Authorization"] =
+                "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(myApiKey + ":"));
+
+
+            return myOctopusDeserializeData =
+                 JsonConvert.DeserializeObject<Rootobject>(
+                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+        }
+
 
         /*
          * Invoke(new Action(() =>

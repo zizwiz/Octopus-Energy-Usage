@@ -9,6 +9,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using EnergyUsage.Properties;
 using help_about;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace EnergyUsage
@@ -55,9 +56,9 @@ namespace EnergyUsage
 
         private void btn_help_Click(object sender, EventArgs e)
         {
-             var f1 = new Help_Form();
-               f1.ShowDialog();
-               GC.Collect();
+            var f1 = new Help_Form();
+            f1.ShowDialog();
+            GC.Collect();
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -80,6 +81,9 @@ namespace EnergyUsage
             Series seriesCombinedElectric = new Series();           //Just Initialise
             Series seriesExportElectric = new Series();             //Just Initialise
             Rootobject myOctopusDeserializeData = new Rootobject(); //Just Initialise 
+            string path = "Data";
+            int count = 1;
+            int amountData = 0;
 
 
             string dt_From = dtPicker_date_from.Text + "T" + cmbobx_hour_from.Text + ":" + cmbobx_minute_from.Text + "Z";
@@ -112,31 +116,48 @@ namespace EnergyUsage
                     "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" + txtbx_gas_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
             }
 
-            var request = WebRequest.Create(uri);
+            myOctopusDeserializeData = Utilities.GetData(uri, txtbx_api_key.Text);
 
-            request.Headers["Authorization"] =
-                "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(txtbx_api_key.Text + ":"));
+           //if we have multiple pages then we need to use this section
+            amountData = myOctopusDeserializeData.count;
 
-            //  StreamReader myStream = new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd().ToString()); 
+            string myPath = "Data_1.json"; 
 
-            myOctopusDeserializeData =
-                JsonConvert.DeserializeObject<Rootobject>(
-                    new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+            if (amountData > 100)
+            {
+                File.WriteAllText(myPath, JsonConvert.SerializeObject(myOctopusDeserializeData));
 
-            // Multipages
+                do
+                {
+                    count++;
+                    myOctopusDeserializeData = Utilities.GetData(new Uri(myOctopusDeserializeData.next), txtbx_api_key.Text);
 
-            //if (myOctopusDeserializeData.count > 100)
-            //{
-            //    MessageBox.Show("Number = " + myOctopusDeserializeData.count + "\r" + myOctopusDeserializeData.next);
-            //    rchtxtbx_data.AppendText(myOctopusDeserializeData.next + "\r");
+                    path = path + "_" + count + ".json";
+
+                    // write data to json file so we can merge the files to make one big file
+                    File.WriteAllText(path, JsonConvert.SerializeObject(myOctopusDeserializeData));
+
+                    if (count > 1)
+                    {
+
+                        JObject o1 = JObject.Parse(Utilities.LoadJson(myPath));
+                        JObject o2 = JObject.Parse(Utilities.LoadJson(path));
+
+                        o1.Merge(o2);
+
+                        // o1.Merge(o2, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Concat });
+                    }
+
+                    //reset path
+                    path = path.Substring(0, path.IndexOf("_"));
+                    amountData -= 100;
+
+                } while (amountData > 100);
 
 
-            //    using (Stream s = File.Create("abc.json"))
-            //    {
-            //        myStream.CopyTo(s);
-            //    }
-            //}
+                // deserialize json data
 
+            }
 
 
 
