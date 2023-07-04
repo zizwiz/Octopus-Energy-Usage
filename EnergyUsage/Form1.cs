@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using EnergyUsage.Properties;
+using help_about;
 using Newtonsoft.Json;
 
 
@@ -24,6 +25,8 @@ namespace EnergyUsage
         private void Form1_Load(object sender, EventArgs e)
         {
             Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
+
+            btn_save_chart.Visible = false;
 
             //Fill in data from saved settings
             txtbx_api_key.Text = settings.API_Key;
@@ -52,11 +55,9 @@ namespace EnergyUsage
 
         private void btn_help_Click(object sender, EventArgs e)
         {
-            /*
-             * var f1 = new Help_Form();
+             var f1 = new Help_Form();
                f1.ShowDialog();
                GC.Collect();
-             */
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -255,7 +256,7 @@ namespace EnergyUsage
             Utilities.ChartDataPoints(sender, e, chart_electric_combined);
         }
 
-        private void btn_print_chart_Click(object sender, EventArgs e)
+        private void btn_save_chart_Click(object sender, EventArgs e)
         {
             if (TabControl1.SelectedTab.Name == "tab_electric_import")
             {
@@ -275,7 +276,20 @@ namespace EnergyUsage
             }
         }
 
-
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((TabControl1.SelectedTab.Name == "tab_electric_import") ||
+                (TabControl1.SelectedTab.Name == "tab_electric_export") ||
+                (TabControl1.SelectedTab.Name == "tab_combined_electricity") ||
+                (TabControl1.SelectedTab.Name == "tab_gas_import"))
+            {
+                btn_save_chart.Visible = true;
+            }
+            else
+            {
+                btn_save_chart.Visible = false;
+            }
+        }
     }
 
     /// <summary>

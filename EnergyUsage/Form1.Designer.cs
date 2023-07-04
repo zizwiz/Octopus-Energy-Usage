@@ -131,7 +131,7 @@ namespace EnergyUsage
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.lbl_electricity_exported = new System.Windows.Forms.Label();
-            this.btn_print_chart = new System.Windows.Forms.Button();
+            this.btn_save_chart = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
@@ -245,6 +245,7 @@ namespace EnergyUsage
             this.TabControl1.SelectedIndex = 0;
             this.TabControl1.Size = new System.Drawing.Size(1192, 677);
             this.TabControl1.TabIndex = 0;
+            this.TabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // tab_data_input
             // 
@@ -914,7 +915,7 @@ namespace EnergyUsage
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.btn_print_chart);
+            this.panel5.Controls.Add(this.btn_save_chart);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(399, 3);
             this.panel5.Name = "panel5";
@@ -1141,15 +1142,15 @@ namespace EnergyUsage
             this.lbl_electricity_exported.TabIndex = 35;
             this.lbl_electricity_exported.Text = "0";
             // 
-            // btn_print_chart
+            // btn_save_chart
             // 
-            this.btn_print_chart.Location = new System.Drawing.Point(32, 9);
-            this.btn_print_chart.Name = "btn_print_chart";
-            this.btn_print_chart.Size = new System.Drawing.Size(128, 50);
-            this.btn_print_chart.TabIndex = 3;
-            this.btn_print_chart.Text = "Print Chart";
-            this.btn_print_chart.UseVisualStyleBackColor = true;
-            this.btn_print_chart.Click += new System.EventHandler(this.btn_print_chart_Click);
+            this.btn_save_chart.Location = new System.Drawing.Point(32, 9);
+            this.btn_save_chart.Name = "btn_save_chart";
+            this.btn_save_chart.Size = new System.Drawing.Size(128, 50);
+            this.btn_save_chart.TabIndex = 3;
+            this.btn_save_chart.Text = "Save Chart";
+            this.btn_save_chart.UseVisualStyleBackColor = true;
+            this.btn_save_chart.Click += new System.EventHandler(this.btn_save_chart_Click);
             // 
             // Form1
             // 
@@ -1290,7 +1291,7 @@ namespace EnergyUsage
         private System.Windows.Forms.Label lbl_electricity_exported;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button btn_print_chart;
+        private System.Windows.Forms.Button btn_save_chart;
     }
 }
 
