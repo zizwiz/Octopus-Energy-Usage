@@ -116,9 +116,10 @@ namespace EnergyUsage
                     "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" + txtbx_gas_serial_num.Text + "/consumption/?page_size=100&period_from=" + dt_From + "&period_to=" + dt_To + "&order_by=period");
             }
 
+            //get the first chunk of data
             myOctopusDeserializeData = Utilities.GetData(uri, txtbx_api_key.Text);
 
-           //if we have multiple pages then we need to use this section
+           //if we have multiple pages then we need to use this section. multiple sections will have the count>100
             amountData = myOctopusDeserializeData.count;
 
             string myPath = "Data_1.json"; 
@@ -143,28 +144,30 @@ namespace EnergyUsage
                         JObject o1 = JObject.Parse(Utilities.LoadJson(myPath));
                         JObject o2 = JObject.Parse(Utilities.LoadJson(path));
 
-                        o1.Merge(o2);
-
-                        // o1.Merge(o2, new JsonMergeSettings { MergeArrayHandling = MergeArrayHandling.Concat });
+                        // Add the new results to teh original file
+                        foreach (JObject o in o2["results"])
+                            ((JArray)o1["results"]).Add(o);
+                        
+                       if(File.Exists(myPath)) File.Delete(myPath); //If it exists delete it
+                       File.WriteAllText(myPath, o1.ToString()); //Write the new file
                     }
 
-                    //reset path
-                    path = path.Substring(0, path.IndexOf("_"));
-                    amountData -= 100;
+                    path = path.Substring(0, path.IndexOf("_"));//reset path
+                    amountData -= 100; //remove one page worth of data
 
                 } while (amountData > 100);
 
 
                 // deserialize json data
+                myOctopusDeserializeData =
+                    JsonConvert.DeserializeObject<Rootobject>(Utilities.LoadJson(myPath));
 
             }
-
-
-
+            
             rchtxtbx_data.AppendText(myOctopusDeserializeData.count + "\r");
 
-            for (int i = 0; i < myOctopusDeserializeData.count; i++)
-            // for (int i = 0; i < 100; i++)
+            for (int i = 0; i < myOctopusDeserializeData.count; i++) //Use once merge is working
+           //  for (int i = 0; i < 100; i++)
             {
                 rchtxtbx_data.AppendText(myOctopusDeserializeData.results[i].interval_end + " : " +
                                          myOctopusDeserializeData.results[i].consumption + "\r");
@@ -253,7 +256,7 @@ namespace EnergyUsage
         private void btn_fill_data_Click(object sender, EventArgs e)
         {
             //Add your info here
-            
+           
         }
 
         private void chart_electric_usage_MouseMove(object sender, MouseEventArgs e)
