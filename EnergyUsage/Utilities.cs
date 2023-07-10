@@ -20,11 +20,14 @@ namespace EnergyUsage
             myChartArea.AxisX.ScaleView.Zoomable = true;
             myChartArea.CursorX.AutoScroll = true;
             myChartArea.CursorX.IsUserSelectionEnabled = true; //adds reset button on left
+            myChartArea.AxisX.Enabled = AxisEnabled.True;
+            myChartArea.AxisX.LabelStyle.Enabled = true;
+
 
             // As we use date and time on the x axis we need to do more work to make scrollable.
             myChartArea.CursorX.Interval = 0.001D;
             myChartArea.AxisX.ScaleView.SmallScrollSizeType = DateTimeIntervalType.Minutes;
-            myChartArea.AxisX.LabelStyle.Format = "dd/MM@hh:mm";
+            myChartArea.AxisX.LabelStyle.Format = "dd/MM@HH:mm";
         }
 
 
@@ -55,9 +58,10 @@ namespace EnergyUsage
         public static Series CreateCharts(Chart myChart, Series mySeries, Color myColor, bool LineChart)
         {
             if (myChart.Name != "chart_electric_combined")
-                myChart.Series.Clear(); // clear the chart if not combined chart
+            myChart.Series.Clear(); // clear the chart if not combined chart
             myChart.Legends.Clear(); // We do not need a legend
             myChart.ChartAreas[0].AxisX.IsMarginVisible = false;
+
 
             mySeries = myChart.Series.Add("");
             if (LineChart) mySeries.ChartType = SeriesChartType.FastLine; //type of chart
@@ -124,17 +128,8 @@ namespace EnergyUsage
         {
             using (StreamReader r = new StreamReader(myFile))
             {
-                //string json = r.ReadToEnd();
-
-                //var openB = json.IndexOf("[");
-                //json = json.Substring(openB + 1, json.Length - openB - 1);
-
-                //var closeB = json.LastIndexOf("]");
-                //json = json.Substring(0, closeB);
-
-                //return json;
+                //Reads file into a long string
                 return r.ReadToEnd();
-
             }
         }
 
@@ -153,6 +148,33 @@ namespace EnergyUsage
         }
 
 
+
+        public static void SaveData()
+        {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                InitialDirectory = Application.StartupPath, 
+                Title = "Save Text Files",
+                CheckPathExists = true,
+                DefaultExt = "CSV",
+                Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = true
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(sfd.FileName, "your data here...");
+            }
+
+        }
+
+        public static void CopyFile(string myFile, string myPath)
+        {
+            if (File.Exists(myFile)) File.Delete(myFile);
+            File.Copy(myPath, myFile);
+        }
+
         /*
          * Invoke(new Action(() =>
           {
@@ -160,14 +182,5 @@ namespace EnergyUsage
 
           }));
          */
-
-        /*
-         * JObject o1 = JObject.Parse(file);
-           JObject o2 = JObject.Parse(file);
-           
-           o1.Merge(o2)
-         */
-
-
-    }
+        }
 }

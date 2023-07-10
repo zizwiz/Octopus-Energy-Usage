@@ -32,16 +32,15 @@ namespace EnergyUsage
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn_getinfo = new System.Windows.Forms.Button();
             this.btn_help = new System.Windows.Forms.Button();
@@ -52,6 +51,10 @@ namespace EnergyUsage
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tab_data_input = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chkbx_Combined_Electric_lineChart = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.chkbx_Exported_Electric_lineChart = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.chkbx_Gas_lineChart = new System.Windows.Forms.CheckBox();
             this.chkbx_Imported_Electric_lineChart = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -73,6 +76,12 @@ namespace EnergyUsage
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.lbl_electricity_exported = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lbl_electricity_net = new System.Windows.Forms.Label();
             this.lbl_gas_usage = new System.Windows.Forms.Label();
             this.lbl_electricity_imported = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -85,6 +94,8 @@ namespace EnergyUsage
             this.dtPicker_date_to = new System.Windows.Forms.DateTimePicker();
             this.dtPicker_date_from = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtbx_electric_export_mpan = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtbx_gas_serial_num = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtbx_gas_mprn = new System.Windows.Forms.TextBox();
@@ -96,11 +107,18 @@ namespace EnergyUsage
             this.txtbx_api_key = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdobtn_electricity_export = new System.Windows.Forms.RadioButton();
             this.rdobtn_gas = new System.Windows.Forms.RadioButton();
             this.rdobtn_electricity_import = new System.Windows.Forms.RadioButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tab_electric_import = new System.Windows.Forms.TabPage();
             this.chart_electric_import = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tab_electric_export = new System.Windows.Forms.TabPage();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.chart_electric_export = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tab_combined_electricity = new System.Windows.Forms.TabPage();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.chart_electric_combined = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_gas_import = new System.Windows.Forms.TabPage();
             this.chart_gas_import = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -109,29 +127,11 @@ namespace EnergyUsage
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_fill_data = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btn_save_chart = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.rdobtn_electricity_export = new System.Windows.Forms.RadioButton();
-            this.tab_electric_export = new System.Windows.Forms.TabPage();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.chart_electric_export = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.txtbx_electric_export_mpan = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lbl_electricity_net = new System.Windows.Forms.Label();
-            this.chkbx_Exported_Electric_lineChart = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tab_combined_electricity = new System.Windows.Forms.TabPage();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.chart_electric_combined = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chkbx_Combined_Electric_lineChart = new System.Windows.Forms.CheckBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lbl_electricity_exported = new System.Windows.Forms.Label();
-            this.btn_save_chart = new System.Windows.Forms.Button();
+            this.btn_save_data = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
@@ -145,6 +145,12 @@ namespace EnergyUsage
             this.tabPage1.SuspendLayout();
             this.tab_electric_import.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_electric_import)).BeginInit();
+            this.tab_electric_export.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_export)).BeginInit();
+            this.tab_combined_electricity.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_combined)).BeginInit();
             this.tab_gas_import.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_gas_import)).BeginInit();
             this.panel2.SuspendLayout();
@@ -153,13 +159,8 @@ namespace EnergyUsage
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.tab_electric_export.SuspendLayout();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_export)).BeginInit();
-            this.tab_combined_electricity.SuspendLayout();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_combined)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_getinfo
@@ -167,7 +168,7 @@ namespace EnergyUsage
             this.btn_getinfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_getinfo.Location = new System.Drawing.Point(13, 9);
+            this.btn_getinfo.Location = new System.Drawing.Point(14, 9);
             this.btn_getinfo.Name = "btn_getinfo";
             this.btn_getinfo.Size = new System.Drawing.Size(165, 50);
             this.btn_getinfo.TabIndex = 0;
@@ -280,6 +281,42 @@ namespace EnergyUsage
             this.groupBox6.TabIndex = 49;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Chart Type";
+            // 
+            // chkbx_Combined_Electric_lineChart
+            // 
+            this.chkbx_Combined_Electric_lineChart.AutoSize = true;
+            this.chkbx_Combined_Electric_lineChart.Location = new System.Drawing.Point(269, 113);
+            this.chkbx_Combined_Electric_lineChart.Name = "chkbx_Combined_Electric_lineChart";
+            this.chkbx_Combined_Electric_lineChart.Size = new System.Drawing.Size(22, 21);
+            this.chkbx_Combined_Electric_lineChart.TabIndex = 54;
+            this.chkbx_Combined_Electric_lineChart.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(13, 114);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(250, 20);
+            this.label17.TabIndex = 53;
+            this.label17.Text = "Combined Electricity as Line Chart";
+            // 
+            // chkbx_Exported_Electric_lineChart
+            // 
+            this.chkbx_Exported_Electric_lineChart.AutoSize = true;
+            this.chkbx_Exported_Electric_lineChart.Location = new System.Drawing.Point(269, 86);
+            this.chkbx_Exported_Electric_lineChart.Name = "chkbx_Exported_Electric_lineChart";
+            this.chkbx_Exported_Electric_lineChart.Size = new System.Drawing.Size(22, 21);
+            this.chkbx_Exported_Electric_lineChart.TabIndex = 52;
+            this.chkbx_Exported_Electric_lineChart.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(13, 87);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(242, 20);
+            this.label16.TabIndex = 51;
+            this.label16.Text = "Exported Electricity as Line Chart";
             // 
             // chkbx_Gas_lineChart
             // 
@@ -492,6 +529,60 @@ namespace EnergyUsage
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Energy Usage";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(247, 70);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(37, 20);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "kwh";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(13, 70);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(161, 20);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "Electricity Exported = ";
+            // 
+            // lbl_electricity_exported
+            // 
+            this.lbl_electricity_exported.AutoSize = true;
+            this.lbl_electricity_exported.Location = new System.Drawing.Point(193, 70);
+            this.lbl_electricity_exported.Name = "lbl_electricity_exported";
+            this.lbl_electricity_exported.Size = new System.Drawing.Size(18, 20);
+            this.lbl_electricity_exported.TabIndex = 35;
+            this.lbl_electricity_exported.Text = "0";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(247, 42);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(37, 20);
+            this.label19.TabIndex = 34;
+            this.label19.Text = "kwh";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(13, 42);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(161, 20);
+            this.label18.TabIndex = 33;
+            this.label18.Text = "Electricity Imported = ";
+            // 
+            // lbl_electricity_net
+            // 
+            this.lbl_electricity_net.AutoSize = true;
+            this.lbl_electricity_net.Location = new System.Drawing.Point(13, 152);
+            this.lbl_electricity_net.Name = "lbl_electricity_net";
+            this.lbl_electricity_net.Size = new System.Drawing.Size(166, 20);
+            this.lbl_electricity_net.TabIndex = 32;
+            this.lbl_electricity_net.Text = "Electricity Sold = 0kwh";
+            // 
             // lbl_gas_usage
             // 
             this.lbl_gas_usage.AutoSize = true;
@@ -672,6 +763,22 @@ namespace EnergyUsage
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data";
             // 
+            // txtbx_electric_export_mpan
+            // 
+            this.txtbx_electric_export_mpan.Location = new System.Drawing.Point(322, 96);
+            this.txtbx_electric_export_mpan.Name = "txtbx_electric_export_mpan";
+            this.txtbx_electric_export_mpan.Size = new System.Drawing.Size(242, 26);
+            this.txtbx_electric_export_mpan.TabIndex = 18;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(5, 99);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(261, 20);
+            this.label15.TabIndex = 17;
+            this.label15.Text = "Electricty export meterpoint\'s MPAN";
+            // 
             // txtbx_gas_serial_num
             // 
             this.txtbx_gas_serial_num.Location = new System.Drawing.Point(322, 192);
@@ -764,6 +871,16 @@ namespace EnergyUsage
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Which Fuel?";
             // 
+            // rdobtn_electricity_export
+            // 
+            this.rdobtn_electricity_export.AutoSize = true;
+            this.rdobtn_electricity_export.Location = new System.Drawing.Point(20, 69);
+            this.rdobtn_electricity_export.Name = "rdobtn_electricity_export";
+            this.rdobtn_electricity_export.Size = new System.Drawing.Size(159, 24);
+            this.rdobtn_electricity_export.TabIndex = 3;
+            this.rdobtn_electricity_export.Text = "Electricicty Export";
+            this.rdobtn_electricity_export.UseVisualStyleBackColor = true;
+            // 
             // rdobtn_gas
             // 
             this.rdobtn_gas.AutoSize = true;
@@ -782,6 +899,7 @@ namespace EnergyUsage
             this.rdobtn_electricity_import.Name = "rdobtn_electricity_import";
             this.rdobtn_electricity_import.Size = new System.Drawing.Size(159, 24);
             this.rdobtn_electricity_import.TabIndex = 1;
+            this.rdobtn_electricity_import.TabStop = true;
             this.rdobtn_electricity_import.Text = "Electricicty Import";
             this.rdobtn_electricity_import.UseVisualStyleBackColor = true;
             // 
@@ -825,6 +943,81 @@ namespace EnergyUsage
             this.chart_electric_import.Text = "chart1";
             this.chart_electric_import.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_electric_usage_MouseMove);
             // 
+            // tab_electric_export
+            // 
+            this.tab_electric_export.Controls.Add(this.panel9);
+            this.tab_electric_export.Location = new System.Drawing.Point(4, 29);
+            this.tab_electric_export.Name = "tab_electric_export";
+            this.tab_electric_export.Size = new System.Drawing.Size(1184, 644);
+            this.tab_electric_export.TabIndex = 4;
+            this.tab_electric_export.Text = "Electricity Export";
+            this.tab_electric_export.UseVisualStyleBackColor = true;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.chart_electric_export);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1184, 644);
+            this.panel9.TabIndex = 0;
+            // 
+            // chart_electric_export
+            // 
+            chartArea2.Name = "exportElectricChartArea";
+            this.chart_electric_export.ChartAreas.Add(chartArea2);
+            this.chart_electric_export.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart_electric_export.Location = new System.Drawing.Point(0, 0);
+            this.chart_electric_export.Name = "chart_electric_export";
+            series2.ChartArea = "exportElectricChartArea";
+            series2.Name = "ExportElectricitySeries";
+            this.chart_electric_export.Series.Add(series2);
+            this.chart_electric_export.Size = new System.Drawing.Size(1184, 644);
+            this.chart_electric_export.TabIndex = 1;
+            this.chart_electric_export.Text = "chart1";
+            this.chart_electric_export.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_electric_export_MouseMove);
+            // 
+            // tab_combined_electricity
+            // 
+            this.tab_combined_electricity.Controls.Add(this.panel10);
+            this.tab_combined_electricity.Location = new System.Drawing.Point(4, 29);
+            this.tab_combined_electricity.Name = "tab_combined_electricity";
+            this.tab_combined_electricity.Size = new System.Drawing.Size(1184, 644);
+            this.tab_combined_electricity.TabIndex = 5;
+            this.tab_combined_electricity.Text = "Electricity Combined";
+            this.tab_combined_electricity.UseVisualStyleBackColor = true;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.chart_electric_combined);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1184, 644);
+            this.panel10.TabIndex = 0;
+            // 
+            // chart_electric_combined
+            // 
+            chartArea3.Name = "combinedElectricChartArea";
+            this.chart_electric_combined.ChartAreas.Add(chartArea3);
+            this.chart_electric_combined.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Name = "Legend1";
+            this.chart_electric_combined.Legends.Add(legend2);
+            this.chart_electric_combined.Location = new System.Drawing.Point(0, 0);
+            this.chart_electric_combined.Name = "chart_electric_combined";
+            series3.ChartArea = "combinedElectricChartArea";
+            series3.Legend = "Legend1";
+            series3.Name = "ExportElectricitySeries";
+            series4.ChartArea = "combinedElectricChartArea";
+            series4.Legend = "Legend1";
+            series4.Name = "ImportElectricitySeries";
+            this.chart_electric_combined.Series.Add(series3);
+            this.chart_electric_combined.Series.Add(series4);
+            this.chart_electric_combined.Size = new System.Drawing.Size(1184, 644);
+            this.chart_electric_combined.TabIndex = 2;
+            this.chart_electric_combined.Text = "chart1";
+            this.chart_electric_combined.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_electric_combined_MouseMove);
+            // 
             // tab_gas_import
             // 
             this.tab_gas_import.Controls.Add(this.chart_gas_import);
@@ -840,8 +1033,8 @@ namespace EnergyUsage
             chartArea4.Name = "ChartArea1";
             this.chart_gas_import.ChartAreas.Add(chartArea4);
             this.chart_gas_import.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chart_gas_import.Legends.Add(legend4);
+            legend3.Name = "Legend1";
+            this.chart_gas_import.Legends.Add(legend3);
             this.chart_gas_import.Location = new System.Drawing.Point(0, 0);
             this.chart_gas_import.Name = "chart_gas_import";
             series5.ChartArea = "ChartArea1";
@@ -922,9 +1115,19 @@ namespace EnergyUsage
             this.panel5.Size = new System.Drawing.Size(192, 68);
             this.panel5.TabIndex = 2;
             // 
+            // btn_save_chart
+            // 
+            this.btn_save_chart.Location = new System.Drawing.Point(32, 9);
+            this.btn_save_chart.Name = "btn_save_chart";
+            this.btn_save_chart.Size = new System.Drawing.Size(128, 50);
+            this.btn_save_chart.TabIndex = 3;
+            this.btn_save_chart.Text = "Save Chart";
+            this.btn_save_chart.UseVisualStyleBackColor = true;
+            this.btn_save_chart.Click += new System.EventHandler(this.btn_save_chart_Click);
+            // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.btn_getinfo);
+            this.panel6.Controls.Add(this.btn_save_data);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(597, 3);
             this.panel6.Name = "panel6";
@@ -933,6 +1136,7 @@ namespace EnergyUsage
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.btn_getinfo);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(795, 3);
             this.panel7.Name = "panel7";
@@ -948,209 +1152,18 @@ namespace EnergyUsage
             this.panel8.Size = new System.Drawing.Size(196, 68);
             this.panel8.TabIndex = 5;
             // 
-            // rdobtn_electricity_export
+            // btn_save_data
             // 
-            this.rdobtn_electricity_export.AutoSize = true;
-            this.rdobtn_electricity_export.Location = new System.Drawing.Point(20, 69);
-            this.rdobtn_electricity_export.Name = "rdobtn_electricity_export";
-            this.rdobtn_electricity_export.Size = new System.Drawing.Size(159, 24);
-            this.rdobtn_electricity_export.TabIndex = 3;
-            this.rdobtn_electricity_export.Text = "Electricicty Export";
-            this.rdobtn_electricity_export.UseVisualStyleBackColor = true;
-            // 
-            // tab_electric_export
-            // 
-            this.tab_electric_export.Controls.Add(this.panel9);
-            this.tab_electric_export.Location = new System.Drawing.Point(4, 29);
-            this.tab_electric_export.Name = "tab_electric_export";
-            this.tab_electric_export.Size = new System.Drawing.Size(1184, 644);
-            this.tab_electric_export.TabIndex = 4;
-            this.tab_electric_export.Text = "Electricity Export";
-            this.tab_electric_export.UseVisualStyleBackColor = true;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.chart_electric_export);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1184, 644);
-            this.panel9.TabIndex = 0;
-            // 
-            // chart_electric_export
-            // 
-            chartArea2.Name = "exportElectricChartArea";
-            this.chart_electric_export.ChartAreas.Add(chartArea2);
-            this.chart_electric_export.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart_electric_export.Legends.Add(legend2);
-            this.chart_electric_export.Location = new System.Drawing.Point(0, 0);
-            this.chart_electric_export.Name = "chart_electric_export";
-            series2.ChartArea = "exportElectricChartArea";
-            series2.Legend = "Legend1";
-            series2.Name = "ExportElectricitySeries";
-            this.chart_electric_export.Series.Add(series2);
-            this.chart_electric_export.Size = new System.Drawing.Size(1184, 644);
-            this.chart_electric_export.TabIndex = 1;
-            this.chart_electric_export.Text = "chart1";
-            this.chart_electric_export.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_electric_export_MouseMove);
-            // 
-            // txtbx_electric_export_mpan
-            // 
-            this.txtbx_electric_export_mpan.Location = new System.Drawing.Point(322, 96);
-            this.txtbx_electric_export_mpan.Name = "txtbx_electric_export_mpan";
-            this.txtbx_electric_export_mpan.Size = new System.Drawing.Size(242, 26);
-            this.txtbx_electric_export_mpan.TabIndex = 18;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(5, 99);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(261, 20);
-            this.label15.TabIndex = 17;
-            this.label15.Text = "Electricty export meterpoint\'s MPAN";
-            // 
-            // lbl_electricity_net
-            // 
-            this.lbl_electricity_net.AutoSize = true;
-            this.lbl_electricity_net.Location = new System.Drawing.Point(13, 152);
-            this.lbl_electricity_net.Name = "lbl_electricity_net";
-            this.lbl_electricity_net.Size = new System.Drawing.Size(166, 20);
-            this.lbl_electricity_net.TabIndex = 32;
-            this.lbl_electricity_net.Text = "Electricity Sold = 0kwh";
-            // 
-            // chkbx_Exported_Electric_lineChart
-            // 
-            this.chkbx_Exported_Electric_lineChart.AutoSize = true;
-            this.chkbx_Exported_Electric_lineChart.Location = new System.Drawing.Point(269, 86);
-            this.chkbx_Exported_Electric_lineChart.Name = "chkbx_Exported_Electric_lineChart";
-            this.chkbx_Exported_Electric_lineChart.Size = new System.Drawing.Size(22, 21);
-            this.chkbx_Exported_Electric_lineChart.TabIndex = 52;
-            this.chkbx_Exported_Electric_lineChart.UseVisualStyleBackColor = true;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(13, 87);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(242, 20);
-            this.label16.TabIndex = 51;
-            this.label16.Text = "Exported Electricity as Line Chart";
-            // 
-            // tab_combined_electricity
-            // 
-            this.tab_combined_electricity.Controls.Add(this.panel10);
-            this.tab_combined_electricity.Location = new System.Drawing.Point(4, 29);
-            this.tab_combined_electricity.Name = "tab_combined_electricity";
-            this.tab_combined_electricity.Size = new System.Drawing.Size(1184, 644);
-            this.tab_combined_electricity.TabIndex = 5;
-            this.tab_combined_electricity.Text = "Electricity Combined";
-            this.tab_combined_electricity.UseVisualStyleBackColor = true;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.chart_electric_combined);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1184, 644);
-            this.panel10.TabIndex = 0;
-            // 
-            // chart_electric_combined
-            // 
-            chartArea3.Name = "combinedElectricChartArea";
-            this.chart_electric_combined.ChartAreas.Add(chartArea3);
-            this.chart_electric_combined.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chart_electric_combined.Legends.Add(legend3);
-            this.chart_electric_combined.Location = new System.Drawing.Point(0, 0);
-            this.chart_electric_combined.Name = "chart_electric_combined";
-            series3.ChartArea = "combinedElectricChartArea";
-            series3.Legend = "Legend1";
-            series3.Name = "ExportElectricitySeries";
-            series4.ChartArea = "combinedElectricChartArea";
-            series4.Legend = "Legend1";
-            series4.Name = "ImportElectricitySeries";
-            this.chart_electric_combined.Series.Add(series3);
-            this.chart_electric_combined.Series.Add(series4);
-            this.chart_electric_combined.Size = new System.Drawing.Size(1184, 644);
-            this.chart_electric_combined.TabIndex = 2;
-            this.chart_electric_combined.Text = "chart1";
-            this.chart_electric_combined.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart_electric_combined_MouseMove);
-            // 
-            // chkbx_Combined_Electric_lineChart
-            // 
-            this.chkbx_Combined_Electric_lineChart.AutoSize = true;
-            this.chkbx_Combined_Electric_lineChart.Location = new System.Drawing.Point(269, 113);
-            this.chkbx_Combined_Electric_lineChart.Name = "chkbx_Combined_Electric_lineChart";
-            this.chkbx_Combined_Electric_lineChart.Size = new System.Drawing.Size(22, 21);
-            this.chkbx_Combined_Electric_lineChart.TabIndex = 54;
-            this.chkbx_Combined_Electric_lineChart.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(13, 114);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(250, 20);
-            this.label17.TabIndex = 53;
-            this.label17.Text = "Combined Electricity as Line Chart";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(13, 42);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(161, 20);
-            this.label18.TabIndex = 33;
-            this.label18.Text = "Electricity Imported = ";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(247, 42);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(37, 20);
-            this.label19.TabIndex = 34;
-            this.label19.Text = "kwh";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(247, 70);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(37, 20);
-            this.label20.TabIndex = 37;
-            this.label20.Text = "kwh";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(13, 70);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(161, 20);
-            this.label21.TabIndex = 36;
-            this.label21.Text = "Electricity Exported = ";
-            // 
-            // lbl_electricity_exported
-            // 
-            this.lbl_electricity_exported.AutoSize = true;
-            this.lbl_electricity_exported.Location = new System.Drawing.Point(193, 70);
-            this.lbl_electricity_exported.Name = "lbl_electricity_exported";
-            this.lbl_electricity_exported.Size = new System.Drawing.Size(18, 20);
-            this.lbl_electricity_exported.TabIndex = 35;
-            this.lbl_electricity_exported.Text = "0";
-            // 
-            // btn_save_chart
-            // 
-            this.btn_save_chart.Location = new System.Drawing.Point(32, 9);
-            this.btn_save_chart.Name = "btn_save_chart";
-            this.btn_save_chart.Size = new System.Drawing.Size(128, 50);
-            this.btn_save_chart.TabIndex = 3;
-            this.btn_save_chart.Text = "Save Chart";
-            this.btn_save_chart.UseVisualStyleBackColor = true;
-            this.btn_save_chart.Click += new System.EventHandler(this.btn_save_chart_Click);
+            this.btn_save_data.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_save_data.Location = new System.Drawing.Point(14, 9);
+            this.btn_save_data.Name = "btn_save_data";
+            this.btn_save_data.Size = new System.Drawing.Size(165, 50);
+            this.btn_save_data.TabIndex = 1;
+            this.btn_save_data.Text = "Save Data";
+            this.btn_save_data.UseVisualStyleBackColor = true;
+            this.btn_save_data.Click += new System.EventHandler(this.btn_save_info_Click);
             // 
             // Form1
             // 
@@ -1182,6 +1195,12 @@ namespace EnergyUsage
             this.tabPage1.ResumeLayout(false);
             this.tab_electric_import.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_electric_import)).EndInit();
+            this.tab_electric_export.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_export)).EndInit();
+            this.tab_combined_electricity.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_combined)).EndInit();
             this.tab_gas_import.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_gas_import)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -1190,13 +1209,8 @@ namespace EnergyUsage
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.tab_electric_export.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_export)).EndInit();
-            this.tab_combined_electricity.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart_electric_combined)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1292,6 +1306,7 @@ namespace EnergyUsage
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btn_save_chart;
+        private System.Windows.Forms.Button btn_save_data;
     }
 }
 
