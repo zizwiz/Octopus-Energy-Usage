@@ -30,16 +30,13 @@ namespace EnergyUsage
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn_getinfo = new System.Windows.Forms.Button();
@@ -178,7 +175,10 @@ namespace EnergyUsage
             // 
             // btn_help
             // 
-            this.btn_help.Location = new System.Drawing.Point(13, 9);
+            this.btn_help.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_help.Location = new System.Drawing.Point(32, 9);
             this.btn_help.Name = "btn_help";
             this.btn_help.Size = new System.Drawing.Size(128, 50);
             this.btn_help.TabIndex = 1;
@@ -930,12 +930,9 @@ namespace EnergyUsage
             chartArea1.Name = "importElectricChartArea";
             this.chart_electric_import.ChartAreas.Add(chartArea1);
             this.chart_electric_import.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart_electric_import.Legends.Add(legend1);
             this.chart_electric_import.Location = new System.Drawing.Point(3, 3);
             this.chart_electric_import.Name = "chart_electric_import";
             series1.ChartArea = "importElectricChartArea";
-            series1.Legend = "Legend1";
             series1.Name = "ImportElectricitySeries";
             this.chart_electric_import.Series.Add(series1);
             this.chart_electric_import.Size = new System.Drawing.Size(1178, 638);
@@ -1001,15 +998,11 @@ namespace EnergyUsage
             chartArea3.Name = "combinedElectricChartArea";
             this.chart_electric_combined.ChartAreas.Add(chartArea3);
             this.chart_electric_combined.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart_electric_combined.Legends.Add(legend2);
             this.chart_electric_combined.Location = new System.Drawing.Point(0, 0);
             this.chart_electric_combined.Name = "chart_electric_combined";
             series3.ChartArea = "combinedElectricChartArea";
-            series3.Legend = "Legend1";
             series3.Name = "ExportElectricitySeries";
             series4.ChartArea = "combinedElectricChartArea";
-            series4.Legend = "Legend1";
             series4.Name = "ImportElectricitySeries";
             this.chart_electric_combined.Series.Add(series3);
             this.chart_electric_combined.Series.Add(series4);
@@ -1033,12 +1026,9 @@ namespace EnergyUsage
             chartArea4.Name = "ChartArea1";
             this.chart_gas_import.ChartAreas.Add(chartArea4);
             this.chart_gas_import.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chart_gas_import.Legends.Add(legend3);
             this.chart_gas_import.Location = new System.Drawing.Point(0, 0);
             this.chart_gas_import.Name = "chart_gas_import";
             series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
             series5.Name = "Series1";
             this.chart_gas_import.Series.Add(series5);
             this.chart_gas_import.Size = new System.Drawing.Size(1184, 644);
@@ -1098,6 +1088,9 @@ namespace EnergyUsage
             // 
             // btn_fill_data
             // 
+            this.btn_fill_data.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_fill_data.Location = new System.Drawing.Point(28, 9);
             this.btn_fill_data.Name = "btn_fill_data";
             this.btn_fill_data.Size = new System.Drawing.Size(128, 50);
@@ -1117,6 +1110,9 @@ namespace EnergyUsage
             // 
             // btn_save_chart
             // 
+            this.btn_save_chart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_save_chart.Location = new System.Drawing.Point(32, 9);
             this.btn_save_chart.Name = "btn_save_chart";
             this.btn_save_chart.Size = new System.Drawing.Size(128, 50);

@@ -58,7 +58,7 @@ namespace EnergyUsage
         public static Series CreateCharts(Chart myChart, Series mySeries, Color myColor, bool LineChart)
         {
             if (myChart.Name != "chart_electric_combined")
-            myChart.Series.Clear(); // clear the chart if not combined chart
+                myChart.Series.Clear(); // clear the chart if not combined chart
             myChart.Legends.Clear(); // We do not need a legend
             myChart.ChartAreas[0].AxisX.IsMarginVisible = false;
 
@@ -147,14 +147,19 @@ namespace EnergyUsage
                      new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
 
-
-
-        public static void SaveData()
+        public static void CopyFile(string myFile, string myPath)
         {
-            SaveFileDialog sfd = new SaveFileDialog()
+            if (File.Exists(myFile)) File.Delete(myFile);
+            File.Copy(myPath, myFile);
+        }
+
+
+        public static void SaveData(TabControl myTabControl, Rootobject myJsonDeserializedData)
+        {
+            SaveFileDialog mySaveFileDialog = new SaveFileDialog()
             {
-                InitialDirectory = Application.StartupPath, 
-                Title = "Save Text Files",
+                InitialDirectory = Application.StartupPath,
+                Title = "Save Data Files",
                 CheckPathExists = true,
                 DefaultExt = "CSV",
                 Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
@@ -162,18 +167,38 @@ namespace EnergyUsage
                 RestoreDirectory = true
             };
 
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (mySaveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(sfd.FileName, "your data here...");
+                var csv = new StringBuilder();
+                string myDataType = "";
+
+                if (myTabControl.SelectedTab.Name == "tab_electric_import")
+                {
+                    myDataType = "Electricity Imported";
+                }
+                else if (myTabControl.SelectedTab.Name == "tab_electric_export")
+                {
+                    myDataType = "Electricity Exported";
+                }
+                else if (myTabControl.SelectedTab.Name == "tab_gas_import")
+                {
+                    myDataType = "Gas Imported";
+                }
+
+                csv.AppendLine("Date:Time," + myDataType);
+
+                for (int i = 0; i < myJsonDeserializedData.count; i++)
+                {
+                    csv.AppendLine(myJsonDeserializedData.results[i].interval_end.Date.ToString().Substring(0, 10) + ":" +
+                                   myJsonDeserializedData.results[i].interval_end.TimeOfDay + "," +
+                                             myJsonDeserializedData.results[i].consumption);
+                }
+
+                File.WriteAllText(mySaveFileDialog.FileName, csv.ToString());
             }
 
         }
 
-        public static void CopyFile(string myFile, string myPath)
-        {
-            if (File.Exists(myFile)) File.Delete(myFile);
-            File.Copy(myPath, myFile);
-        }
 
         /*
          * Invoke(new Action(() =>
@@ -182,5 +207,5 @@ namespace EnergyUsage
 
           }));
          */
-        }
+    }
 }

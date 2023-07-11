@@ -357,7 +357,18 @@ namespace EnergyUsage
 
         private void btn_save_info_Click(object sender, EventArgs e)
         {
-            Utilities.SaveData();
+            string dataFile = "";
+            Rootobject myOctopusDeserializeData = new Rootobject(); //Just Initialise
+
+            if (TabControl1.SelectedTab.Name == "tab_electric_import") {dataFile = "ElectricityImported.json";}
+            else if (TabControl1.SelectedTab.Name == "tab_electric_export") {dataFile = "ElectricityExported.json";}
+            else if (TabControl1.SelectedTab.Name == "tab_gas_import") {dataFile = "GasImported.json";}
+
+            // deserialize json data
+            myOctopusDeserializeData =
+                JsonConvert.DeserializeObject<Rootobject>(Utilities.LoadJson(dataFile));
+
+            Utilities.SaveData(TabControl1, myOctopusDeserializeData);
         }
     }
 
