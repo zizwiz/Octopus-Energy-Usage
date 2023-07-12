@@ -46,7 +46,7 @@ namespace EnergyUsage
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TabControl1 = new System.Windows.Forms.TabControl();
-            this.tab_data_input = new System.Windows.Forms.TabPage();
+            this.tab_energy_usage_data_input = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.chkbx_Combined_Electric_lineChart = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -126,13 +126,19 @@ namespace EnergyUsage
             this.panel5 = new System.Windows.Forms.Panel();
             this.btn_save_chart = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btn_save_data = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.btn_save_data = new System.Windows.Forms.Button();
+            this.tab_tariff_info = new System.Windows.Forms.TabPage();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.cmbobx_tariff_name = new System.Windows.Forms.ComboBox();
+            this.cmbobx_regions = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rchtxtbx_tariff_info = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
-            this.tab_data_input.SuspendLayout();
+            this.tab_energy_usage_data_input.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -158,6 +164,9 @@ namespace EnergyUsage
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.tab_tariff_info.SuspendLayout();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_getinfo
@@ -234,12 +243,13 @@ namespace EnergyUsage
             // 
             // TabControl1
             // 
-            this.TabControl1.Controls.Add(this.tab_data_input);
+            this.TabControl1.Controls.Add(this.tab_energy_usage_data_input);
             this.TabControl1.Controls.Add(this.tabPage1);
             this.TabControl1.Controls.Add(this.tab_electric_import);
             this.TabControl1.Controls.Add(this.tab_electric_export);
             this.TabControl1.Controls.Add(this.tab_combined_electricity);
             this.TabControl1.Controls.Add(this.tab_gas_import);
+            this.TabControl1.Controls.Add(this.tab_tariff_info);
             this.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl1.Location = new System.Drawing.Point(0, 0);
             this.TabControl1.Name = "TabControl1";
@@ -248,21 +258,21 @@ namespace EnergyUsage
             this.TabControl1.TabIndex = 0;
             this.TabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
-            // tab_data_input
+            // tab_energy_usage_data_input
             // 
-            this.tab_data_input.Controls.Add(this.groupBox6);
-            this.tab_data_input.Controls.Add(this.groupBox5);
-            this.tab_data_input.Controls.Add(this.groupBox4);
-            this.tab_data_input.Controls.Add(this.groupBox3);
-            this.tab_data_input.Controls.Add(this.groupBox2);
-            this.tab_data_input.Controls.Add(this.groupBox1);
-            this.tab_data_input.Location = new System.Drawing.Point(4, 29);
-            this.tab_data_input.Name = "tab_data_input";
-            this.tab_data_input.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_data_input.Size = new System.Drawing.Size(1184, 644);
-            this.tab_data_input.TabIndex = 2;
-            this.tab_data_input.Text = "Data Input";
-            this.tab_data_input.UseVisualStyleBackColor = true;
+            this.tab_energy_usage_data_input.Controls.Add(this.groupBox6);
+            this.tab_energy_usage_data_input.Controls.Add(this.groupBox5);
+            this.tab_energy_usage_data_input.Controls.Add(this.groupBox4);
+            this.tab_energy_usage_data_input.Controls.Add(this.groupBox3);
+            this.tab_energy_usage_data_input.Controls.Add(this.groupBox2);
+            this.tab_energy_usage_data_input.Controls.Add(this.groupBox1);
+            this.tab_energy_usage_data_input.Location = new System.Drawing.Point(4, 29);
+            this.tab_energy_usage_data_input.Name = "tab_energy_usage_data_input";
+            this.tab_energy_usage_data_input.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_energy_usage_data_input.Size = new System.Drawing.Size(1184, 644);
+            this.tab_energy_usage_data_input.TabIndex = 2;
+            this.tab_energy_usage_data_input.Text = "Energy Usage Data Input";
+            this.tab_energy_usage_data_input.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -1130,6 +1140,19 @@ namespace EnergyUsage
             this.panel6.Size = new System.Drawing.Size(192, 68);
             this.panel6.TabIndex = 3;
             // 
+            // btn_save_data
+            // 
+            this.btn_save_data.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_save_data.Location = new System.Drawing.Point(14, 9);
+            this.btn_save_data.Name = "btn_save_data";
+            this.btn_save_data.Size = new System.Drawing.Size(165, 50);
+            this.btn_save_data.TabIndex = 1;
+            this.btn_save_data.Text = "Save Data";
+            this.btn_save_data.UseVisualStyleBackColor = true;
+            this.btn_save_data.Click += new System.EventHandler(this.btn_save_info_Click);
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.btn_getinfo);
@@ -1148,18 +1171,77 @@ namespace EnergyUsage
             this.panel8.Size = new System.Drawing.Size(196, 68);
             this.panel8.TabIndex = 5;
             // 
-            // btn_save_data
+            // tab_tariff_info
             // 
-            this.btn_save_data.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_save_data.Location = new System.Drawing.Point(14, 9);
-            this.btn_save_data.Name = "btn_save_data";
-            this.btn_save_data.Size = new System.Drawing.Size(165, 50);
-            this.btn_save_data.TabIndex = 1;
-            this.btn_save_data.Text = "Save Data";
-            this.btn_save_data.UseVisualStyleBackColor = true;
-            this.btn_save_data.Click += new System.EventHandler(this.btn_save_info_Click);
+            this.tab_tariff_info.Controls.Add(this.panel11);
+            this.tab_tariff_info.Location = new System.Drawing.Point(4, 29);
+            this.tab_tariff_info.Name = "tab_tariff_info";
+            this.tab_tariff_info.Size = new System.Drawing.Size(1184, 644);
+            this.tab_tariff_info.TabIndex = 6;
+            this.tab_tariff_info.Text = "Tariff Information";
+            this.tab_tariff_info.UseVisualStyleBackColor = true;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.rchtxtbx_tariff_info);
+            this.panel11.Controls.Add(this.pictureBox1);
+            this.panel11.Controls.Add(this.cmbobx_regions);
+            this.panel11.Controls.Add(this.cmbobx_tariff_name);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1184, 644);
+            this.panel11.TabIndex = 0;
+            // 
+            // cmbobx_tariff_name
+            // 
+            this.cmbobx_tariff_name.FormattingEnabled = true;
+            this.cmbobx_tariff_name.Location = new System.Drawing.Point(20, 32);
+            this.cmbobx_tariff_name.Name = "cmbobx_tariff_name";
+            this.cmbobx_tariff_name.Size = new System.Drawing.Size(535, 28);
+            this.cmbobx_tariff_name.TabIndex = 0;
+            this.cmbobx_tariff_name.SelectedIndexChanged += new System.EventHandler(this.cmbobx_tariff_name_SelectedIndexChanged);
+            // 
+            // cmbobx_regions
+            // 
+            this.cmbobx_regions.FormattingEnabled = true;
+            this.cmbobx_regions.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "P"});
+            this.cmbobx_regions.Location = new System.Drawing.Point(561, 32);
+            this.cmbobx_regions.Name = "cmbobx_regions";
+            this.cmbobx_regions.Size = new System.Drawing.Size(97, 28);
+            this.cmbobx_regions.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::EnergyUsage.Properties.Resources.UK_Region_Map;
+            this.pictureBox1.Location = new System.Drawing.Point(732, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(397, 624);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // rchtxtbx_tariff_info
+            // 
+            this.rchtxtbx_tariff_info.Location = new System.Drawing.Point(20, 66);
+            this.rchtxtbx_tariff_info.Name = "rchtxtbx_tariff_info";
+            this.rchtxtbx_tariff_info.Size = new System.Drawing.Size(638, 564);
+            this.rchtxtbx_tariff_info.TabIndex = 3;
+            this.rchtxtbx_tariff_info.Text = "";
             // 
             // Form1
             // 
@@ -1175,7 +1257,7 @@ namespace EnergyUsage
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.TabControl1.ResumeLayout(false);
-            this.tab_data_input.ResumeLayout(false);
+            this.tab_energy_usage_data_input.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1207,6 +1289,9 @@ namespace EnergyUsage
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.tab_tariff_info.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1230,7 +1315,7 @@ namespace EnergyUsage
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.TabPage tab_data_input;
+        private System.Windows.Forms.TabPage tab_energy_usage_data_input;
         private System.Windows.Forms.TabPage tab_gas_import;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_gas_import;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1303,6 +1388,12 @@ namespace EnergyUsage
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btn_save_chart;
         private System.Windows.Forms.Button btn_save_data;
+        private System.Windows.Forms.TabPage tab_tariff_info;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.ComboBox cmbobx_tariff_name;
+        private System.Windows.Forms.ComboBox cmbobx_regions;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox rchtxtbx_tariff_info;
     }
 }
 

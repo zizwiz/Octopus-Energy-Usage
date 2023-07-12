@@ -133,9 +133,9 @@ namespace EnergyUsage
             }
         }
 
-        public static Rootobject GetData(Uri myURI, string myApiKey)
+        public static EnergyUsageRootobject GetData(Uri myURI, string myApiKey)
         {
-            Rootobject myOctopusDeserializeData = new Rootobject();
+            EnergyUsageRootobject myOctopusDeserializeData = new EnergyUsageRootobject();
             var request = WebRequest.Create(myURI);
 
             request.Headers["Authorization"] =
@@ -143,9 +143,20 @@ namespace EnergyUsage
 
 
             return myOctopusDeserializeData =
-                 JsonConvert.DeserializeObject<Rootobject>(
+                 JsonConvert.DeserializeObject<EnergyUsageRootobject>(
                      new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
+
+        public static ProductRootobject GetTariffInfo(Uri myURI)
+        {
+            ProductRootobject myProductDeserializeData = new ProductRootobject();
+            var request = WebRequest.Create(myURI);
+            
+            return myProductDeserializeData =
+                JsonConvert.DeserializeObject<ProductRootobject>(
+                    new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+        }
+
 
         public static void CopyFile(string myFile, string myPath)
         {
@@ -154,7 +165,7 @@ namespace EnergyUsage
         }
 
 
-        public static void SaveData(TabControl myTabControl, Rootobject myJsonDeserializedData)
+        public static void SaveData(TabControl myTabControl, EnergyUsageRootobject myJsonDeserializedData)
         {
             SaveFileDialog mySaveFileDialog = new SaveFileDialog()
             {
@@ -189,7 +200,8 @@ namespace EnergyUsage
 
                 for (int i = 0; i < myJsonDeserializedData.count; i++)
                 {
-                    csv.AppendLine(myJsonDeserializedData.results[i].interval_end.Date.ToString().Substring(0, 10) + ":" +
+                    //we use this date time format so it will draw the chart properly in programs like Excel
+                    csv.AppendLine(myJsonDeserializedData.results[i].interval_end.Date.ToString().Substring(0, 10) + "@" +
                                    myJsonDeserializedData.results[i].interval_end.TimeOfDay + "," +
                                              myJsonDeserializedData.results[i].consumption);
                 }

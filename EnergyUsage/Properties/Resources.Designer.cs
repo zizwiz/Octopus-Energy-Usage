@@ -69,5 +69,15 @@ namespace EnergyUsage.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UK_Region_Map {
+            get {
+                object obj = ResourceManager.GetObject("UK_Region_Map", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
