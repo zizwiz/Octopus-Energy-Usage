@@ -163,12 +163,7 @@ namespace EnergyUsage
         private void btn_fill_data_Click(object sender, EventArgs e)
         {
             //Add your info here
-            txtbx_api_key.Text = "sk_live_Be2iCvLvPpt2FBhzxwrVjh8J";
-            txtbx_electric_serial_num.Text = "22E5055634";
-            txtbx_electric_import_mpan.Text = "1012799766349";
-            txtbx_electric_export_mpan.Text = "1050002706893";
-            txtbx_gas_serial_num.Text = "E6E05522812221";
-            txtbx_gas_mprn.Text = "3083198305";
+           
         }
 
         private void chart_electric_usage_MouseMove(object sender, MouseEventArgs e)
