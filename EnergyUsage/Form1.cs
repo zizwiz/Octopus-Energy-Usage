@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using EnergyUsage.Properties;
 using help_about;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 
 namespace EnergyUsage
@@ -15,6 +12,7 @@ namespace EnergyUsage
     public partial class Form1 : Form
     {
         private Settings settings = Settings.Default;
+        private ProductRootobject myProductDeserializeData = new ProductRootobject();
 
         public Form1()
         {
@@ -86,7 +84,7 @@ namespace EnergyUsage
 
         private void GetTariffInformation()
         {
-            ProductRootobject myProductDeserializeData =
+            myProductDeserializeData =
                 Utilities.GetTariffInfo(new Uri("https://api.octopus.energy/v1/products/"));
 
             cmbobx_tariff_name.Items.Clear();
@@ -101,12 +99,13 @@ namespace EnergyUsage
 
         private void cmbobx_tariff_name_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ProductRootobject myProductDeserializeData =
-                Utilities.GetTariffInfo(new Uri("https://api.octopus.energy/v1/products/"));
-
             int index = cmbobx_tariff_name.SelectedIndex;
+
+            string region = "_" + cmbobx_regions.Text;
+            string code = myProductDeserializeData.results[index].code;
+           
             rchtxtbx_tariff_info.Clear();
-            rchtxtbx_tariff_info.AppendText("Code = " + myProductDeserializeData.results[index].code +"\r");
+            rchtxtbx_tariff_info.AppendText("Code = " + code +"\r");
             rchtxtbx_tariff_info.AppendText("Direction = " + myProductDeserializeData.results[index].direction + "\r");
             rchtxtbx_tariff_info.AppendText("Full Name = " + myProductDeserializeData.results[index].full_name + "\r");
             rchtxtbx_tariff_info.AppendText("Display Name = " + myProductDeserializeData.results[index].display_name + "\r");
@@ -122,7 +121,8 @@ namespace EnergyUsage
             rchtxtbx_tariff_info.AppendText("Available To = " + myProductDeserializeData.results[index].available_to + "\r");
             rchtxtbx_tariff_info.AppendText("Company Selling Tariff = " + myProductDeserializeData.results[index].brand + "\r");
 
-
+            rchtxtbx_tariff_info.AppendText("\r" + region);
+            rchtxtbx_tariff_info.AppendText("\r" + code);
 
         }
 
@@ -162,8 +162,15 @@ namespace EnergyUsage
 
         private void btn_fill_data_Click(object sender, EventArgs e)
         {
-            //Add your info here
-           
+            //Add your info here and remove FillData()
+            //txtbx_api_key.Text = "";
+            //txtbx_electric_serial_num.Text = "";
+            //txtbx_electric_import_mpan.Text = "";
+            //txtbx_electric_export_mpan.Text = "";
+            //txtbx_gas_serial_num.Text = "";
+            //txtbx_gas_mprn.Text = "";
+
+            FillData();
         }
 
         private void chart_electric_usage_MouseMove(object sender, MouseEventArgs e)
@@ -236,7 +243,7 @@ namespace EnergyUsage
                 btn_save_chart.Visible = true;
             }
 
-            if (TabControl1.SelectedTab.Name == "tab_data_input")
+            if (TabControl1.SelectedTab.Name == "tab_energy_usage_data_input")
             {
                 btn_getinfo.Visible = true;
                 btn_fill_data.Visible = true;
@@ -244,6 +251,7 @@ namespace EnergyUsage
             else if (TabControl1.SelectedTab.Name == "tab_tariff_info")
             {
                 btn_getinfo.Visible = true;
+                btn_fill_data.Visible = false;
             }
         }
 
