@@ -13,6 +13,7 @@ namespace EnergyUsage
     {
         private Settings settings = Settings.Default;
         private ProductRootobject myProductDeserializeData = new ProductRootobject();
+        private TariffRootobject myTariffDeserializedData = new TariffRootobject();
 
         public Form1()
         {
@@ -33,7 +34,7 @@ namespace EnergyUsage
             txtbx_electric_import_mpan.Text = settings.Import_MPAN;
             txtbx_electric_export_mpan.Text = settings.Export_MPAN;
             txtbx_gas_mprn.Text = settings.MPRN;
-            rdobtn_electricity_import.Checked = settings.Electrcity;
+            rdobtn_electricity_import.Checked = settings.Electricity;
             rdobtn_gas.Checked = settings.Gas;
 
             dtPicker_date_from.Value = settings.Date_from;
@@ -44,12 +45,23 @@ namespace EnergyUsage
             cmbobx_hour_to.Text = settings.Hour_to;
             cmbobx_minute_to.Text = settings.Minutes_to;
 
+            rdobtn_single_rate.Checked = settings.single_rate;
+            rdobtn_dual_rate.Checked = settings.dual_rate;
+            chckbx_export_electric.Checked = settings.export_electric;
+            chckbx_use_gas.Checked = settings.use_gas;
+            
+
             //remove all chart legends
             chart_electric_import.Legends.Clear();
             chart_electric_export.Legends.Clear();
             chart_gas_import.Legends.Clear();
 
-            cmbobx_regions.SelectedIndex = 0;
+            //make some items invisible 
+            picbx_regions.Visible = false;
+            lbl_choose_tariff.Visible = false;
+            cmbobx_tariff_name.Visible = false;
+            rchtxtbx_tariff_info.Visible = false;
+            grpbx_tariff.Visible = false;
         }
 
         private void btn_help_Click(object sender, EventArgs e)
@@ -77,15 +89,15 @@ namespace EnergyUsage
             }
             else if (TabControl1.SelectedTab.Name == "tab_tariff_info")
             {
-                GetTariffInformation();
+                PopulateTariffInformation();
             }
         }
 
 
-        private void GetTariffInformation()
+        private void PopulateTariffInformation()
         {
             myProductDeserializeData =
-                Utilities.GetTariffInfo(new Uri("https://api.octopus.energy/v1/products/"));
+                Utilities.GetProducts(new Uri("https://api.octopus.energy/v1/products/"));
 
             cmbobx_tariff_name.Items.Clear();
 
@@ -94,40 +106,30 @@ namespace EnergyUsage
                 cmbobx_tariff_name.Items.Add(myProductDeserializeData.results[i].full_name);
             }
 
-            cmbobx_tariff_name.SelectedIndex = 0;
+            //Set to last used items
+            cmbobx_tariff_name.SelectedIndex = settings.tariff_name;
+            cmbobx_regions.SelectedIndex = settings.region;
+
+            //show all items on UI
+            picbx_regions.Visible = true;
+            lbl_choose_tariff.Visible = true;
+            cmbobx_tariff_name.Visible = true;
+            rchtxtbx_tariff_info.Visible = true;
+            grpbx_tariff.Visible = true;
         }
 
         private void cmbobx_tariff_name_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = cmbobx_tariff_name.SelectedIndex;
-
-            string region = "_" + cmbobx_regions.Text;
-            string code = myProductDeserializeData.results[index].code;
-           
-            rchtxtbx_tariff_info.Clear();
-            rchtxtbx_tariff_info.AppendText("Code = " + code +"\r");
-            rchtxtbx_tariff_info.AppendText("Direction = " + myProductDeserializeData.results[index].direction + "\r");
-            rchtxtbx_tariff_info.AppendText("Full Name = " + myProductDeserializeData.results[index].full_name + "\r");
-            rchtxtbx_tariff_info.AppendText("Display Name = " + myProductDeserializeData.results[index].display_name + "\r");
-            rchtxtbx_tariff_info.AppendText("Description = " + myProductDeserializeData.results[index].description + "\r");
-            rchtxtbx_tariff_info.AppendText("Is Tariff Variable? = " + myProductDeserializeData.results[index].is_variable + "\r");
-            rchtxtbx_tariff_info.AppendText("Is Tariff Green? = " + myProductDeserializeData.results[index].is_green + "\r");
-            rchtxtbx_tariff_info.AppendText("Is Tariff Tracker? = " + myProductDeserializeData.results[index].is_tracker + "\r");
-            rchtxtbx_tariff_info.AppendText("Is Tariff Prepay? = " + myProductDeserializeData.results[index].is_prepay + "\r");
-            rchtxtbx_tariff_info.AppendText("Can Tariff be used for Business? = " + myProductDeserializeData.results[index].is_business + "\r");
-            rchtxtbx_tariff_info.AppendText("Is Tariff Restricted = " + myProductDeserializeData.results[index].is_restricted + "\r");
-            rchtxtbx_tariff_info.AppendText("Term = " + myProductDeserializeData.results[index].term + "\r");
-            rchtxtbx_tariff_info.AppendText("Available From = " + myProductDeserializeData.results[index].available_from + "\r");
-            rchtxtbx_tariff_info.AppendText("Available To = " + myProductDeserializeData.results[index].available_to + "\r");
-            rchtxtbx_tariff_info.AppendText("Company Selling Tariff = " + myProductDeserializeData.results[index].brand + "\r");
-
-            rchtxtbx_tariff_info.AppendText("\r" + region);
-            rchtxtbx_tariff_info.AppendText("\r" + code);
-
+            GetTariffs();
+            settings.tariff_name = cmbobx_tariff_name.SelectedIndex;
         }
 
 
-
+        private void cmbobx_regions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetTariffs();
+            settings.region = cmbobx_regions.SelectedIndex;
+        }
 
 
 
@@ -146,7 +148,7 @@ namespace EnergyUsage
             settings.Export_MPAN = txtbx_electric_export_mpan.Text;
             settings.MPRN = txtbx_gas_mprn.Text;
 
-            settings.Electrcity = rdobtn_electricity_import.Checked;
+            settings.Electricity = rdobtn_electricity_import.Checked;
             settings.Gas = rdobtn_gas.Checked;
 
             settings.Date_from = dtPicker_date_from.Value;
@@ -156,6 +158,12 @@ namespace EnergyUsage
             settings.Date_to = dtPicker_date_to.Value;
             settings.Hour_to = cmbobx_hour_to.Text;
             settings.Minutes_to = cmbobx_minute_to.Text;
+
+            settings.single_rate = rdobtn_single_rate.Checked;
+            settings.dual_rate = rdobtn_dual_rate.Checked;
+            settings.export_electric = chckbx_export_electric.Checked;
+            settings.use_gas = chckbx_use_gas.Checked;
+            
 
             settings.Save();
         }
@@ -272,6 +280,6 @@ namespace EnergyUsage
             Utilities.SaveData(TabControl1, myOctopusDeserializeData);
         }
 
-        
+
     }
 }

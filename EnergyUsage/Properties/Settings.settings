@@ -17,7 +17,7 @@
     <Setting Name="Gas_meter_ser_num" Type="System.String" Scope="User">
       <Value Profile="(Default)">123456</Value>
     </Setting>
-    <Setting Name="Electrcity" Type="System.Boolean" Scope="User">
+    <Setting Name="Electricity" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Gas" Type="System.Boolean" Scope="User">
@@ -43,6 +43,24 @@
     </Setting>
     <Setting Name="Export_MPAN" Type="System.String" Scope="User">
       <Value Profile="(Default)">123456</Value>
+    </Setting>
+    <Setting Name="tariff_name" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="region" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="use_gas" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="export_electric" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="dual_rate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="single_rate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

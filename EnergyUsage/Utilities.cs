@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Newtonsoft.Json;
@@ -147,16 +148,41 @@ namespace EnergyUsage
                      new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
 
-        public static ProductRootobject GetTariffInfo(Uri myURI)
+        public static ProductRootobject GetProducts(Uri myURI)
         {
             ProductRootobject myProductDeserializeData = new ProductRootobject();
             var request = WebRequest.Create(myURI);
-            
+
             return myProductDeserializeData =
                 JsonConvert.DeserializeObject<ProductRootobject>(
                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
 
+        public static TariffRootobject GetTariffInfo(Uri myURI)
+        {
+            TariffRootobject myTariffDeserializedData = new TariffRootobject();
+            var request = WebRequest.Create(myURI);
+
+            try
+            {
+                myTariffDeserializedData =
+                 JsonConvert.DeserializeObject<TariffRootobject>(
+                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+            }
+            catch (Exception e)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    myTariffDeserializedData =
+                        JsonConvert.DeserializeObject<TariffRootobject>(
+                            new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+                    i++;
+                    Thread.Sleep(1000);
+                }
+            }
+
+            return myTariffDeserializedData;
+        }
 
         public static void CopyFile(string myFile, string myPath)
         {

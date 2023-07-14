@@ -2,7 +2,7 @@
 
 namespace EnergyUsage
 {
-    public class ChargesRootobject
+    public class TariffRootobject
     {
         public string code { get; set; }
         public string full_name { get; set; }

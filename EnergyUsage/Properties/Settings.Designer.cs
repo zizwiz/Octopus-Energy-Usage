@@ -86,12 +86,12 @@ namespace EnergyUsage.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool Electrcity {
+        public bool Electricity {
             get {
-                return ((bool)(this["Electrcity"]));
+                return ((bool)(this["Electricity"]));
             }
             set {
-                this["Electrcity"] = value;
+                this["Electricity"] = value;
             }
         }
         
@@ -188,6 +188,78 @@ namespace EnergyUsage.Properties {
             }
             set {
                 this["Export_MPAN"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int tariff_name {
+            get {
+                return ((int)(this["tariff_name"]));
+            }
+            set {
+                this["tariff_name"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int region {
+            get {
+                return ((int)(this["region"]));
+            }
+            set {
+                this["region"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool use_gas {
+            get {
+                return ((bool)(this["use_gas"]));
+            }
+            set {
+                this["use_gas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool export_electric {
+            get {
+                return ((bool)(this["export_electric"]));
+            }
+            set {
+                this["export_electric"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool dual_rate {
+            get {
+                return ((bool)(this["dual_rate"]));
+            }
+            set {
+                this["dual_rate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool single_rate {
+            get {
+                return ((bool)(this["single_rate"]));
+            }
+            set {
+                this["single_rate"] = value;
             }
         }
     }

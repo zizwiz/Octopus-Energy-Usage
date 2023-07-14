@@ -71,6 +71,9 @@
     <Compile Include="GetEnergyUsed.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GetTariffs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="help\AssemblyInfo.cs" />
     <Compile Include="help\Help_Form.cs">
       <SubType>Form</SubType>
