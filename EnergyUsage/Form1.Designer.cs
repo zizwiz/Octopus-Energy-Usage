@@ -120,16 +120,16 @@ namespace EnergyUsage
             this.chart_gas_import = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_tariff_info = new System.Windows.Forms.TabPage();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.lbl_choose_region = new System.Windows.Forms.Label();
             this.lbl_choose_tariff = new System.Windows.Forms.Label();
             this.grpbx_tariff = new System.Windows.Forms.GroupBox();
+            this.lbl_choose_region = new System.Windows.Forms.Label();
             this.chckbx_export_electric = new System.Windows.Forms.CheckBox();
             this.chckbx_use_gas = new System.Windows.Forms.CheckBox();
             this.rdobtn_dual_rate = new System.Windows.Forms.RadioButton();
             this.rdobtn_single_rate = new System.Windows.Forms.RadioButton();
+            this.cmbobx_regions = new System.Windows.Forms.ComboBox();
             this.rchtxtbx_tariff_info = new System.Windows.Forms.RichTextBox();
             this.picbx_regions = new System.Windows.Forms.PictureBox();
-            this.cmbobx_regions = new System.Windows.Forms.ComboBox();
             this.cmbobx_tariff_name = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -142,6 +142,10 @@ namespace EnergyUsage
             this.btn_save_data = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.rdobtn_otherPayment = new System.Windows.Forms.RadioButton();
+            this.rdobtn_nonDirectDebit = new System.Windows.Forms.RadioButton();
+            this.rdobtn_directDebit = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
@@ -175,6 +179,7 @@ namespace EnergyUsage
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_getinfo
@@ -1077,15 +1082,6 @@ namespace EnergyUsage
             this.panel11.Size = new System.Drawing.Size(1184, 644);
             this.panel11.TabIndex = 0;
             // 
-            // lbl_choose_region
-            // 
-            this.lbl_choose_region.AutoSize = true;
-            this.lbl_choose_region.Location = new System.Drawing.Point(603, 34);
-            this.lbl_choose_region.Name = "lbl_choose_region";
-            this.lbl_choose_region.Size = new System.Drawing.Size(60, 20);
-            this.lbl_choose_region.TabIndex = 10;
-            this.lbl_choose_region.Text = "Region";
-            // 
             // lbl_choose_tariff
             // 
             this.lbl_choose_tariff.AutoSize = true;
@@ -1097,6 +1093,7 @@ namespace EnergyUsage
             // 
             // grpbx_tariff
             // 
+            this.grpbx_tariff.Controls.Add(this.groupBox8);
             this.grpbx_tariff.Controls.Add(this.lbl_choose_region);
             this.grpbx_tariff.Controls.Add(this.chckbx_export_electric);
             this.grpbx_tariff.Controls.Add(this.chckbx_use_gas);
@@ -1110,12 +1107,21 @@ namespace EnergyUsage
             this.grpbx_tariff.TabStop = false;
             this.grpbx_tariff.Text = "What type of Energy do you have?";
             // 
+            // lbl_choose_region
+            // 
+            this.lbl_choose_region.AutoSize = true;
+            this.lbl_choose_region.Location = new System.Drawing.Point(603, 34);
+            this.lbl_choose_region.Name = "lbl_choose_region";
+            this.lbl_choose_region.Size = new System.Drawing.Size(60, 20);
+            this.lbl_choose_region.TabIndex = 10;
+            this.lbl_choose_region.Text = "Region";
+            // 
             // chckbx_export_electric
             // 
             this.chckbx_export_electric.AutoSize = true;
             this.chckbx_export_electric.Checked = true;
             this.chckbx_export_electric.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chckbx_export_electric.Location = new System.Drawing.Point(205, 47);
+            this.chckbx_export_electric.Location = new System.Drawing.Point(152, 33);
             this.chckbx_export_electric.Name = "chckbx_export_electric";
             this.chckbx_export_electric.Size = new System.Drawing.Size(161, 24);
             this.chckbx_export_electric.TabIndex = 7;
@@ -1127,7 +1133,7 @@ namespace EnergyUsage
             this.chckbx_use_gas.AutoSize = true;
             this.chckbx_use_gas.Checked = true;
             this.chckbx_use_gas.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chckbx_use_gas.Location = new System.Drawing.Point(445, 47);
+            this.chckbx_use_gas.Location = new System.Drawing.Point(328, 33);
             this.chckbx_use_gas.Name = "chckbx_use_gas";
             this.chckbx_use_gas.Size = new System.Drawing.Size(74, 24);
             this.chckbx_use_gas.TabIndex = 6;
@@ -1156,24 +1162,6 @@ namespace EnergyUsage
             this.rdobtn_single_rate.Text = "Single Rate";
             this.rdobtn_single_rate.UseVisualStyleBackColor = true;
             // 
-            // rchtxtbx_tariff_info
-            // 
-            this.rchtxtbx_tariff_info.Location = new System.Drawing.Point(20, 167);
-            this.rchtxtbx_tariff_info.Name = "rchtxtbx_tariff_info";
-            this.rchtxtbx_tariff_info.Size = new System.Drawing.Size(727, 463);
-            this.rchtxtbx_tariff_info.TabIndex = 3;
-            this.rchtxtbx_tariff_info.Text = "";
-            // 
-            // picbx_regions
-            // 
-            this.picbx_regions.Image = global::EnergyUsage.Properties.Resources.UK_Region_Map;
-            this.picbx_regions.Location = new System.Drawing.Point(771, 6);
-            this.picbx_regions.Name = "picbx_regions";
-            this.picbx_regions.Size = new System.Drawing.Size(397, 624);
-            this.picbx_regions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picbx_regions.TabIndex = 2;
-            this.picbx_regions.TabStop = false;
-            // 
             // cmbobx_regions
             // 
             this.cmbobx_regions.FormattingEnabled = true;
@@ -1197,6 +1185,24 @@ namespace EnergyUsage
             this.cmbobx_regions.Size = new System.Drawing.Size(97, 28);
             this.cmbobx_regions.TabIndex = 1;
             this.cmbobx_regions.SelectedIndexChanged += new System.EventHandler(this.cmbobx_regions_SelectedIndexChanged);
+            // 
+            // rchtxtbx_tariff_info
+            // 
+            this.rchtxtbx_tariff_info.Location = new System.Drawing.Point(20, 167);
+            this.rchtxtbx_tariff_info.Name = "rchtxtbx_tariff_info";
+            this.rchtxtbx_tariff_info.Size = new System.Drawing.Size(727, 463);
+            this.rchtxtbx_tariff_info.TabIndex = 3;
+            this.rchtxtbx_tariff_info.Text = "";
+            // 
+            // picbx_regions
+            // 
+            this.picbx_regions.Image = global::EnergyUsage.Properties.Resources.UK_Region_Map;
+            this.picbx_regions.Location = new System.Drawing.Point(771, 6);
+            this.picbx_regions.Name = "picbx_regions";
+            this.picbx_regions.Size = new System.Drawing.Size(397, 624);
+            this.picbx_regions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picbx_regions.TabIndex = 2;
+            this.picbx_regions.TabStop = false;
             // 
             // cmbobx_tariff_name
             // 
@@ -1332,6 +1338,49 @@ namespace EnergyUsage
             this.panel8.Size = new System.Drawing.Size(196, 68);
             this.panel8.TabIndex = 5;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.rdobtn_otherPayment);
+            this.groupBox8.Controls.Add(this.rdobtn_nonDirectDebit);
+            this.groupBox8.Controls.Add(this.rdobtn_directDebit);
+            this.groupBox8.Location = new System.Drawing.Point(410, 5);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(157, 93);
+            this.groupBox8.TabIndex = 14;
+            this.groupBox8.TabStop = false;
+            // 
+            // rdobtn_otherPayment
+            // 
+            this.rdobtn_otherPayment.AutoSize = true;
+            this.rdobtn_otherPayment.Location = new System.Drawing.Point(6, 63);
+            this.rdobtn_otherPayment.Name = "rdobtn_otherPayment";
+            this.rdobtn_otherPayment.Size = new System.Drawing.Size(132, 24);
+            this.rdobtn_otherPayment.TabIndex = 2;
+            this.rdobtn_otherPayment.Text = "Other Method";
+            this.rdobtn_otherPayment.UseVisualStyleBackColor = true;
+            // 
+            // rdobtn_nonDirectDebit
+            // 
+            this.rdobtn_nonDirectDebit.AutoSize = true;
+            this.rdobtn_nonDirectDebit.Location = new System.Drawing.Point(6, 36);
+            this.rdobtn_nonDirectDebit.Name = "rdobtn_nonDirectDebit";
+            this.rdobtn_nonDirectDebit.Size = new System.Drawing.Size(152, 24);
+            this.rdobtn_nonDirectDebit.TabIndex = 1;
+            this.rdobtn_nonDirectDebit.Text = "Non-Direct Debit";
+            this.rdobtn_nonDirectDebit.UseVisualStyleBackColor = true;
+            // 
+            // rdobtn_directDebit
+            // 
+            this.rdobtn_directDebit.AutoSize = true;
+            this.rdobtn_directDebit.Checked = true;
+            this.rdobtn_directDebit.Location = new System.Drawing.Point(6, 12);
+            this.rdobtn_directDebit.Name = "rdobtn_directDebit";
+            this.rdobtn_directDebit.Size = new System.Drawing.Size(118, 24);
+            this.rdobtn_directDebit.TabIndex = 0;
+            this.rdobtn_directDebit.TabStop = true;
+            this.rdobtn_directDebit.Text = "Direct Debit";
+            this.rdobtn_directDebit.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1384,6 +1433,8 @@ namespace EnergyUsage
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1493,6 +1544,10 @@ namespace EnergyUsage
         private System.Windows.Forms.CheckBox chckbx_use_gas;
         private System.Windows.Forms.RadioButton rdobtn_dual_rate;
         private System.Windows.Forms.RadioButton rdobtn_single_rate;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.RadioButton rdobtn_otherPayment;
+        private System.Windows.Forms.RadioButton rdobtn_nonDirectDebit;
+        private System.Windows.Forms.RadioButton rdobtn_directDebit;
     }
 }
 

@@ -84,6 +84,7 @@
     <Compile Include="jsonClasses\Charges.cs" />
     <Compile Include="jsonClasses\EnergyUsage.cs" />
     <Compile Include="jsonClasses\Products.cs" />
+    <Compile Include="jsonClasses\StandingCharge.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />

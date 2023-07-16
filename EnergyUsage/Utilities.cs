@@ -158,31 +158,41 @@ namespace EnergyUsage
                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
 
-        public static TariffRootobject GetTariffInfo(Uri myURI)
+        public static StandingChargeRootobject GetStandingCharge(Uri myURI)
         {
-            TariffRootobject myTariffDeserializedData = new TariffRootobject();
+            StandingChargeRootobject myStandingChargeDeserializeData = new StandingChargeRootobject();
             var request = WebRequest.Create(myURI);
 
-            try
-            {
-                myTariffDeserializedData =
-                 JsonConvert.DeserializeObject<TariffRootobject>(
-                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
-            }
-            catch (Exception e)
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    myTariffDeserializedData =
-                        JsonConvert.DeserializeObject<TariffRootobject>(
-                            new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
-                    i++;
-                    Thread.Sleep(1000);
-                }
-            }
-
-            return myTariffDeserializedData;
+            return myStandingChargeDeserializeData =
+                JsonConvert.DeserializeObject<StandingChargeRootobject>(
+                    new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
+
+        //public static TariffRootobject GetTariffInfo(Uri myURI)
+        //{
+        //    TariffRootobject myTariffDeserializedData = new TariffRootobject();
+        //    var request = WebRequest.Create(myURI);
+
+        //    try
+        //    {
+        //        myTariffDeserializedData =
+        //         JsonConvert.DeserializeObject<TariffRootobject>(
+        //             new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        for (int i = 0; i < 5; i++)
+        //        {
+        //            myTariffDeserializedData =
+        //                JsonConvert.DeserializeObject<TariffRootobject>(
+        //                    new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+        //            i++;
+        //            Thread.Sleep(1000);
+        //        }
+        //    }
+
+        //    return myTariffDeserializedData;
+        //}
 
         public static void CopyFile(string myFile, string myPath)
         {

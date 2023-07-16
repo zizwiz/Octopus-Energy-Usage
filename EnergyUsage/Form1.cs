@@ -13,7 +13,7 @@ namespace EnergyUsage
     {
         private Settings settings = Settings.Default;
         private ProductRootobject myProductDeserializeData = new ProductRootobject();
-        private TariffRootobject myTariffDeserializedData = new TariffRootobject();
+        private StandingChargeRootobject myStandingChargeDeserializedData = new StandingChargeRootobject();
 
         public Form1()
         {
