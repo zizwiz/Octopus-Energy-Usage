@@ -49,7 +49,12 @@ namespace EnergyUsage
             rdobtn_dual_rate.Checked = settings.dual_rate;
             chckbx_export_electric.Checked = settings.export_electric;
             chckbx_use_gas.Checked = settings.use_gas;
-            
+
+            rdobtn_directDebit.Checked = settings.direct_debit;
+            rdobtn_nonDirectDebit.Checked = settings.non_direct_debit;
+            rdobtn_otherPayment.Checked = settings.other_payment_method;
+
+            cmbobx_regions.SelectedIndex = settings.region;
 
             //remove all chart legends
             chart_electric_import.Legends.Clear();
@@ -110,6 +115,8 @@ namespace EnergyUsage
             cmbobx_tariff_name.SelectedIndex = settings.tariff_name;
             cmbobx_regions.SelectedIndex = settings.region;
 
+            cmbobx_tariff_name.SelectedIndex = 0;
+
             //show all items on UI
             picbx_regions.Visible = true;
             lbl_choose_tariff.Visible = true;
@@ -118,21 +125,21 @@ namespace EnergyUsage
             grpbx_tariff.Visible = true;
         }
 
-        private void cmbobx_tariff_name_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void Something_changed_refresh_tariff_data(object sender, EventArgs e)
         {
             GetTariffs();
             settings.tariff_name = cmbobx_tariff_name.SelectedIndex;
-        }
-
-
-        private void cmbobx_regions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GetTariffs();
             settings.region = cmbobx_regions.SelectedIndex;
+            settings.single_rate = rdobtn_single_rate.Checked;
+            settings.dual_rate = rdobtn_dual_rate.Checked;
+            settings.export_electric = chckbx_export_electric.Checked;
+            settings.use_gas = chckbx_use_gas.Checked;
+            settings.direct_debit = rdobtn_directDebit.Checked;
+            settings.non_direct_debit = rdobtn_nonDirectDebit.Checked;
+            settings.other_payment_method = rdobtn_otherPayment.Checked;
         }
-
-
-
+        
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Delete files
@@ -163,7 +170,10 @@ namespace EnergyUsage
             settings.dual_rate = rdobtn_dual_rate.Checked;
             settings.export_electric = chckbx_export_electric.Checked;
             settings.use_gas = chckbx_use_gas.Checked;
-            
+
+            settings.direct_debit = rdobtn_directDebit.Checked;
+            settings.non_direct_debit = rdobtn_nonDirectDebit.Checked;
+            settings.other_payment_method = rdobtn_otherPayment.Checked;
 
             settings.Save();
         }
@@ -280,6 +290,6 @@ namespace EnergyUsage
             Utilities.SaveData(TabControl1, myOctopusDeserializeData);
         }
 
-
+       
     }
 }

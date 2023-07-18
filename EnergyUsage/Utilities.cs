@@ -4,9 +4,9 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using CenteredMessagebox;
 using Newtonsoft.Json;
 
 namespace EnergyUsage
@@ -109,9 +109,10 @@ namespace EnergyUsage
                             string.Join(", ", imgFormats.Keys)));
                     }
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
-                    MessageBox.Show(ex.Message);
+                    //let the user know the error and when they click OK carry on
+                    MsgBox.Show("Error = " + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -136,19 +137,32 @@ namespace EnergyUsage
 
         public static EnergyUsageRootobject GetData(Uri myURI, string myApiKey)
         {
-            EnergyUsageRootobject myOctopusDeserializeData = new EnergyUsageRootobject();
-            var request = WebRequest.Create(myURI);
+            try
+            {
+                EnergyUsageRootobject myOctopusDeserializeData = new EnergyUsageRootobject();
+                var request = WebRequest.Create(myURI);
 
-            request.Headers["Authorization"] =
-                "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(myApiKey + ":"));
+                request.Headers["Authorization"] =
+                    "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(myApiKey + ":"));
 
 
-            return myOctopusDeserializeData =
-                 JsonConvert.DeserializeObject<EnergyUsageRootobject>(
-                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+                return myOctopusDeserializeData =
+                    JsonConvert.DeserializeObject<EnergyUsageRootobject>(
+                        new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+
+            }
+            catch (Exception e)
+            {
+                //let the user know the error and when they click OK carry on
+                MsgBox.Show("Error = " + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
+    
 
-        public static ProductRootobject GetProducts(Uri myURI)
+    public static ProductRootobject GetProducts(Uri myURI)
+    {
+        try
         {
             ProductRootobject myProductDeserializeData = new ProductRootobject();
             var request = WebRequest.Create(myURI);
@@ -157,8 +171,17 @@ namespace EnergyUsage
                 JsonConvert.DeserializeObject<ProductRootobject>(
                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
+        catch (Exception e)
+        {
+            //let the user know the error and when they click OK carry on
+            MsgBox.Show("Error = " + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return null;
+        }
+    }
 
-        public static StandingChargeRootobject GetStandingCharge(Uri myURI)
+    public static StandingChargeRootobject GetStandingCharge(Uri myURI)
+    {
+        try
         {
             StandingChargeRootobject myStandingChargeDeserializeData = new StandingChargeRootobject();
             var request = WebRequest.Create(myURI);
@@ -167,93 +190,74 @@ namespace EnergyUsage
                 JsonConvert.DeserializeObject<StandingChargeRootobject>(
                     new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
         }
-
-        //public static TariffRootobject GetTariffInfo(Uri myURI)
-        //{
-        //    TariffRootobject myTariffDeserializedData = new TariffRootobject();
-        //    var request = WebRequest.Create(myURI);
-
-        //    try
-        //    {
-        //        myTariffDeserializedData =
-        //         JsonConvert.DeserializeObject<TariffRootobject>(
-        //             new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        for (int i = 0; i < 5; i++)
-        //        {
-        //            myTariffDeserializedData =
-        //                JsonConvert.DeserializeObject<TariffRootobject>(
-        //                    new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
-        //            i++;
-        //            Thread.Sleep(1000);
-        //        }
-        //    }
-
-        //    return myTariffDeserializedData;
-        //}
-
-        public static void CopyFile(string myFile, string myPath)
+        catch (Exception e)
         {
-            if (File.Exists(myFile)) File.Delete(myFile);
-            File.Copy(myPath, myFile);
+            //let the user know the error and when they click OK carry on
+            MsgBox.Show("Error = " + e, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return null;
         }
+    }
+
+    public static void CopyFile(string myFile, string myPath)
+    {
+        if (File.Exists(myFile)) File.Delete(myFile);
+        File.Copy(myPath, myFile);
+    }
 
 
-        public static void SaveData(TabControl myTabControl, EnergyUsageRootobject myJsonDeserializedData)
+    public static void SaveData(TabControl myTabControl, EnergyUsageRootobject myJsonDeserializedData)
+    {
+        SaveFileDialog mySaveFileDialog = new SaveFileDialog()
         {
-            SaveFileDialog mySaveFileDialog = new SaveFileDialog()
+            InitialDirectory = Application.StartupPath,
+            Title = "Save Data Files",
+            CheckPathExists = true,
+            DefaultExt = "CSV",
+            Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+            FilterIndex = 1,
+            RestoreDirectory = true
+        };
+
+        if (mySaveFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            var csv = new StringBuilder();
+            string myDataType = "";
+
+            if (myTabControl.SelectedTab.Name == "tab_electric_import")
             {
-                InitialDirectory = Application.StartupPath,
-                Title = "Save Data Files",
-                CheckPathExists = true,
-                DefaultExt = "CSV",
-                Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = true
-            };
-
-            if (mySaveFileDialog.ShowDialog() == DialogResult.OK)
+                myDataType = "Electricity Imported";
+            }
+            else if (myTabControl.SelectedTab.Name == "tab_electric_export")
             {
-                var csv = new StringBuilder();
-                string myDataType = "";
-
-                if (myTabControl.SelectedTab.Name == "tab_electric_import")
-                {
-                    myDataType = "Electricity Imported";
-                }
-                else if (myTabControl.SelectedTab.Name == "tab_electric_export")
-                {
-                    myDataType = "Electricity Exported";
-                }
-                else if (myTabControl.SelectedTab.Name == "tab_gas_import")
-                {
-                    myDataType = "Gas Imported";
-                }
-
-                csv.AppendLine("Date:Time," + myDataType);
-
-                for (int i = 0; i < myJsonDeserializedData.count; i++)
-                {
-                    //we use this date time format so it will draw the chart properly in programs like Excel
-                    csv.AppendLine(myJsonDeserializedData.results[i].interval_end.Date.ToString().Substring(0, 10) + "@" +
-                                   myJsonDeserializedData.results[i].interval_end.TimeOfDay + "," +
-                                             myJsonDeserializedData.results[i].consumption);
-                }
-
-                File.WriteAllText(mySaveFileDialog.FileName, csv.ToString());
+                myDataType = "Electricity Exported";
+            }
+            else if (myTabControl.SelectedTab.Name == "tab_gas_import")
+            {
+                myDataType = "Gas Imported";
             }
 
+            csv.AppendLine("Date:Time," + myDataType);
+
+            for (int i = 0; i < myJsonDeserializedData.count; i++)
+            {
+                //we use this date time format so it will draw the chart properly in programs like Excel
+                csv.AppendLine(myJsonDeserializedData.results[i].interval_end.Date.ToString().Substring(0, 10) + "@" +
+                               myJsonDeserializedData.results[i].interval_end.TimeOfDay + "," +
+                                         myJsonDeserializedData.results[i].consumption);
+            }
+
+            File.WriteAllText(mySaveFileDialog.FileName, csv.ToString());
         }
 
-
-        /*
-         * Invoke(new Action(() =>
-          {
-
-
-          }));
-         */
     }
+
+
+    /*
+     * Invoke(new Action(() =>
+      {
+
+
+      }));
+     */
+}
 }

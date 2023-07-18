@@ -262,5 +262,41 @@ namespace EnergyUsage.Properties {
                 this["single_rate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool direct_debit {
+            get {
+                return ((bool)(this["direct_debit"]));
+            }
+            set {
+                this["direct_debit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool non_direct_debit {
+            get {
+                return ((bool)(this["non_direct_debit"]));
+            }
+            set {
+                this["non_direct_debit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool other_payment_method {
+            get {
+                return ((bool)(this["other_payment_method"]));
+            }
+            set {
+                this["other_payment_method"] = value;
+            }
+        }
     }
 }

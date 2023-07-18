@@ -1127,6 +1127,7 @@ namespace EnergyUsage
             this.chckbx_export_electric.TabIndex = 7;
             this.chckbx_export_electric.Text = "Export Electricity?";
             this.chckbx_export_electric.UseVisualStyleBackColor = true;
+            this.chckbx_export_electric.CheckStateChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // chckbx_use_gas
             // 
@@ -1139,6 +1140,7 @@ namespace EnergyUsage
             this.chckbx_use_gas.TabIndex = 6;
             this.chckbx_use_gas.Text = "Gas?";
             this.chckbx_use_gas.UseVisualStyleBackColor = true;
+            this.chckbx_use_gas.CheckStateChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // rdobtn_dual_rate
             // 
@@ -1161,6 +1163,7 @@ namespace EnergyUsage
             this.rdobtn_single_rate.TabStop = true;
             this.rdobtn_single_rate.Text = "Single Rate";
             this.rdobtn_single_rate.UseVisualStyleBackColor = true;
+            this.rdobtn_single_rate.CheckedChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // cmbobx_regions
             // 
@@ -1184,7 +1187,7 @@ namespace EnergyUsage
             this.cmbobx_regions.Name = "cmbobx_regions";
             this.cmbobx_regions.Size = new System.Drawing.Size(97, 28);
             this.cmbobx_regions.TabIndex = 1;
-            this.cmbobx_regions.SelectedIndexChanged += new System.EventHandler(this.cmbobx_regions_SelectedIndexChanged);
+            this.cmbobx_regions.SelectedIndexChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // rchtxtbx_tariff_info
             // 
@@ -1211,7 +1214,7 @@ namespace EnergyUsage
             this.cmbobx_tariff_name.Name = "cmbobx_tariff_name";
             this.cmbobx_tariff_name.Size = new System.Drawing.Size(621, 28);
             this.cmbobx_tariff_name.TabIndex = 0;
-            this.cmbobx_tariff_name.SelectedIndexChanged += new System.EventHandler(this.cmbobx_tariff_name_SelectedIndexChanged);
+            this.cmbobx_tariff_name.SelectedIndexChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // panel2
             // 
@@ -1358,6 +1361,7 @@ namespace EnergyUsage
             this.rdobtn_otherPayment.TabIndex = 2;
             this.rdobtn_otherPayment.Text = "Other Method";
             this.rdobtn_otherPayment.UseVisualStyleBackColor = true;
+            this.rdobtn_otherPayment.CheckedChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // rdobtn_nonDirectDebit
             // 
@@ -1380,6 +1384,7 @@ namespace EnergyUsage
             this.rdobtn_directDebit.TabStop = true;
             this.rdobtn_directDebit.Text = "Direct Debit";
             this.rdobtn_directDebit.UseVisualStyleBackColor = true;
+            this.rdobtn_directDebit.CheckedChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // Form1
             // 
