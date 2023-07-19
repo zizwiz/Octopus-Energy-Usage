@@ -547,7 +547,7 @@ namespace EnergyUsage
             this.groupBox4.Controls.Add(this.lbl_electricity_imported);
             this.groupBox4.Location = new System.Drawing.Point(15, 401);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(308, 237);
+            this.groupBox4.Size = new System.Drawing.Size(315, 237);
             this.groupBox4.TabIndex = 31;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Energy Usage";
@@ -609,7 +609,7 @@ namespace EnergyUsage
             // lbl_gas_usage
             // 
             this.lbl_gas_usage.AutoSize = true;
-            this.lbl_gas_usage.Location = new System.Drawing.Point(13, 183);
+            this.lbl_gas_usage.Location = new System.Drawing.Point(13, 209);
             this.lbl_gas_usage.Name = "lbl_gas_usage";
             this.lbl_gas_usage.Size = new System.Drawing.Size(93, 20);
             this.lbl_gas_usage.TabIndex = 30;

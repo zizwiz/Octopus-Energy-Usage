@@ -35,6 +35,7 @@ namespace EnergyUsage
 
         public static void ChartDataPoints(object sender, MouseEventArgs e, Chart myChart)
         {
+            //Mouse shows Y-axis value in tooltip.
             var pos = e.Location;
             if (prevPosition.HasValue && pos == prevPosition.Value) return;
 
@@ -56,15 +57,14 @@ namespace EnergyUsage
             }
         }
 
-        public static Series CreateCharts(Chart myChart, Series mySeries, Color myColor, bool LineChart)
+        public static Series CreateCharts(Chart myChart, Color myColor, bool LineChart)
         {
             if (myChart.Name != "chart_electric_combined")
                 myChart.Series.Clear(); // clear the chart if not combined chart
             myChart.Legends.Clear(); // We do not need a legend
             myChart.ChartAreas[0].AxisX.IsMarginVisible = false;
-
-
-            mySeries = myChart.Series.Add("");
+            
+            Series mySeries = myChart.Series.Add("");
             if (LineChart) mySeries.ChartType = SeriesChartType.FastLine; //type of chart
             mySeries.Color = myColor;
 

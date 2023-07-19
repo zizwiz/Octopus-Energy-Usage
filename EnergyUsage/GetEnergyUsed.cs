@@ -12,6 +12,7 @@ namespace EnergyUsage
         private void GetEnergyUsed()
         {
             double totalElectricNet;
+            double consumption;
             Uri uri = new Uri("https://p.com"); //Just a placeholder not real URI
             Series seriesGas = new Series(); //Just Initialise
             Series seriesImportElectric = new Series(); //Just Initialise
@@ -31,9 +32,9 @@ namespace EnergyUsage
             if (rdobtn_electricity_import.Checked)
             {
                 seriesImportElectric = Utilities.CreateCharts(chart_electric_import,
-                    chart_electric_import.Series.Add(""), Color.Red, chkbx_Imported_Electric_lineChart.Checked);
+                    Color.Red, chkbx_Imported_Electric_lineChart.Checked);
                 seriesCombinedElectric = Utilities.CreateCharts(chart_electric_combined,
-                    chart_electric_combined.Series.Add(""), Color.Red, chkbx_Combined_Electric_lineChart.Checked);
+                    Color.Red, chkbx_Combined_Electric_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_import_mpan.Text +
@@ -44,9 +45,9 @@ namespace EnergyUsage
             else if (rdobtn_electricity_export.Checked)
             {
                 seriesExportElectric = Utilities.CreateCharts(chart_electric_export,
-                    chart_electric_export.Series.Add(""), Color.Green, chkbx_Exported_Electric_lineChart.Checked);
+                    Color.Green, chkbx_Exported_Electric_lineChart.Checked);
                 seriesCombinedElectric = Utilities.CreateCharts(chart_electric_combined,
-                    chart_electric_combined.Series.Add(""), Color.Green, chkbx_Combined_Electric_lineChart.Checked);
+                    Color.Green, chkbx_Combined_Electric_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/electricity-meter-points/" + txtbx_electric_export_mpan.Text +
@@ -56,8 +57,8 @@ namespace EnergyUsage
             }
             else if (rdobtn_gas.Checked)
             {
-                seriesGas = Utilities.CreateCharts(chart_gas_import, chart_gas_import.Series.Add(""), Color.Blue,
-                    chkbx_Gas_lineChart.Checked);
+                seriesGas = Utilities.CreateCharts(chart_gas_import,
+                    Color.Blue, chkbx_Gas_lineChart.Checked);
 
                 uri = new Uri(
                     "https://api.octopus.energy/v1/gas-meter-points/" + txtbx_gas_mprn.Text + "/meters/" +
@@ -117,73 +118,81 @@ namespace EnergyUsage
             rchtxtbx_data.AppendText(myOctopusDeserializeData.count + "\r");
 
             for (int i = 0; i < myOctopusDeserializeData.count; i++) //Use once merge is working
-                                                                     //  for (int i = 0; i < 100; i++)
             {
                 rchtxtbx_data.AppendText(myOctopusDeserializeData.results[i].interval_end + " : " +
                                          myOctopusDeserializeData.results[i].consumption + "\r");
 
+                consumption = myOctopusDeserializeData.results[i].consumption;
+
                 //add data to chart
                 if (rdobtn_electricity_import.Checked)
                 {
-                    totalElectricImported += myOctopusDeserializeData.results[i].consumption;
+                    totalElectricImported += consumption;
 
                     seriesImportElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
-                        myOctopusDeserializeData.results[i].consumption);
+                        consumption);
 
                     seriesCombinedElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
-                        myOctopusDeserializeData.results[i].consumption);
-
-                    //add totals to UI
-                    rchtxtbx_data.AppendText("Total Electric Imported = " + totalElectricImported + " kwh\r");
-                    lbl_electricity_imported.Text = totalElectricImported.ToString();
-                    totalElectricImported = 0;
-
-                    //copy file to name in case we want to save data from it it later
-                    Utilities.CopyFile("ElectricityImported.json", myPath);
+                        consumption);
                 }
                 else if (rdobtn_electricity_export.Checked)
                 {
-                    totalElectricExported += myOctopusDeserializeData.results[i].consumption;
+                    totalElectricExported += consumption;
 
                     seriesExportElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
-                        myOctopusDeserializeData.results[i].consumption);
+                        consumption);
 
                     seriesCombinedElectric.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
-                        myOctopusDeserializeData.results[i].consumption);
-
-                    //add totals to UI
-                    rchtxtbx_data.AppendText("Total Electric Exported = " + totalElectricExported + " kwh\r");
-                    lbl_electricity_exported.Text = totalElectricExported.ToString();
-                    totalElectricExported = 0;
-
-                    //copy file to name in case we want to save data from it it later
-                    Utilities.CopyFile("ElectricityExported.json", myPath);
-
+                        consumption);
                 }
                 else if (rdobtn_gas.Checked)
                 {
-                    totalGasConsumed += myOctopusDeserializeData.results[i].consumption;
+                    totalGasConsumed += consumption;
 
                     seriesGas.Points.AddXY(myOctopusDeserializeData.results[i].interval_end,
-                        myOctopusDeserializeData.results[i].consumption);
-
-                    //add totals to UI
-                    rchtxtbx_data.AppendText("Total Gas Consumed = " + totalGasConsumed + " kwh\r");
-                    lbl_gas_usage.Text = "Gas = " + totalGasConsumed + " kwh";
-                    totalGasConsumed = 0;
-
-                    //copy file to name in case we want to save data from it it later
-                    Utilities.CopyFile("GasImported.json", myPath);
+                        consumption);
                 }
             }
 
-            totalElectricNet = double.Parse(lbl_electricity_exported.Text) -
-                               double.Parse(lbl_electricity_imported.Text);
-            lbl_electricity_net.Text = "Electricity Sold = " + totalElectricNet + "kwh";
+            if (rdobtn_electricity_import.Checked)
+            {
+                totalElectricImported = Math.Round(totalElectricImported, 2, MidpointRounding.AwayFromZero);
+                rchtxtbx_data.AppendText("Total Electric Imported = " + totalElectricImported + " kwh\r");
+                lbl_electricity_imported.Text = totalElectricImported.ToString();
+                Utilities.CopyFile("ElectricityImported.json", myPath);
+                totalElectricImported = 0;
+            }
+            else if (rdobtn_electricity_export.Checked)
+            {
+                totalElectricExported = Math.Round(totalElectricExported, 2, MidpointRounding.AwayFromZero);
+                rchtxtbx_data.AppendText("Total Electric Exported = " + totalElectricExported + " kwh\r");
+                lbl_electricity_exported.Text = totalElectricExported.ToString();
+                Utilities.CopyFile("ElectricityExported.json", myPath);
+                totalElectricExported = 0;
+            }
+            else if (rdobtn_gas.Checked)
+            {
+                totalGasConsumed = Math.Round(totalGasConsumed, 2, MidpointRounding.AwayFromZero);
+                rchtxtbx_data.AppendText("Total Gas Consumed = " + totalGasConsumed + " kwh\r");
+                lbl_gas_usage.Text = "Gas Bought = " + totalGasConsumed + " kwh";
+                Utilities.CopyFile("GasImported.json", myPath);
+                totalGasConsumed = 0;
+            }
+
+            if (!rdobtn_gas.Checked) // Combined electric export/import
+            {
+                totalElectricNet = Math.Round((double.Parse(lbl_electricity_exported.Text) -
+                                               double.Parse(lbl_electricity_imported.Text)), 2,
+                    MidpointRounding.AwayFromZero); //minus result means we exported more than imported
+                lbl_electricity_net.Text = (totalElectricNet <= 0)
+                    ? "Electricity Bought = " + (totalElectricNet * -1) + "kwh"
+                    : "Electricity Sold = " + totalElectricNet + "kwh = £" +
+                      (totalElectricNet * 0.15).ToString("###.##")
+                      + "p";
+            }
 
             //show the button to allow for saving of data
             buttonControl();
-
         }
     }
 }
