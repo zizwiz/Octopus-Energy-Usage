@@ -71,5 +71,20 @@
     <Setting Name="other_payment_method" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="electric_unit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">30.72</Value>
+    </Setting>
+    <Setting Name="electric_standing" Type="System.String" Scope="User">
+      <Value Profile="(Default)">42.01</Value>
+    </Setting>
+    <Setting Name="gas_unit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7.40</Value>
+    </Setting>
+    <Setting Name="gas_standing" Type="System.String" Scope="User">
+      <Value Profile="(Default)">27.47</Value>
+    </Setting>
+    <Setting Name="electric_export_unit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -66,7 +66,7 @@ namespace EnergyUsage
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.lbl_total_electricity_cost = new System.Windows.Forms.Label();
+            this.lbl_electricity_export_income = new System.Windows.Forms.Label();
             this.lbl_electricity_standing_charge = new System.Windows.Forms.Label();
             this.lbl_electricity_cost = new System.Windows.Forms.Label();
             this.lbl3 = new System.Windows.Forms.Label();
@@ -146,6 +146,26 @@ namespace EnergyUsage
             this.rdobtn_otherPayment = new System.Windows.Forms.RadioButton();
             this.rdobtn_nonDirectDebit = new System.Windows.Forms.RadioButton();
             this.rdobtn_directDebit = new System.Windows.Forms.RadioButton();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.lbl_days2 = new System.Windows.Forms.Label();
+            this.lbl_days = new System.Windows.Forms.Label();
+            this.lbl_units3 = new System.Windows.Forms.Label();
+            this.lbl_units2 = new System.Windows.Forms.Label();
+            this.lbl_units = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtbx_electricity_unit_income = new System.Windows.Forms.TextBox();
+            this.txtbx_gas_unit_cost = new System.Windows.Forms.TextBox();
+            this.txtbx_gas_standing_charge = new System.Windows.Forms.TextBox();
+            this.txtbx_electricity_standing_charge = new System.Windows.Forms.TextBox();
+            this.txtbx_electricity_unit_cost = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.lbl_total_electricity_cost = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
@@ -180,6 +200,7 @@ namespace EnergyUsage
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_getinfo
@@ -273,6 +294,7 @@ namespace EnergyUsage
             // 
             // tab_energy_usage_data_input
             // 
+            this.tab_energy_usage_data_input.Controls.Add(this.groupBox7);
             this.tab_energy_usage_data_input.Controls.Add(this.groupBox6);
             this.tab_energy_usage_data_input.Controls.Add(this.groupBox5);
             this.tab_energy_usage_data_input.Controls.Add(this.groupBox4);
@@ -388,6 +410,8 @@ namespace EnergyUsage
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.lbl_total_electricity_cost);
+            this.groupBox5.Controls.Add(this.label30);
             this.groupBox5.Controls.Add(this.lbl_total_energy_cost);
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Controls.Add(this.lbl_total_gas_cost);
@@ -396,7 +420,7 @@ namespace EnergyUsage
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.lbl_total_electricity_cost);
+            this.groupBox5.Controls.Add(this.lbl_electricity_export_income);
             this.groupBox5.Controls.Add(this.lbl_electricity_standing_charge);
             this.groupBox5.Controls.Add(this.lbl_electricity_cost);
             this.groupBox5.Controls.Add(this.lbl3);
@@ -404,7 +428,7 @@ namespace EnergyUsage
             this.groupBox5.Controls.Add(this.lbl1);
             this.groupBox5.Location = new System.Drawing.Point(766, 292);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(387, 298);
+            this.groupBox5.Size = new System.Drawing.Size(387, 328);
             this.groupBox5.TabIndex = 46;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Energy Costs";
@@ -412,7 +436,7 @@ namespace EnergyUsage
             // lbl_total_energy_cost
             // 
             this.lbl_total_energy_cost.AutoSize = true;
-            this.lbl_total_energy_cost.Location = new System.Drawing.Point(233, 257);
+            this.lbl_total_energy_cost.Location = new System.Drawing.Point(302, 280);
             this.lbl_total_energy_cost.Name = "lbl_total_energy_cost";
             this.lbl_total_energy_cost.Size = new System.Drawing.Size(27, 20);
             this.lbl_total_energy_cost.TabIndex = 45;
@@ -421,7 +445,7 @@ namespace EnergyUsage
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 257);
+            this.label9.Location = new System.Drawing.Point(16, 280);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(104, 20);
             this.label9.TabIndex = 44;
@@ -430,7 +454,7 @@ namespace EnergyUsage
             // lbl_total_gas_cost
             // 
             this.lbl_total_gas_cost.AutoSize = true;
-            this.lbl_total_gas_cost.Location = new System.Drawing.Point(233, 199);
+            this.lbl_total_gas_cost.Location = new System.Drawing.Point(302, 222);
             this.lbl_total_gas_cost.Name = "lbl_total_gas_cost";
             this.lbl_total_gas_cost.Size = new System.Drawing.Size(27, 20);
             this.lbl_total_gas_cost.TabIndex = 43;
@@ -439,7 +463,7 @@ namespace EnergyUsage
             // lbl_gas_standing_charge
             // 
             this.lbl_gas_standing_charge.AutoSize = true;
-            this.lbl_gas_standing_charge.Location = new System.Drawing.Point(233, 168);
+            this.lbl_gas_standing_charge.Location = new System.Drawing.Point(233, 191);
             this.lbl_gas_standing_charge.Name = "lbl_gas_standing_charge";
             this.lbl_gas_standing_charge.Size = new System.Drawing.Size(27, 20);
             this.lbl_gas_standing_charge.TabIndex = 42;
@@ -448,7 +472,7 @@ namespace EnergyUsage
             // lbl_gas_cost
             // 
             this.lbl_gas_cost.AutoSize = true;
-            this.lbl_gas_cost.Location = new System.Drawing.Point(233, 139);
+            this.lbl_gas_cost.Location = new System.Drawing.Point(233, 162);
             this.lbl_gas_cost.Name = "lbl_gas_cost";
             this.lbl_gas_cost.Size = new System.Drawing.Size(27, 20);
             this.lbl_gas_cost.TabIndex = 41;
@@ -457,7 +481,7 @@ namespace EnergyUsage
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 199);
+            this.label11.Location = new System.Drawing.Point(16, 222);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(138, 20);
             this.label11.TabIndex = 40;
@@ -466,7 +490,7 @@ namespace EnergyUsage
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 168);
+            this.label12.Location = new System.Drawing.Point(16, 191);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(157, 20);
             this.label12.TabIndex = 39;
@@ -475,20 +499,20 @@ namespace EnergyUsage
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 139);
+            this.label13.Location = new System.Drawing.Point(16, 162);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(73, 20);
+            this.label13.Size = new System.Drawing.Size(126, 20);
             this.label13.TabIndex = 38;
-            this.label13.Text = "Gas cost";
+            this.label13.Text = "Gas Import Cost";
             // 
-            // lbl_total_electricity_cost
+            // lbl_electricity_export_income
             // 
-            this.lbl_total_electricity_cost.AutoSize = true;
-            this.lbl_total_electricity_cost.Location = new System.Drawing.Point(233, 88);
-            this.lbl_total_electricity_cost.Name = "lbl_total_electricity_cost";
-            this.lbl_total_electricity_cost.Size = new System.Drawing.Size(27, 20);
-            this.lbl_total_electricity_cost.TabIndex = 37;
-            this.lbl_total_electricity_cost.Text = "0p";
+            this.lbl_electricity_export_income.AutoSize = true;
+            this.lbl_electricity_export_income.Location = new System.Drawing.Point(233, 88);
+            this.lbl_electricity_export_income.Name = "lbl_electricity_export_income";
+            this.lbl_electricity_export_income.Size = new System.Drawing.Size(27, 20);
+            this.lbl_electricity_export_income.TabIndex = 37;
+            this.lbl_electricity_export_income.Text = "0p";
             // 
             // lbl_electricity_standing_charge
             // 
@@ -513,9 +537,9 @@ namespace EnergyUsage
             this.lbl3.AutoSize = true;
             this.lbl3.Location = new System.Drawing.Point(16, 88);
             this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(175, 20);
+            this.lbl3.Size = new System.Drawing.Size(183, 20);
             this.lbl3.TabIndex = 34;
-            this.lbl3.Text = "Electricity Total Change";
+            this.lbl3.Text = "Electricity Export Income";
             // 
             // lbl2
             // 
@@ -531,12 +555,14 @@ namespace EnergyUsage
             this.lbl1.AutoSize = true;
             this.lbl1.Location = new System.Drawing.Point(16, 28);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(110, 20);
+            this.lbl1.Size = new System.Drawing.Size(163, 20);
             this.lbl1.TabIndex = 32;
-            this.lbl1.Text = "Electricity cost";
+            this.lbl1.Text = "Electricity Import Cost";
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label28);
+            this.groupBox4.Controls.Add(this.label27);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.lbl_electricity_exported);
@@ -600,7 +626,7 @@ namespace EnergyUsage
             // lbl_electricity_net
             // 
             this.lbl_electricity_net.AutoSize = true;
-            this.lbl_electricity_net.Location = new System.Drawing.Point(13, 152);
+            this.lbl_electricity_net.Location = new System.Drawing.Point(13, 144);
             this.lbl_electricity_net.Name = "lbl_electricity_net";
             this.lbl_electricity_net.Size = new System.Drawing.Size(166, 20);
             this.lbl_electricity_net.TabIndex = 32;
@@ -609,11 +635,11 @@ namespace EnergyUsage
             // lbl_gas_usage
             // 
             this.lbl_gas_usage.AutoSize = true;
-            this.lbl_gas_usage.Location = new System.Drawing.Point(13, 209);
+            this.lbl_gas_usage.Location = new System.Drawing.Point(193, 208);
             this.lbl_gas_usage.Name = "lbl_gas_usage";
-            this.lbl_gas_usage.Size = new System.Drawing.Size(93, 20);
+            this.lbl_gas_usage.Size = new System.Drawing.Size(18, 20);
             this.lbl_gas_usage.TabIndex = 30;
-            this.lbl_gas_usage.Text = "Gas = 0kwh";
+            this.lbl_gas_usage.Text = "0";
             // 
             // lbl_electricity_imported
             // 
@@ -1386,6 +1412,191 @@ namespace EnergyUsage
             this.rdobtn_directDebit.UseVisualStyleBackColor = true;
             this.rdobtn_directDebit.CheckedChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.lbl_days2);
+            this.groupBox7.Controls.Add(this.lbl_days);
+            this.groupBox7.Controls.Add(this.lbl_units3);
+            this.groupBox7.Controls.Add(this.lbl_units2);
+            this.groupBox7.Controls.Add(this.lbl_units);
+            this.groupBox7.Controls.Add(this.label26);
+            this.groupBox7.Controls.Add(this.label25);
+            this.groupBox7.Controls.Add(this.label24);
+            this.groupBox7.Controls.Add(this.txtbx_electricity_unit_income);
+            this.groupBox7.Controls.Add(this.txtbx_gas_unit_cost);
+            this.groupBox7.Controls.Add(this.txtbx_gas_standing_charge);
+            this.groupBox7.Controls.Add(this.txtbx_electricity_standing_charge);
+            this.groupBox7.Controls.Add(this.txtbx_electricity_unit_cost);
+            this.groupBox7.Controls.Add(this.label23);
+            this.groupBox7.Controls.Add(this.label22);
+            this.groupBox7.Location = new System.Drawing.Point(352, 309);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(391, 281);
+            this.groupBox7.TabIndex = 19;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Energy Costs";
+            // 
+            // lbl_days2
+            // 
+            this.lbl_days2.AutoSize = true;
+            this.lbl_days2.Location = new System.Drawing.Point(314, 163);
+            this.lbl_days2.Name = "lbl_days2";
+            this.lbl_days2.Size = new System.Drawing.Size(34, 20);
+            this.lbl_days2.TabIndex = 100;
+            this.lbl_days2.Text = "day";
+            // 
+            // lbl_days
+            // 
+            this.lbl_days.AutoSize = true;
+            this.lbl_days.Location = new System.Drawing.Point(314, 67);
+            this.lbl_days.Name = "lbl_days";
+            this.lbl_days.Size = new System.Drawing.Size(34, 20);
+            this.lbl_days.TabIndex = 99;
+            this.lbl_days.Text = "day";
+            // 
+            // lbl_units3
+            // 
+            this.lbl_units3.AutoSize = true;
+            this.lbl_units3.Location = new System.Drawing.Point(314, 227);
+            this.lbl_units3.Name = "lbl_units3";
+            this.lbl_units3.Size = new System.Drawing.Size(50, 20);
+            this.lbl_units3.TabIndex = 98;
+            this.lbl_units3.Text = "p/kwh";
+            // 
+            // lbl_units2
+            // 
+            this.lbl_units2.AutoSize = true;
+            this.lbl_units2.Location = new System.Drawing.Point(314, 131);
+            this.lbl_units2.Name = "lbl_units2";
+            this.lbl_units2.Size = new System.Drawing.Size(50, 20);
+            this.lbl_units2.TabIndex = 97;
+            this.lbl_units2.Text = "p/kwh";
+            // 
+            // lbl_units
+            // 
+            this.lbl_units.AutoSize = true;
+            this.lbl_units.Location = new System.Drawing.Point(314, 35);
+            this.lbl_units.Name = "lbl_units";
+            this.lbl_units.Size = new System.Drawing.Size(50, 20);
+            this.lbl_units.TabIndex = 86;
+            this.lbl_units.Text = "p/kwh";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(21, 227);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(166, 20);
+            this.label26.TabIndex = 96;
+            this.label26.Text = "Electricity Unit Income";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(16, 163);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(163, 20);
+            this.label25.TabIndex = 95;
+            this.label25.Text = "Gas Standing Charge";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(16, 131);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(109, 20);
+            this.label24.TabIndex = 94;
+            this.label24.Text = "Gas Unit Cost";
+            // 
+            // txtbx_electricity_unit_income
+            // 
+            this.txtbx_electricity_unit_income.Location = new System.Drawing.Point(219, 224);
+            this.txtbx_electricity_unit_income.Name = "txtbx_electricity_unit_income";
+            this.txtbx_electricity_unit_income.Size = new System.Drawing.Size(89, 26);
+            this.txtbx_electricity_unit_income.TabIndex = 93;
+            // 
+            // txtbx_gas_unit_cost
+            // 
+            this.txtbx_gas_unit_cost.Location = new System.Drawing.Point(219, 128);
+            this.txtbx_gas_unit_cost.Name = "txtbx_gas_unit_cost";
+            this.txtbx_gas_unit_cost.Size = new System.Drawing.Size(89, 26);
+            this.txtbx_gas_unit_cost.TabIndex = 92;
+            // 
+            // txtbx_gas_standing_charge
+            // 
+            this.txtbx_gas_standing_charge.Location = new System.Drawing.Point(219, 160);
+            this.txtbx_gas_standing_charge.Name = "txtbx_gas_standing_charge";
+            this.txtbx_gas_standing_charge.Size = new System.Drawing.Size(89, 26);
+            this.txtbx_gas_standing_charge.TabIndex = 91;
+            // 
+            // txtbx_electricity_standing_charge
+            // 
+            this.txtbx_electricity_standing_charge.Location = new System.Drawing.Point(219, 64);
+            this.txtbx_electricity_standing_charge.Name = "txtbx_electricity_standing_charge";
+            this.txtbx_electricity_standing_charge.Size = new System.Drawing.Size(89, 26);
+            this.txtbx_electricity_standing_charge.TabIndex = 90;
+            // 
+            // txtbx_electricity_unit_cost
+            // 
+            this.txtbx_electricity_unit_cost.Location = new System.Drawing.Point(219, 32);
+            this.txtbx_electricity_unit_cost.Name = "txtbx_electricity_unit_cost";
+            this.txtbx_electricity_unit_cost.Size = new System.Drawing.Size(89, 26);
+            this.txtbx_electricity_unit_cost.TabIndex = 89;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(16, 61);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(200, 20);
+            this.label23.TabIndex = 88;
+            this.label23.Text = "Electricity Standing Charge";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(16, 35);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(146, 20);
+            this.label22.TabIndex = 87;
+            this.label22.Text = "Electricity Unit Cost";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(13, 208);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(124, 20);
+            this.label27.TabIndex = 38;
+            this.label27.Text = "Gas Imported = ";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(247, 208);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(37, 20);
+            this.label28.TabIndex = 39;
+            this.label28.Text = "kwh";
+            // 
+            // lbl_total_electricity_cost
+            // 
+            this.lbl_total_electricity_cost.AutoSize = true;
+            this.lbl_total_electricity_cost.Location = new System.Drawing.Point(302, 118);
+            this.lbl_total_electricity_cost.Name = "lbl_total_electricity_cost";
+            this.lbl_total_electricity_cost.Size = new System.Drawing.Size(27, 20);
+            this.lbl_total_electricity_cost.TabIndex = 47;
+            this.lbl_total_electricity_cost.Text = "0p";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(16, 118);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(175, 20);
+            this.label30.TabIndex = 46;
+            this.label30.Text = "Electricity Total Change";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1440,6 +1651,8 @@ namespace EnergyUsage
             this.panel8.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1502,7 +1715,7 @@ namespace EnergyUsage
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label lbl_total_electricity_cost;
+        private System.Windows.Forms.Label lbl_electricity_export_income;
         private System.Windows.Forms.Label lbl_electricity_standing_charge;
         private System.Windows.Forms.Label lbl_electricity_cost;
         private System.Windows.Forms.Label lbl3;
@@ -1553,6 +1766,26 @@ namespace EnergyUsage
         private System.Windows.Forms.RadioButton rdobtn_otherPayment;
         private System.Windows.Forms.RadioButton rdobtn_nonDirectDebit;
         private System.Windows.Forms.RadioButton rdobtn_directDebit;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label lbl_days2;
+        private System.Windows.Forms.Label lbl_days;
+        private System.Windows.Forms.Label lbl_units3;
+        private System.Windows.Forms.Label lbl_units2;
+        private System.Windows.Forms.Label lbl_units;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtbx_electricity_unit_income;
+        private System.Windows.Forms.TextBox txtbx_gas_unit_cost;
+        private System.Windows.Forms.TextBox txtbx_gas_standing_charge;
+        private System.Windows.Forms.TextBox txtbx_electricity_standing_charge;
+        private System.Windows.Forms.TextBox txtbx_electricity_unit_cost;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label lbl_total_electricity_cost;
+        private System.Windows.Forms.Label label30;
     }
 }
 

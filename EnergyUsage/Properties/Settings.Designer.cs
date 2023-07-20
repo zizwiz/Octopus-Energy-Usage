@@ -298,5 +298,65 @@ namespace EnergyUsage.Properties {
                 this["other_payment_method"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30.72")]
+        public string electric_unit {
+            get {
+                return ((string)(this["electric_unit"]));
+            }
+            set {
+                this["electric_unit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("42.01")]
+        public string electric_standing {
+            get {
+                return ((string)(this["electric_standing"]));
+            }
+            set {
+                this["electric_standing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7.40")]
+        public string gas_unit {
+            get {
+                return ((string)(this["gas_unit"]));
+            }
+            set {
+                this["gas_unit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27.47")]
+        public string gas_standing {
+            get {
+                return ((string)(this["gas_standing"]));
+            }
+            set {
+                this["gas_standing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public string electric_export_unit {
+            get {
+                return ((string)(this["electric_export_unit"]));
+            }
+            set {
+                this["electric_export_unit"] = value;
+            }
+        }
     }
 }

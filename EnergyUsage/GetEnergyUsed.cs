@@ -174,25 +174,32 @@ namespace EnergyUsage
             {
                 totalGasConsumed = Math.Round(totalGasConsumed, 2, MidpointRounding.AwayFromZero);
                 rchtxtbx_data.AppendText("Total Gas Consumed = " + totalGasConsumed + " kwh\r");
-                lbl_gas_usage.Text = "Gas Bought = " + totalGasConsumed + " kwh";
+                lbl_gas_usage.Text = totalGasConsumed.ToString();
                 Utilities.CopyFile("GasImported.json", myPath);
                 totalGasConsumed = 0;
             }
 
             if (!rdobtn_gas.Checked) // Combined electric export/import
             {
+                double cost = double.Parse(txtbx_electricity_unit_income.Text) / 100;
+
                 totalElectricNet = Math.Round((double.Parse(lbl_electricity_exported.Text) -
-                                               double.Parse(lbl_electricity_imported.Text)), 2,
-                    MidpointRounding.AwayFromZero); //minus result means we exported more than imported
+                                                double.Parse(lbl_electricity_imported.Text)), 2,
+                     MidpointRounding.AwayFromZero); //minus result means we exported more than imported
                 lbl_electricity_net.Text = (totalElectricNet <= 0)
                     ? "Electricity Bought = " + (totalElectricNet * -1) + "kwh"
                     : "Electricity Sold = " + totalElectricNet + "kwh = £" +
-                      (totalElectricNet * 0.15).ToString("###.##")
-                      + "p";
+                      Math.Round((totalElectricNet * cost),2).ToString("##0.00")
+                      + ((char)0x2009) + "p";
             }
+
+            //update what energy has cost this period
+            UpdateEnergyCost();
 
             //show the button to allow for saving of data
             buttonControl();
+
+
         }
     }
 }

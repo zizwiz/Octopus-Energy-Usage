@@ -56,6 +56,12 @@ namespace EnergyUsage
 
             cmbobx_regions.SelectedIndex = settings.region;
 
+            txtbx_electricity_unit_cost.Text = settings.electric_unit;
+            txtbx_electricity_standing_charge.Text = settings.electric_standing;
+            txtbx_gas_unit_cost.Text = settings.gas_unit;
+            txtbx_gas_standing_charge.Text = settings.gas_standing;
+            Invoke(new Action(() => {txtbx_electricity_unit_income.Text = settings.electric_export_unit; })); 
+
             //remove all chart legends
             chart_electric_import.Legends.Clear();
             chart_electric_export.Legends.Clear();
@@ -67,6 +73,10 @@ namespace EnergyUsage
             cmbobx_tariff_name.Visible = false;
             rchtxtbx_tariff_info.Visible = false;
             grpbx_tariff.Visible = false;
+
+
+            lbl_units.Text = lbl_units2.Text = lbl_units3.Text = "p kwh" + ((char)0x207B) + ((char)0x00B9);
+            lbl_days.Text = lbl_days2.Text = "p day" + ((char)0x207B) + ((char)0x00B9);
         }
 
         private void btn_help_Click(object sender, EventArgs e)
@@ -174,7 +184,7 @@ namespace EnergyUsage
             settings.direct_debit = rdobtn_directDebit.Checked;
             settings.non_direct_debit = rdobtn_nonDirectDebit.Checked;
             settings.other_payment_method = rdobtn_otherPayment.Checked;
-
+            
             settings.Save();
         }
 
@@ -290,6 +300,18 @@ namespace EnergyUsage
             Utilities.SaveData(TabControl1, myOctopusDeserializeData);
         }
 
-       
+        private void Energy_costs_changed(object sender, EventArgs e)
+        {
+            //to do
+            //work out new values
+
+            settings.electric_unit = txtbx_electricity_unit_cost.Text;
+            settings.electric_standing = txtbx_electricity_standing_charge.Text;
+            settings.gas_unit = txtbx_gas_unit_cost.Text;
+            settings.gas_standing = txtbx_gas_standing_charge.Text;
+            settings.electric_export_unit = txtbx_electricity_unit_income.Text;
+
+            settings.Save();
+        }
     }
 }
