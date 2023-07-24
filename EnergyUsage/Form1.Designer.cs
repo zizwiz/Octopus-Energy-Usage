@@ -594,9 +594,9 @@ namespace EnergyUsage
             this.lbl_total_electricity_cost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_total_electricity_cost.Location = new System.Drawing.Point(302, 122);
             this.lbl_total_electricity_cost.Name = "lbl_total_electricity_cost";
-            this.lbl_total_electricity_cost.Size = new System.Drawing.Size(29, 20);
+            this.lbl_total_electricity_cost.Size = new System.Drawing.Size(59, 20);
             this.lbl_total_electricity_cost.TabIndex = 47;
-            this.lbl_total_electricity_cost.Text = "0p";
+            this.lbl_total_electricity_cost.Text = "£0.0 p";
             // 
             // label30
             // 
@@ -614,9 +614,9 @@ namespace EnergyUsage
             this.lbl_total_energy_cost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_total_energy_cost.Location = new System.Drawing.Point(302, 298);
             this.lbl_total_energy_cost.Name = "lbl_total_energy_cost";
-            this.lbl_total_energy_cost.Size = new System.Drawing.Size(29, 20);
+            this.lbl_total_energy_cost.Size = new System.Drawing.Size(59, 20);
             this.lbl_total_energy_cost.TabIndex = 45;
-            this.lbl_total_energy_cost.Text = "0p";
+            this.lbl_total_energy_cost.Text = "£0.0 p";
             // 
             // lbl_grand_total
             // 
@@ -634,9 +634,9 @@ namespace EnergyUsage
             this.lbl_total_gas_cost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_total_gas_cost.Location = new System.Drawing.Point(302, 235);
             this.lbl_total_gas_cost.Name = "lbl_total_gas_cost";
-            this.lbl_total_gas_cost.Size = new System.Drawing.Size(29, 20);
+            this.lbl_total_gas_cost.Size = new System.Drawing.Size(59, 20);
             this.lbl_total_gas_cost.TabIndex = 43;
-            this.lbl_total_gas_cost.Text = "0p";
+            this.lbl_total_gas_cost.Text = "£0.0 p";
             // 
             // lbl_gas_standing_charge
             // 

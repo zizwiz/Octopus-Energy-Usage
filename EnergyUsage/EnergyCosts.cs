@@ -30,9 +30,6 @@ namespace EnergyUsage
             double gasStandingCharge = (numberOfDays * double.Parse(txtbx_gas_standing_charge.Text))/100;
             double totalGas = gasImportedCosts + gasStandingCharge;
 
-            double grandTotal = totalElectricity + totalGas;
-
-
             if (rdobtn_electricity_import.Checked)
             {
                 lbl_electricity_cost.Text = "£" + Math.Round(electricityImportedCosts,2, MidpointRounding.AwayFromZero).ToString("##0.00") + ((char)0x2009) + "p";
@@ -49,8 +46,11 @@ namespace EnergyUsage
                     "£" + Math.Round(gasStandingCharge, 2).ToString("##0.00") + ((char) 0x2009) + "p";
                 lbl_total_gas_cost.Text = "£" + Math.Round(totalGas, 2).ToString("##0.00") + ((char) 0x2009) + "p";
             }
-            
-            lbl_total_electricity_cost.Text = "£" + Math.Round(totalElectricity, 2).ToString("##0.00") + ((char)0x2009) + "p"; 
+
+            lbl_total_electricity_cost.Text = "£" + Math.Round(totalElectricity, 2).ToString("##0.00") + ((char)0x2009) + "p";
+
+            double grandTotal = double.Parse(lbl_total_electricity_cost.Text.Substring(1,lbl_total_electricity_cost.Text.Length-3)) +
+                                double.Parse(lbl_total_gas_cost.Text.Substring(1, lbl_total_gas_cost.Text.Length - 3));
             lbl_total_energy_cost.ForeColor = (grandTotal < 0) ? Color.Green : Color.Red;
             lbl_total_energy_cost.Text = "£" + Math.Round((grandTotal), 2).ToString("##0.00") + ((char)0x2009) + "p";
             lbl_grand_total.ForeColor = lbl_total_energy_cost.ForeColor;

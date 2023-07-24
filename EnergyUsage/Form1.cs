@@ -77,6 +77,11 @@ namespace EnergyUsage
 
             lbl_units.Text = lbl_units2.Text = lbl_units3.Text = "p kwh" + ((char)0x207B) + ((char)0x00B9);
             lbl_days.Text = lbl_days2.Text = "p day" + ((char)0x207B) + ((char)0x00B9);
+
+            lbl_total_electricity_cost.Text = "£0.00" +((char)0x2009) + "p";
+            lbl_total_gas_cost.Text = "£0.00" +((char)0x2009) + "p";
+            lbl_total_energy_cost.Text = "£0.00" + ((char)0x2009) + "p";
+
         }
 
         private void btn_help_Click(object sender, EventArgs e)

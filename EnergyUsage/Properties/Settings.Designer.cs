@@ -109,7 +109,7 @@ namespace EnergyUsage.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2023-06-25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2023-07-01")]
         public global::System.DateTime Date_from {
             get {
                 return ((global::System.DateTime)(this["Date_from"]));
@@ -145,7 +145,7 @@ namespace EnergyUsage.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2023-06-26")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2023-07-31")]
         public global::System.DateTime Date_to {
             get {
                 return ((global::System.DateTime)(this["Date_to"]));
@@ -157,7 +157,7 @@ namespace EnergyUsage.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("23")]
         public string Hour_to {
             get {
                 return ((string)(this["Hour_to"]));
@@ -169,7 +169,7 @@ namespace EnergyUsage.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public string Minutes_to {
             get {
                 return ((string)(this["Minutes_to"]));
