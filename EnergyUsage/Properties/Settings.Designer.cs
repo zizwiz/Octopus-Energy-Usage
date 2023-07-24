@@ -86,12 +86,12 @@ namespace EnergyUsage.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool Electricity {
+        public bool Electricity_import {
             get {
-                return ((bool)(this["Electricity"]));
+                return ((bool)(this["Electricity_import"]));
             }
             set {
-                this["Electricity"] = value;
+                this["Electricity_import"] = value;
             }
         }
         
@@ -356,6 +356,18 @@ namespace EnergyUsage.Properties {
             }
             set {
                 this["electric_export_unit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Electricity_export {
+            get {
+                return ((bool)(this["Electricity_export"]));
+            }
+            set {
+                this["Electricity_export"] = value;
             }
         }
     }

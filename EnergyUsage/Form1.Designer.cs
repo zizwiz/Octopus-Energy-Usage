@@ -334,7 +334,7 @@ namespace EnergyUsage
             this.groupBox7.Size = new System.Drawing.Size(391, 281);
             this.groupBox7.TabIndex = 19;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Energy Costs";
+            this.groupBox7.Text = "Energy Costs - inc VAT";
             // 
             // lbl_days2
             // 
@@ -972,7 +972,7 @@ namespace EnergyUsage
             // 
             // dtPicker_date_to
             // 
-            this.dtPicker_date_to.CustomFormat = "yyyy-MM-dd";
+            this.dtPicker_date_to.CustomFormat = "dd-MM-yyyy";
             this.dtPicker_date_to.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtPicker_date_to.Location = new System.Drawing.Point(18, 139);
             this.dtPicker_date_to.Name = "dtPicker_date_to";
@@ -981,7 +981,7 @@ namespace EnergyUsage
             // 
             // dtPicker_date_from
             // 
-            this.dtPicker_date_from.CustomFormat = "yyyy-MM-dd";
+            this.dtPicker_date_from.CustomFormat = "dd-MM-yyyy";
             this.dtPicker_date_from.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtPicker_date_from.Location = new System.Drawing.Point(18, 66);
             this.dtPicker_date_from.Name = "dtPicker_date_from";

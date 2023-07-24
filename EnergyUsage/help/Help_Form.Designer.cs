@@ -41,7 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.assemblyVersionTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.trademarkTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.copyrightTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lnk_lbl_jetbrains = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -115,9 +115,9 @@
             this.label9.Location = new System.Drawing.Point(317, 275);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(140, 20);
+            this.label9.Size = new System.Drawing.Size(68, 20);
             this.label9.TabIndex = 130;
-            this.label9.Text = "Neutral Language:";
+            this.label9.Text = "Licence:";
             // 
             // guidTextBox
             // 
@@ -180,26 +180,15 @@
             this.label6.TabIndex = 124;
             this.label6.Text = "Assembly Version:";
             // 
-            // trademarkTextBox
-            // 
-            this.trademarkTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trademarkTextBox.Location = new System.Drawing.Point(129, 158);
-            this.trademarkTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.trademarkTextBox.Name = "trademarkTextBox";
-            this.trademarkTextBox.ReadOnly = true;
-            this.trademarkTextBox.Size = new System.Drawing.Size(614, 26);
-            this.trademarkTextBox.TabIndex = 123;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(12, 161);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 20);
+            this.label7.Size = new System.Drawing.Size(58, 20);
             this.label7.TabIndex = 122;
-            this.label7.Text = "Trademark:";
+            this.label7.Text = "Kudos:";
             // 
             // copyrightTextBox
             // 
@@ -303,6 +292,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lnk_lbl_jetbrains);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.comVisibleTextBox);
@@ -320,7 +310,6 @@
             this.panel1.Controls.Add(this.assemblyVersionTextBox);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.guidTextBox);
-            this.panel1.Controls.Add(this.trademarkTextBox);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
@@ -330,6 +319,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(762, 312);
             this.panel1.TabIndex = 136;
+            // 
+            // lnk_lbl_jetbrains
+            // 
+            this.lnk_lbl_jetbrains.AutoSize = true;
+            this.lnk_lbl_jetbrains.Location = new System.Drawing.Point(125, 161);
+            this.lnk_lbl_jetbrains.Name = "lnk_lbl_jetbrains";
+            this.lnk_lbl_jetbrains.Size = new System.Drawing.Size(601, 20);
+            this.lnk_lbl_jetbrains.TabIndex = 135;
+            this.lnk_lbl_jetbrains.TabStop = true;
+            this.lnk_lbl_jetbrains.Text = "Built using Jetbrains - Thanks for granting me a free licence for my opensource w" +
+    "ork.";
+            this.lnk_lbl_jetbrains.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_lbl_jetbrains_LinkClicked);
             // 
             // Help_Form
             // 
@@ -364,7 +365,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox assemblyVersionTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox trademarkTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox copyrightTextBox;
         private System.Windows.Forms.Label label8;
@@ -376,5 +376,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.LinkLabel lnk_lbl_jetbrains;
     }
 }

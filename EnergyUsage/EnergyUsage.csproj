@@ -91,6 +91,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="utils\CheckForConnection.cs" />
     <Compile Include="utils\MsgBox.cs" />
     <Compile Include="utils\Win32.cs" />
     <EmbeddedResource Include="Form1.resx">

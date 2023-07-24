@@ -17,7 +17,7 @@
     <Setting Name="Gas_meter_ser_num" Type="System.String" Scope="User">
       <Value Profile="(Default)">123456</Value>
     </Setting>
-    <Setting Name="Electricity" Type="System.Boolean" Scope="User">
+    <Setting Name="Electricity_import" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Gas" Type="System.Boolean" Scope="User">
@@ -85,6 +85,9 @@
     </Setting>
     <Setting Name="electric_export_unit" Type="System.String" Scope="User">
       <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="Electricity_export" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

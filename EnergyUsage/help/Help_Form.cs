@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using assembly_info;
@@ -42,7 +43,6 @@ namespace help_about
             companyTextBox.Text = info.Company;
             productTextBox.Text = info.Product;
             copyrightTextBox.Text = info.Copyright;
-            trademarkTextBox.Text = info.Trademark;
             assemblyVersionTextBox.Text = info.AssemblyVersion;
             fileVersionTextBox.Text = info.FileVersion;
             guidTextBox.Text = info.Guid;
@@ -62,6 +62,9 @@ namespace help_about
             File.Delete("Help.mht");
         }
 
-        
+        private void lnk_lbl_jetbrains_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+           Process.Start("https://www.jetbrains.com/products/#tech=dotnet");
+        }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using CenteredMessagebox;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using EnergyUsage.utils;
 
 namespace EnergyUsage
 {
@@ -13,7 +16,7 @@ namespace EnergyUsage
         {
             double totalElectricNet;
             double consumption;
-            Uri uri = new Uri("https://p.com"); //Just a placeholder not real URI
+            Uri uri = new Uri("https://api.octopus.energy/"); //Just a placeholder will not return data
             Series seriesGas = new Series(); //Just Initialise
             Series seriesImportElectric = new Series(); //Just Initialise
             Series seriesCombinedElectric = new Series(); //Just Initialise
@@ -23,10 +26,11 @@ namespace EnergyUsage
             int count = 1;
             int amountData = 0;
 
-
-            string dt_From = dtPicker_date_from.Text + "T" + cmbobx_hour_from.Text + ":" + cmbobx_minute_from.Text +
+           string dt_From = dtPicker_date_from.Value.Year + "-" + dtPicker_date_from.Value.Month + "-" +
+                             dtPicker_date_from.Value.Day +"T" + cmbobx_hour_from.Text + ":" + cmbobx_minute_from.Text +
                              "Z";
-            string dt_To = dtPicker_date_to.Text + "T" + cmbobx_hour_to.Text + ":" + cmbobx_minute_to.Text + "Z";
+           string dt_To = dtPicker_date_to.Value.Year + "-" + dtPicker_date_to.Value.Month + "-" +
+                           dtPicker_date_to.Value.Day + "T" + cmbobx_hour_to.Text + ":" + cmbobx_minute_to.Text + "Z";
 
 
             if (rdobtn_electricity_import.Checked)
@@ -68,6 +72,7 @@ namespace EnergyUsage
 
             //get the first chunk of data
             myOctopusDeserializeData = Utilities.GetData(uri, txtbx_api_key.Text);
+            if (myOctopusDeserializeData == null) return; //problem with internet connection
 
             //if we have multiple pages then we need to use this section. multiple sections will have the count>100
             amountData = myOctopusDeserializeData.count;
@@ -83,6 +88,7 @@ namespace EnergyUsage
                     count++;
                     myOctopusDeserializeData =
                         Utilities.GetData(new Uri(myOctopusDeserializeData.next), txtbx_api_key.Text);
+                    if (myOctopusDeserializeData == null) return; //problem with internet connection
 
                     path = path + "_" + count + ".json";
 
@@ -172,7 +178,8 @@ namespace EnergyUsage
             }
             else if (rdobtn_gas.Checked)
             {
-                totalGasConsumed = Math.Round(totalGasConsumed, 2, MidpointRounding.AwayFromZero);
+                //convert gas in m3 to kwh first
+                totalGasConsumed = Math.Round((totalGasConsumed * 11.33426), 2, MidpointRounding.AwayFromZero);
                 rchtxtbx_data.AppendText("Total Gas Consumed = " + totalGasConsumed + " kwh\r");
                 lbl_gas_usage.Text = totalGasConsumed.ToString();
                 Utilities.CopyFile("GasImported.json", myPath);
@@ -189,7 +196,7 @@ namespace EnergyUsage
                 lbl_electricity_net.Text = (totalElectricNet <= 0)
                     ? "Electricity Bought = " + (totalElectricNet * -1) + "kwh"
                     : "Electricity Sold = " + totalElectricNet + "kwh = £" +
-                      Math.Round((totalElectricNet * cost),2).ToString("##0.00")
+                      Math.Round((totalElectricNet * cost), 2).ToString("##0.00")
                       + ((char)0x2009) + "p";
             }
 

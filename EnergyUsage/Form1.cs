@@ -34,7 +34,8 @@ namespace EnergyUsage
             txtbx_electric_import_mpan.Text = settings.Import_MPAN;
             txtbx_electric_export_mpan.Text = settings.Export_MPAN;
             txtbx_gas_mprn.Text = settings.MPRN;
-            rdobtn_electricity_import.Checked = settings.Electricity;
+            rdobtn_electricity_import.Checked = settings.Electricity_import;
+            rdobtn_electricity_export.Checked = settings.Electricity_export;
             rdobtn_gas.Checked = settings.Gas;
 
             dtPicker_date_from.Value = settings.Date_from;
@@ -60,7 +61,7 @@ namespace EnergyUsage
             txtbx_electricity_standing_charge.Text = settings.electric_standing;
             txtbx_gas_unit_cost.Text = settings.gas_unit;
             txtbx_gas_standing_charge.Text = settings.gas_standing;
-            Invoke(new Action(() => {txtbx_electricity_unit_income.Text = settings.electric_export_unit; })); 
+            txtbx_electricity_unit_income.Text = settings.electric_export_unit;  
 
             //remove all chart legends
             chart_electric_import.Legends.Clear();
@@ -78,9 +79,16 @@ namespace EnergyUsage
             lbl_units.Text = lbl_units2.Text = lbl_units3.Text = "p kwh" + ((char)0x207B) + ((char)0x00B9);
             lbl_days.Text = lbl_days2.Text = "p day" + ((char)0x207B) + ((char)0x00B9);
 
+            //0x2009 = thin space
             lbl_total_electricity_cost.Text = "£0.00" +((char)0x2009) + "p";
             lbl_total_gas_cost.Text = "£0.00" +((char)0x2009) + "p";
             lbl_total_energy_cost.Text = "£0.00" + ((char)0x2009) + "p";
+            lbl_electricity_cost.Text = "£0.00" + ((char)0x2009) + "p";
+            lbl_electricity_standing_charge.Text = "£0.00" + ((char)0x2009) + "p";
+            lbl_electricity_export_income.Text = "£0.00" + ((char)0x2009) + "p";
+            lbl_gas_cost.Text = "£0.00" + ((char)0x2009) + "p";
+            lbl_gas_standing_charge.Text = "£0.00" + ((char)0x2009) + "p";
+
 
         }
 
@@ -170,7 +178,8 @@ namespace EnergyUsage
             settings.Export_MPAN = txtbx_electric_export_mpan.Text;
             settings.MPRN = txtbx_gas_mprn.Text;
 
-            settings.Electricity = rdobtn_electricity_import.Checked;
+            settings.Electricity_import = rdobtn_electricity_import.Checked;
+            settings.Electricity_export = rdobtn_electricity_export.Checked;
             settings.Gas = rdobtn_gas.Checked;
 
             settings.Date_from = dtPicker_date_from.Value;
