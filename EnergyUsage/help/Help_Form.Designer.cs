@@ -51,20 +51,33 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lnk_lbl_jetbrains = new System.Windows.Forms.LinkLabel();
             this.lnklbl_licence = new System.Windows.Forms.LinkLabel();
+            this.lnk_lbl_jetbrains = new System.Windows.Forms.LinkLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tab_help_about = new System.Windows.Forms.TabControl();
+            this.tabHelp = new System.Windows.Forms.TabPage();
+            this.tabLicence = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.wbrLicence = new System.Windows.Forms.WebBrowser();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tab_help_about.SuspendLayout();
+            this.tabHelp.SuspendLayout();
+            this.tabLicence.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // wbrHelp
             // 
             this.wbrHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wbrHelp.Location = new System.Drawing.Point(3, 4);
+            this.wbrHelp.Location = new System.Drawing.Point(0, 0);
             this.wbrHelp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.wbrHelp.MinimumSize = new System.Drawing.Size(22, 25);
             this.wbrHelp.Name = "wbrHelp";
-            this.wbrHelp.Size = new System.Drawing.Size(762, 442);
+            this.wbrHelp.Size = new System.Drawing.Size(748, 405);
             this.wbrHelp.TabIndex = 135;
             // 
             // btn_close
@@ -268,8 +281,8 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.wbrHelp, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -310,6 +323,18 @@
             this.panel1.Size = new System.Drawing.Size(762, 312);
             this.panel1.TabIndex = 136;
             // 
+            // lnklbl_licence
+            // 
+            this.lnklbl_licence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnklbl_licence.AutoSize = true;
+            this.lnklbl_licence.Location = new System.Drawing.Point(392, 275);
+            this.lnklbl_licence.Name = "lnklbl_licence";
+            this.lnklbl_licence.Size = new System.Drawing.Size(244, 20);
+            this.lnklbl_licence.TabIndex = 136;
+            this.lnklbl_licence.TabStop = true;
+            this.lnklbl_licence.Text = "GNU General Public License v2.0";
+            this.lnklbl_licence.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklbl_licence_LinkClicked);
+            // 
             // lnk_lbl_jetbrains
             // 
             this.lnk_lbl_jetbrains.AutoSize = true;
@@ -322,16 +347,75 @@
     "ork.";
             this.lnk_lbl_jetbrains.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_lbl_jetbrains_LinkClicked);
             // 
-            // lnklbl_licence
+            // panel2
             // 
-            this.lnklbl_licence.AutoSize = true;
-            this.lnklbl_licence.Location = new System.Drawing.Point(392, 275);
-            this.lnklbl_licence.Name = "lnklbl_licence";
-            this.lnklbl_licence.Size = new System.Drawing.Size(244, 20);
-            this.lnklbl_licence.TabIndex = 136;
-            this.lnklbl_licence.TabStop = true;
-            this.lnklbl_licence.Text = "GNU General Public License v2.0";
-            this.lnklbl_licence.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklbl_licence_LinkClicked);
+            this.panel2.Controls.Add(this.tab_help_about);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(762, 444);
+            this.panel2.TabIndex = 137;
+            // 
+            // tab_help_about
+            // 
+            this.tab_help_about.Controls.Add(this.tabHelp);
+            this.tab_help_about.Controls.Add(this.tabLicence);
+            this.tab_help_about.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tab_help_about.Location = new System.Drawing.Point(0, 0);
+            this.tab_help_about.Name = "tab_help_about";
+            this.tab_help_about.SelectedIndex = 0;
+            this.tab_help_about.Size = new System.Drawing.Size(762, 444);
+            this.tab_help_about.TabIndex = 0;
+            // 
+            // tabHelp
+            // 
+            this.tabHelp.Controls.Add(this.panel3);
+            this.tabHelp.Location = new System.Drawing.Point(4, 29);
+            this.tabHelp.Name = "tabHelp";
+            this.tabHelp.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHelp.Size = new System.Drawing.Size(754, 411);
+            this.tabHelp.TabIndex = 0;
+            this.tabHelp.Text = "Help";
+            this.tabHelp.UseVisualStyleBackColor = true;
+            // 
+            // tabLicence
+            // 
+            this.tabLicence.Controls.Add(this.panel4);
+            this.tabLicence.Location = new System.Drawing.Point(4, 29);
+            this.tabLicence.Name = "tabLicence";
+            this.tabLicence.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLicence.Size = new System.Drawing.Size(754, 411);
+            this.tabLicence.TabIndex = 1;
+            this.tabLicence.Text = "Licence";
+            this.tabLicence.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.wbrHelp);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(748, 405);
+            this.panel3.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.wbrLicence);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(748, 405);
+            this.panel4.TabIndex = 0;
+            // 
+            // wbrLicence
+            // 
+            this.wbrLicence.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wbrLicence.Location = new System.Drawing.Point(0, 0);
+            this.wbrLicence.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.wbrLicence.MinimumSize = new System.Drawing.Size(22, 25);
+            this.wbrLicence.Name = "wbrLicence";
+            this.wbrLicence.Size = new System.Drawing.Size(748, 405);
+            this.wbrLicence.TabIndex = 136;
             // 
             // Help_Form
             // 
@@ -348,6 +432,12 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.tab_help_about.ResumeLayout(false);
+            this.tabHelp.ResumeLayout(false);
+            this.tabLicence.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -378,5 +468,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.LinkLabel lnk_lbl_jetbrains;
         private System.Windows.Forms.LinkLabel lnklbl_licence;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TabControl tab_help_about;
+        private System.Windows.Forms.TabPage tabHelp;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TabPage tabLicence;
+        private System.Windows.Forms.Panel panel4;
+        public System.Windows.Forms.WebBrowser wbrLicence;
     }
 }

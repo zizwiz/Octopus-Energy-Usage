@@ -20,18 +20,26 @@ namespace help_about
             CenterToParent();
 
             byte[] MHT = Resources.Help;
+            string path = "Help.mht";
+            MemoryStream ms; 
+            FileStream fs; 
 
-            MemoryStream ms = new MemoryStream(MHT);
+            for (int i = 0; i < 2; i++)  //Create Files From resources
+            {
+                ms = new MemoryStream(MHT);
+                fs = new FileStream(path, FileMode.OpenOrCreate);
+               
+                ms.WriteTo(fs);
 
-            //Create PDF File From Binary of resources folders qr_help.pdf
-            FileStream f = new FileStream("Help.mht", FileMode.OpenOrCreate);
+                fs.Close();
+                ms.Close();
 
-            //Write Bytes into Our Created helpFile.mht
-            ms.WriteTo(f);
-            f.Close();
-            ms.Close();
+                MHT = Resources.licence;
+                path = "licence.mht";
+            }
 
             wbrHelp.Navigate(Path.GetFullPath(Path.Combine(Application.StartupPath, ".\\Help.mht")));
+            wbrLicence.Navigate(Path.GetFullPath(Path.Combine(Application.StartupPath, ".\\licence.mht")));
 
             // Get the AssemblyInfo class.
             AssemblyInfo info = new AssemblyInfo();
@@ -52,6 +60,7 @@ namespace help_about
         private void btn_close_Click(object sender, EventArgs e)
         {
             wbrHelp.Dispose();
+            wbrLicence.Dispose();
             Dispose();
             Close();
         }
@@ -59,16 +68,17 @@ namespace help_about
         private void Help_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             File.Delete("Help.mht");
+            File.Delete("licence.mht");
         }
 
         private void lnk_lbl_jetbrains_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-           Process.Start("https://www.jetbrains.com/products/#tech=dotnet");
+            Process.Start("https://www.jetbrains.com/products/#tech=dotnet");
         }
 
         private void lnklbl_licence_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/zizwiz/Octopus-Energy-Usage/blob/main/LICENSE");
+            tab_help_about.SelectedIndex = 1;
         }
     }
 }
