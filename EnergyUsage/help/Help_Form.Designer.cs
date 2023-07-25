@@ -33,7 +33,6 @@
             this.btn_close = new System.Windows.Forms.Button();
             this.comVisibleTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.neutralLanguageTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.guidTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lnk_lbl_jetbrains = new System.Windows.Forms.LinkLabel();
+            this.lnklbl_licence = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -97,16 +97,6 @@
             this.label11.Size = new System.Drawing.Size(99, 20);
             this.label11.TabIndex = 132;
             this.label11.Text = "COM Visible:";
-            // 
-            // neutralLanguageTextBox
-            // 
-            this.neutralLanguageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.neutralLanguageTextBox.Location = new System.Drawing.Point(468, 269);
-            this.neutralLanguageTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.neutralLanguageTextBox.Name = "neutralLanguageTextBox";
-            this.neutralLanguageTextBox.ReadOnly = true;
-            this.neutralLanguageTextBox.Size = new System.Drawing.Size(178, 26);
-            this.neutralLanguageTextBox.TabIndex = 131;
             // 
             // label9
             // 
@@ -292,6 +282,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lnklbl_licence);
             this.panel1.Controls.Add(this.lnk_lbl_jetbrains);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label11);
@@ -301,7 +292,6 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.fileVersionTextBox);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.neutralLanguageTextBox);
             this.panel1.Controls.Add(this.descriptionTextBox);
             this.panel1.Controls.Add(this.companyTextBox);
             this.panel1.Controls.Add(this.label6);
@@ -332,6 +322,17 @@
     "ork.";
             this.lnk_lbl_jetbrains.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_lbl_jetbrains_LinkClicked);
             // 
+            // lnklbl_licence
+            // 
+            this.lnklbl_licence.AutoSize = true;
+            this.lnklbl_licence.Location = new System.Drawing.Point(392, 275);
+            this.lnklbl_licence.Name = "lnklbl_licence";
+            this.lnklbl_licence.Size = new System.Drawing.Size(244, 20);
+            this.lnklbl_licence.TabIndex = 136;
+            this.lnklbl_licence.TabStop = true;
+            this.lnklbl_licence.Text = "GNU General Public License v2.0";
+            this.lnklbl_licence.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklbl_licence_LinkClicked);
+            // 
             // Help_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -357,7 +358,6 @@
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.TextBox comVisibleTextBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox neutralLanguageTextBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox guidTextBox;
         private System.Windows.Forms.Label label10;
@@ -377,5 +377,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.LinkLabel lnk_lbl_jetbrains;
+        private System.Windows.Forms.LinkLabel lnklbl_licence;
     }
 }

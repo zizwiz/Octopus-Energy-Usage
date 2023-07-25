@@ -46,7 +46,6 @@ namespace help_about
             assemblyVersionTextBox.Text = info.AssemblyVersion;
             fileVersionTextBox.Text = info.FileVersion;
             guidTextBox.Text = info.Guid;
-            neutralLanguageTextBox.Text = info.NeutralLanguage;
             comVisibleTextBox.Text = info.IsComVisible.ToString();
         }
 
@@ -65,6 +64,11 @@ namespace help_about
         private void lnk_lbl_jetbrains_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
            Process.Start("https://www.jetbrains.com/products/#tech=dotnet");
+        }
+
+        private void lnklbl_licence_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/zizwiz/Octopus-Energy-Usage/blob/main/LICENSE");
         }
     }
 }
