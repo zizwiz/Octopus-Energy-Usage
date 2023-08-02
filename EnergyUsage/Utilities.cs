@@ -217,16 +217,16 @@ namespace EnergyUsage
         {
             SaveFileDialog mySaveFileDialog = new SaveFileDialog()
             {
-                InitialDirectory = Application.StartupPath,
                 Title = "Save Data Files",
                 CheckPathExists = true,
                 DefaultExt = "CSV",
                 Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
                 FilterIndex = 1,
-                RestoreDirectory = true
+                RestoreDirectory = true,
+                FileName = "sample.csv" 
             };
 
-            if (mySaveFileDialog.ShowDialog() == DialogResult.OK)
+            if ((mySaveFileDialog.ShowDialog() == DialogResult.OK)&&(mySaveFileDialog.FileName != ""))
             {
                 var csv = new StringBuilder();
                 string myDataType = "";

@@ -2,68 +2,47 @@
 
 namespace EnergyUsage.utils
 {
+
+
     class TimeUtils
     {
-        public static bool isSummerTime(object sender, EventArgs e)
+        public static (bool timeFrom, bool timeTo) isSummerTime(int yearFrom, DateTime myDateFrom, int yearTo, DateTime myDateTo)
         {
-            //workOutDates(2, 2023);
+           // Form1 frm = (Form1)myParentForm;
 
-            //DateTime dateToCheck = dtTmPicker.Value;
-            //DateTime startDate = DateTime.Parse(lbl_date_to_change_to_BST.Text);
-            //DateTime endDate = DateTime.Parse(lbl_date_to_change_to_GMT.Text);
-
-            //return (dateToCheck >= startDate && dateToCheck < endDate); //true = summer GMT + 1hr
-
-            return true;
-        }
-
-        private static void workOutDates(int months, int year)
-        {
-
-            bool flag = false;
-            
-            int month;
+            int month = 3;
+            int year = yearFrom;
             DateTime date;
             string answer;
+            DateTime startDate = myDateFrom;
+            DateTime endDate = myDateTo;
 
-            //for (int i = 1; i <= months; i++)
-            //{
-            //    if (flag) //if we want all the months or just when we change to and from BST
-            //    {
-            //        month = (months == 2) ? 10 : i;
-            //    }
-            //    else
-            //    {
-            //        month = (months == 2) ? 3 : i;
-            //    }
+            for (int i = 1; i <= 2; i++)
+            {
+                date = new DateTime(year, month, DateTime.DaysInMonth(year, month), System.Globalization.CultureInfo.CurrentCulture.Calendar);
 
-            //    date = new DateTime(year, month, DateTime.DaysInMonth(year, month), System.Globalization.CultureInfo.CurrentCulture.Calendar);
+                int daysOffset = date.DayOfWeek - DayOfWeek.Sunday;
+                if (daysOffset < 0) daysOffset += 7; // if the code is negative, we need to normalize them
 
-            //    int daysOffset = date.DayOfWeek - DayOfWeek.Sunday;
-            //    if (daysOffset < 0) daysOffset += 7; // if the code is negative, we need to normalize them
+                answer = date.AddDays(-daysOffset).ToLongDateString();
 
-            //    answer = date.AddDays(-daysOffset).ToLongDateString();
+                if (month == 10)
+                {
+                    endDate = DateTime.Parse(answer); //GMT
+                }
+                else if (month == 3)
+                {
+                    startDate = DateTime.Parse(answer); //BST
+                }
 
-            //    if ((months == 2) && (flag))
-            //    {
-            //        lbl_date_to_change_to_GMT.Text = answer;
-            //    }
-            //    else if ((months == 2) && (!flag))
-            //    {
-            //        lbl_date_to_change_to_BST.Text = answer;
-            //    }
-
-            //    flag = true; //needed for October dates when months == 2.
-            //}
+                month = 10;
+                year = yearTo;
+            }
+            
+            return (timeFrom: myDateFrom >= startDate, timeTo: myDateTo < endDate); //true = summer GMT + 1hr
         }
 
-
-
-
-
-
-
-
+       
 
 
 

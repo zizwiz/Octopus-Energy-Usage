@@ -61,7 +61,7 @@ namespace EnergyUsage
             txtbx_electricity_standing_charge.Text = settings.electric_standing;
             txtbx_gas_unit_cost.Text = settings.gas_unit;
             txtbx_gas_standing_charge.Text = settings.gas_standing;
-            txtbx_electricity_unit_income.Text = settings.electric_export_unit;  
+            txtbx_electricity_unit_income.Text = settings.electric_export_unit;
 
             //remove all chart legends
             chart_electric_import.Legends.Clear();
@@ -80,8 +80,8 @@ namespace EnergyUsage
             lbl_days.Text = lbl_days2.Text = "p day" + ((char)0x207B) + ((char)0x00B9);
 
             //0x2009 = thin space
-            lbl_total_electricity_cost.Text = "£0.00" +((char)0x2009) + "p";
-            lbl_total_gas_cost.Text = "£0.00" +((char)0x2009) + "p";
+            lbl_total_electricity_cost.Text = "£0.00" + ((char)0x2009) + "p";
+            lbl_total_gas_cost.Text = "£0.00" + ((char)0x2009) + "p";
             lbl_total_energy_cost.Text = "£0.00" + ((char)0x2009) + "p";
             lbl_electricity_cost.Text = "£0.00" + ((char)0x2009) + "p";
             lbl_electricity_standing_charge.Text = "£0.00" + ((char)0x2009) + "p";
@@ -162,7 +162,7 @@ namespace EnergyUsage
             settings.non_direct_debit = rdobtn_nonDirectDebit.Checked;
             settings.other_payment_method = rdobtn_otherPayment.Checked;
         }
-        
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Delete files
@@ -198,7 +198,7 @@ namespace EnergyUsage
             settings.direct_debit = rdobtn_directDebit.Checked;
             settings.non_direct_debit = rdobtn_nonDirectDebit.Checked;
             settings.other_payment_method = rdobtn_otherPayment.Checked;
-            
+
             settings.Save();
         }
 
@@ -327,5 +327,17 @@ namespace EnergyUsage
 
             settings.Save();
         }
+
+        //public void SetTextForLabels(string myText, string myType)
+        //{
+        //    if (myType == "BST")
+        //    {
+        //        lbl_date_to_change_to_BST.Text = myText;
+        //    }
+        //    else if (myType == "GMT")
+        //    {
+        //        lbl_date_to_change_to_GMT.Text = myText;
+        //    }
+        //}
     }
 }

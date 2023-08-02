@@ -153,7 +153,6 @@ namespace EnergyUsage
             this.rdobtn_single_rate = new System.Windows.Forms.RadioButton();
             this.cmbobx_regions = new System.Windows.Forms.ComboBox();
             this.rchtxtbx_tariff_info = new System.Windows.Forms.RichTextBox();
-            this.picbx_regions = new System.Windows.Forms.PictureBox();
             this.cmbobx_tariff_name = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -169,6 +168,7 @@ namespace EnergyUsage
             this.label29 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.picbx_regions = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
@@ -195,7 +195,6 @@ namespace EnergyUsage
             this.panel11.SuspendLayout();
             this.grpbx_tariff.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picbx_regions)).BeginInit();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -204,6 +203,7 @@ namespace EnergyUsage
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picbx_regions)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_getinfo
@@ -329,12 +329,12 @@ namespace EnergyUsage
             this.groupBox7.Controls.Add(this.txtbx_electricity_unit_cost);
             this.groupBox7.Controls.Add(this.label23);
             this.groupBox7.Controls.Add(this.label22);
-            this.groupBox7.Location = new System.Drawing.Point(352, 309);
+            this.groupBox7.Location = new System.Drawing.Point(352, 312);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(391, 281);
             this.groupBox7.TabIndex = 19;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Energy Costs - inc VAT";
+            this.groupBox7.Text = "Energy prices - inc VAT";
             // 
             // lbl_days2
             // 
@@ -582,7 +582,7 @@ namespace EnergyUsage
             this.groupBox5.Controls.Add(this.lbl2);
             this.groupBox5.Controls.Add(this.lbl1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(766, 292);
+            this.groupBox5.Location = new System.Drawing.Point(766, 284);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(402, 328);
             this.groupBox5.TabIndex = 46;
@@ -1465,16 +1465,6 @@ namespace EnergyUsage
             this.rchtxtbx_tariff_info.TabIndex = 3;
             this.rchtxtbx_tariff_info.Text = "";
             // 
-            // picbx_regions
-            // 
-            this.picbx_regions.Image = global::EnergyUsage.Properties.Resources.UK_Region_Map;
-            this.picbx_regions.Location = new System.Drawing.Point(771, 6);
-            this.picbx_regions.Name = "picbx_regions";
-            this.picbx_regions.Size = new System.Drawing.Size(397, 624);
-            this.picbx_regions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picbx_regions.TabIndex = 2;
-            this.picbx_regions.TabStop = false;
-            // 
             // cmbobx_tariff_name
             // 
             this.cmbobx_tariff_name.FormattingEnabled = true;
@@ -1634,6 +1624,16 @@ namespace EnergyUsage
             this.label32.Size = new System.Drawing.Size(380, 2);
             this.label32.TabIndex = 50;
             // 
+            // picbx_regions
+            // 
+            this.picbx_regions.Image = global::EnergyUsage.Properties.Resources.UK_Region_Map;
+            this.picbx_regions.Location = new System.Drawing.Point(771, 6);
+            this.picbx_regions.Name = "picbx_regions";
+            this.picbx_regions.Size = new System.Drawing.Size(397, 624);
+            this.picbx_regions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picbx_regions.TabIndex = 2;
+            this.picbx_regions.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1681,7 +1681,6 @@ namespace EnergyUsage
             this.grpbx_tariff.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picbx_regions)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -1690,6 +1689,7 @@ namespace EnergyUsage
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picbx_regions)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using CenteredMessagebox;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using EnergyUsage.utils;
@@ -24,13 +22,44 @@ namespace EnergyUsage
             EnergyUsageRootobject myOctopusDeserializeData = new EnergyUsageRootobject(); //Just Initialise 
             string path = "Data";
             int count = 1;
-            int amountData = 0;
+            int amountData;
+            int hourFrom;
+            int hourTo;
 
-           string dt_From = dtPicker_date_from.Value.Year + "-" + dtPicker_date_from.Value.Month + "-" +
-                             dtPicker_date_from.Value.Day +"T" + cmbobx_hour_from.Text + ":" + cmbobx_minute_from.Text +
+            //GMT
+            hourFrom = int.Parse(cmbobx_hour_from.Text);
+            hourTo = int.Parse(cmbobx_hour_to.Text);
+
+            var time = TimeUtils.isSummerTime(dtPicker_date_from.Value.Year, dtPicker_date_from.Value, dtPicker_date_to.Value.Year, dtPicker_date_to.Value);
+
+            //BST
+            if ((time.timeFrom) && (hourFrom == 0))
+            {
+                // as we go back past midnight we must also change to day before.
+                hourFrom = 23;
+                dtPicker_date_from.Value = dtPicker_date_from.Value.AddDays(-1);
+            }
+            else
+            {
+                hourFrom -= 1;
+            }
+
+            if ((time.timeTo) && (hourTo == 0))
+            {
+                // as we go back past midnight we must also change to day before.
+                hourTo = 23;
+                dtPicker_date_to.Value = dtPicker_date_to.Value.AddDays(-1);
+            }
+            else
+            {
+                hourTo -= 1;
+            }
+
+            string dt_From = dtPicker_date_from.Value.Year + "-" + dtPicker_date_from.Value.Month + "-" +
+                             dtPicker_date_from.Value.Day + "T" + hourFrom + ":" + cmbobx_minute_from.Text +
                              "Z";
-           string dt_To = dtPicker_date_to.Value.Year + "-" + dtPicker_date_to.Value.Month + "-" +
-                           dtPicker_date_to.Value.Day + "T" + cmbobx_hour_to.Text + ":" + cmbobx_minute_to.Text + "Z";
+            string dt_To = dtPicker_date_to.Value.Year + "-" + dtPicker_date_to.Value.Month + "-" +
+                            dtPicker_date_to.Value.Day + "T" + hourTo + ":" + cmbobx_minute_to.Text + "Z";
 
 
             if (rdobtn_electricity_import.Checked)
