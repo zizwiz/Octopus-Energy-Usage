@@ -169,6 +169,7 @@ namespace EnergyUsage
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.picbx_regions = new System.Windows.Forms.PictureBox();
+            this.tab_info_page = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
@@ -281,6 +282,7 @@ namespace EnergyUsage
             // TabControl1
             // 
             this.TabControl1.Controls.Add(this.tab_energy_usage_data_input);
+            this.TabControl1.Controls.Add(this.tab_info_page);
             this.TabControl1.Controls.Add(this.tabPage1);
             this.TabControl1.Controls.Add(this.tab_electric_import);
             this.TabControl1.Controls.Add(this.tab_electric_export);
@@ -1634,6 +1636,15 @@ namespace EnergyUsage
             this.picbx_regions.TabIndex = 2;
             this.picbx_regions.TabStop = false;
             // 
+            // tab_info_page
+            // 
+            this.tab_info_page.Location = new System.Drawing.Point(4, 29);
+            this.tab_info_page.Name = "tab_info_page";
+            this.tab_info_page.Size = new System.Drawing.Size(1184, 644);
+            this.tab_info_page.TabIndex = 7;
+            this.tab_info_page.Text = "Info Page";
+            this.tab_info_page.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1826,6 +1837,7 @@ namespace EnergyUsage
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TabPage tab_info_page;
     }
 }
 

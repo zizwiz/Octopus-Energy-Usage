@@ -24,11 +24,15 @@ namespace EnergyUsage
             int count = 1;
             int amountData;
             int hourFrom;
+            DateTime dateFrom;
             int hourTo;
+            DateTime dateTo;
 
             //GMT
             hourFrom = int.Parse(cmbobx_hour_from.Text);
+            dateFrom = dtPicker_date_from.Value;
             hourTo = int.Parse(cmbobx_hour_to.Text);
+            dateTo = dtPicker_date_to.Value;
 
             var time = TimeUtils.isSummerTime(dtPicker_date_from.Value.Year, dtPicker_date_from.Value, dtPicker_date_to.Value.Year, dtPicker_date_to.Value);
 
@@ -37,7 +41,7 @@ namespace EnergyUsage
             {
                 // as we go back past midnight we must also change to day before.
                 hourFrom = 23;
-                dtPicker_date_from.Value = dtPicker_date_from.Value.AddDays(-1);
+                dateFrom = dateFrom.AddDays(-1);
             }
             else
             {
@@ -48,18 +52,18 @@ namespace EnergyUsage
             {
                 // as we go back past midnight we must also change to day before.
                 hourTo = 23;
-                dtPicker_date_to.Value = dtPicker_date_to.Value.AddDays(-1);
+                dateTo = dateTo.AddDays(-1);
             }
             else
             {
                 hourTo -= 1;
             }
 
-            string dt_From = dtPicker_date_from.Value.Year + "-" + dtPicker_date_from.Value.Month + "-" +
-                             dtPicker_date_from.Value.Day + "T" + hourFrom + ":" + cmbobx_minute_from.Text +
+            string dt_From = dateFrom.Year + "-" + dateFrom.Month + "-" +
+                             dateFrom.Day + "T" + hourFrom + ":" + cmbobx_minute_from.Text +
                              "Z";
-            string dt_To = dtPicker_date_to.Value.Year + "-" + dtPicker_date_to.Value.Month + "-" +
-                            dtPicker_date_to.Value.Day + "T" + hourTo + ":" + cmbobx_minute_to.Text + "Z";
+            string dt_To = dateTo.Year + "-" + dateTo.Month + "-" +
+                           dateTo.Day + "T" + hourTo + ":" + cmbobx_minute_to.Text + "Z";
 
 
             if (rdobtn_electricity_import.Checked)
