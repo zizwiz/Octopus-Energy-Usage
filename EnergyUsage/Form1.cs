@@ -48,8 +48,8 @@ namespace EnergyUsage
 
             rdobtn_single_rate.Checked = settings.single_rate;
             rdobtn_dual_rate.Checked = settings.dual_rate;
-            chckbx_export_electric.Checked = settings.export_electric;
-            chckbx_use_gas.Checked = settings.use_gas;
+            rdobtn_electricity_export.Checked = settings.export_electric;
+            rdobtn_gas.Checked = settings.use_gas;
 
             rdobtn_directDebit.Checked = settings.direct_debit;
             rdobtn_nonDirectDebit.Checked = settings.non_direct_debit;
@@ -72,8 +72,8 @@ namespace EnergyUsage
             picbx_regions.Visible = false;
             lbl_choose_tariff.Visible = false;
             cmbobx_tariff_name.Visible = false;
-            rchtxtbx_tariff_info.Visible = false;
             grpbx_tariff.Visible = false;
+            tbcntrl_tariffs.Visible = false;
 
 
             lbl_units.Text = lbl_units2.Text = lbl_units3.Text = "p kwh" + ((char)0x207B) + ((char)0x00B9);
@@ -144,8 +144,8 @@ namespace EnergyUsage
             picbx_regions.Visible = true;
             lbl_choose_tariff.Visible = true;
             cmbobx_tariff_name.Visible = true;
-            rchtxtbx_tariff_info.Visible = true;
             grpbx_tariff.Visible = true;
+            tbcntrl_tariffs.Visible = true;
         }
 
 
@@ -156,8 +156,8 @@ namespace EnergyUsage
             settings.region = cmbobx_regions.SelectedIndex;
             settings.single_rate = rdobtn_single_rate.Checked;
             settings.dual_rate = rdobtn_dual_rate.Checked;
-            settings.export_electric = chckbx_export_electric.Checked;
-            settings.use_gas = chckbx_use_gas.Checked;
+            settings.export_electric = rdobtn_export_electric.Checked;
+            settings.use_gas = rdobtn_gas.Checked;
             settings.direct_debit = rdobtn_directDebit.Checked;
             settings.non_direct_debit = rdobtn_nonDirectDebit.Checked;
             settings.other_payment_method = rdobtn_otherPayment.Checked;
@@ -192,8 +192,8 @@ namespace EnergyUsage
 
             settings.single_rate = rdobtn_single_rate.Checked;
             settings.dual_rate = rdobtn_dual_rate.Checked;
-            settings.export_electric = chckbx_export_electric.Checked;
-            settings.use_gas = chckbx_use_gas.Checked;
+            settings.export_electric = rdobtn_export_electric.Checked;
+            settings.use_gas = rdobtn_gas.Checked;
 
             settings.direct_debit = rdobtn_directDebit.Checked;
             settings.non_direct_debit = rdobtn_nonDirectDebit.Checked;
@@ -326,6 +326,12 @@ namespace EnergyUsage
             settings.electric_export_unit = txtbx_electricity_unit_income.Text;
 
             settings.Save();
+        }
+
+        private void rdobtn_energy_type_CheckedChanged(object sender, EventArgs e)
+        {
+            //only show the rates if we are on import electric.
+            grpbx_electric_rate.Visible = rdobtn_import_electric.Checked;
         }
 
         //public void SetTextForLabels(string myText, string myType)
