@@ -19,8 +19,7 @@ namespace EnergyUsage
 
         public string valid_from { get; set; }
         public string valid_to { get; set; }
-
-
+        
         public string payment_method { get; set; }
     }
 }

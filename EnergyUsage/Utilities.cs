@@ -194,9 +194,25 @@ namespace EnergyUsage
                 StandingChargeRootobject myStandingChargeDeserializeData = new StandingChargeRootobject();
                 var request = WebRequest.Create(myURI);
 
-                return myStandingChargeDeserializeData =
-                    JsonConvert.DeserializeObject<StandingChargeRootobject>(
-                        new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+                try
+                {
+                    myStandingChargeDeserializeData =
+                                       JsonConvert.DeserializeObject<StandingChargeRootobject>(
+                                           new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd());
+                }
+                catch (Exception e)
+                {
+                    // If we do not get a return from the request then do nothing
+                }
+
+                if (myStandingChargeDeserializeData != null)
+                {
+                    return myStandingChargeDeserializeData;
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch (Exception e)
             {
@@ -223,10 +239,10 @@ namespace EnergyUsage
                 Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
                 FilterIndex = 1,
                 RestoreDirectory = true,
-                FileName = "sample.csv" 
+                FileName = "sample.csv"
             };
 
-            if ((mySaveFileDialog.ShowDialog() == DialogResult.OK)&&(mySaveFileDialog.FileName != ""))
+            if ((mySaveFileDialog.ShowDialog() == DialogResult.OK) && (mySaveFileDialog.FileName != ""))
             {
                 var csv = new StringBuilder();
                 string myDataType = "";

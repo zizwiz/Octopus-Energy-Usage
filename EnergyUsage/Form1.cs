@@ -332,6 +332,17 @@ namespace EnergyUsage
         {
             //only show the rates if we are on import electric.
             grpbx_electric_rate.Visible = rdobtn_import_electric.Checked;
+            
+            tbcntrl_tariffs.SelectedTab = tab_import_electric;
+            
+            if (rdobtn_export_electric.Checked)
+            {
+                tbcntrl_tariffs.SelectedTab = tab_export_electric;
+            }
+            else if (rdobtn_import_gas.Checked)
+            {
+                tbcntrl_tariffs.SelectedTab = tab_import_gas;
+            }
         }
 
         //public void SetTextForLabels(string myText, string myType)

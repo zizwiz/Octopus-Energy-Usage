@@ -17,9 +17,10 @@ namespace EnergyUsage
 
                     string region = "-" + cmbobx_regions.Text;
                     string code = myProductDeserializeData.results[index].code;
+                    string myType = "";
                     // string tariff = chckbx_use_gas.Checked ? "/gas-tariffs" : "/electricity-tariffs";
 
-                    string type = "/standing-charges/";
+                    string type = "/standing-charges/"; //changes to unit charge later
 
                     string paymentType = "DIRECT_DEBIT";
 
@@ -41,6 +42,7 @@ namespace EnergyUsage
                         fuel = "/G";
                         tariff = "/gas-tariffs";
                         myRichTextBox = rchtxbx_import_gas;
+                        rdobtn_single_rate.Checked = true; //need to make sure it is on single rate as gas has no night/day rate
                     }
                     else if (rdobtn_import_electric.Checked)
                     {
@@ -56,48 +58,14 @@ namespace EnergyUsage
                         type = "/standard-unit-rates/";
                         paymentType = null;
                         count = 1;
+                        rdobtn_single_rate.Checked = true; //need to make sure it is on single rate as export electric has no night/day rate
                     }
-
-
-
-
-                    //string fuel = rdobtn_gas.Checked ? "/E" : "/G";
-                    //                   // string tariff = rdobtn_gas.Checked ? "/gas-tariffs" : "/electricity-tariffs";
-                    //                    string tariff = rdobtn_gas.Checked ? "/electricity-tariffs" : "/gas-tariffs";
-                    //                    RichTextBox myRichTextBox = rdobtn_gas.Checked ? rchtxbx_import_electric : rchtxbx_import_gas;
-
-
                     
-
                     string rate = rdobtn_single_rate.Checked ? "-1R-" : "-2R-";
-
+                    if (rate == "-2R-") count = 3;
+                    
                     myRichTextBox.Clear();
-                    //rchtxtbx_tariff_info.AppendText("Code = " + code + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Direction = " + myProductDeserializeData.results[index].direction + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Full Name = " + myProductDeserializeData.results[index].full_name + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Display Name = " + myProductDeserializeData.results[index].display_name + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Description = " + myProductDeserializeData.results[index].description + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Is Tariff Variable? = " + myProductDeserializeData.results[index].is_variable + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Is Tariff Green? = " + myProductDeserializeData.results[index].is_green + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Is Tariff Tracker? = " + myProductDeserializeData.results[index].is_tracker + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Is Tariff Prepay? = " + myProductDeserializeData.results[index].is_prepay + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Can Tariff be used for Business? = " + myProductDeserializeData.results[index].is_business + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Is Tariff Restricted = " + myProductDeserializeData.results[index].is_restricted + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Term = " + myProductDeserializeData.results[index].term + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Available From = " + myProductDeserializeData.results[index].available_from + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Available To = " + myProductDeserializeData.results[index].available_to + "\r");
-                    //rchtxtbx_tariff_info.AppendText("Company Selling Tariff = " + myProductDeserializeData.results[index].brand + "\r");
-
-                    //rchtxtbx_tariff_info.AppendText("\r" + region);
-                    //rchtxtbx_tariff_info.AppendText("\r" + code);
-
-                    // "https://api.octopus.energy/v1/products/" + code + "/gas-tariffs/G-1R-VAR-22-11-01-A/standing-charges/"
-                    // "https://api.octopus.energy/v1/products/" + code + /gas-tariffs/G-1R-VAR-22-11-01-A/standard-unit-rates/"
-
-                    // "https://api.octopus.energy/v1/products/" + code + tariff + fuel + rate + code + region + type
-                    // "https://api.octopus.energy/v1/products/" + code + /electricity-tariffs/E-1R-" + code + "-A/standard-unit-rates/"
-
-
+                    
                     for (int j = 0; j < count; j++)
                     {
                         myStandingChargeDeserializedData =
@@ -110,7 +78,26 @@ namespace EnergyUsage
                             {
                                 if (myStandingChargeDeserializedData.results[i].payment_method == paymentType)
                                 {
-                                    myRichTextBox.AppendText("Payment Method = " + paymentType + "\r");
+                                    myType = "Standing Charge";
+
+                                    if (type != "/standing-charges/")
+                                   {
+                                        myType = "Unit Rates";
+
+                                        if ((rate == "-2R-") && (j == 1))
+                                        {
+                                            myType = "Day Unit Rates";
+                                        }
+                                        else if ((rate == "-2R-") && (j == 2))
+                                        {
+                                            myType = "Night Unit Rates";
+                                        }
+                                    }
+
+                                    myRichTextBox.AppendText(myType + "\r");
+
+                                    if (paymentType!=null) myRichTextBox.AppendText("Payment Method = " + paymentType + "\r");
+                                   
                                     myRichTextBox.AppendText("Valid From = " +
                                                              myStandingChargeDeserializedData.results[i]
                                                                  .valid_from +
@@ -130,8 +117,24 @@ namespace EnergyUsage
                                 }
                             }
                         }
+                        else
+                        {
+                            MsgBox.Show("Tariff does not have " + rate, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
 
                         type = "/standard-unit-rates/";
+
+                        if ((rate == "-2R-") && (j == 0))
+                        {
+                            type = "/day-unit-rates/";
+                        }
+                        else if ((rate == "-2R-") && (j == 1))
+                        {
+                            type = "/night-unit-rates/";
+                        }
+                        
+                                    
+                        
                     }
                 }
                 //else
