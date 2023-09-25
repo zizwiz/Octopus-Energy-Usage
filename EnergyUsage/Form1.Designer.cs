@@ -144,15 +144,28 @@ namespace EnergyUsage
             this.chart_gas_import = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tab_tariff_info = new System.Windows.Forms.TabPage();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.tbcntrl_tariffs = new System.Windows.Forms.TabControl();
+            this.tab_import_electric = new System.Windows.Forms.TabPage();
+            this.rchtxbx_import_electric = new System.Windows.Forms.RichTextBox();
+            this.tab_export_electric = new System.Windows.Forms.TabPage();
+            this.rchtxbx_export_electric = new System.Windows.Forms.RichTextBox();
+            this.tab_import_gas = new System.Windows.Forms.TabPage();
+            this.rchtxbx_import_gas = new System.Windows.Forms.RichTextBox();
             this.lbl_choose_tariff = new System.Windows.Forms.Label();
             this.grpbx_tariff = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.grpbx_electric_rate = new System.Windows.Forms.GroupBox();
+            this.rdobtn_single_rate = new System.Windows.Forms.RadioButton();
+            this.rdobtn_dual_rate = new System.Windows.Forms.RadioButton();
+            this.rdobtn_import_gas = new System.Windows.Forms.RadioButton();
+            this.rdobtn_export_electric = new System.Windows.Forms.RadioButton();
+            this.rdobtn_import_electric = new System.Windows.Forms.RadioButton();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.cmbobx_regions = new System.Windows.Forms.ComboBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.rdobtn_otherPayment = new System.Windows.Forms.RadioButton();
             this.rdobtn_nonDirectDebit = new System.Windows.Forms.RadioButton();
             this.rdobtn_directDebit = new System.Windows.Forms.RadioButton();
-            this.rdobtn_dual_rate = new System.Windows.Forms.RadioButton();
-            this.rdobtn_single_rate = new System.Windows.Forms.RadioButton();
-            this.cmbobx_regions = new System.Windows.Forms.ComboBox();
             this.picbx_regions = new System.Windows.Forms.PictureBox();
             this.cmbobx_tariff_name = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -166,19 +179,24 @@ namespace EnergyUsage
             this.btn_save_data = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.tbcntrl_tariffs = new System.Windows.Forms.TabControl();
-            this.tab_import_electric = new System.Windows.Forms.TabPage();
-            this.tab_export_electric = new System.Windows.Forms.TabPage();
-            this.tab_import_gas = new System.Windows.Forms.TabPage();
-            this.rchtxbx_import_electric = new System.Windows.Forms.RichTextBox();
-            this.rchtxbx_export_electric = new System.Windows.Forms.RichTextBox();
-            this.rchtxbx_import_gas = new System.Windows.Forms.RichTextBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.rdobtn_import_electric = new System.Windows.Forms.RadioButton();
-            this.rdobtn_export_electric = new System.Windows.Forms.RadioButton();
-            this.rdobtn_import_gas = new System.Windows.Forms.RadioButton();
-            this.grpbx_electric_rate = new System.Windows.Forms.GroupBox();
+            this.dGV_import_electric = new System.Windows.Forms.DataGridView();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valid_from = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValidTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price_incl_vat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price_ex_vat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dGV_export_electric = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dGV_import_gas = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TabControl1.SuspendLayout();
@@ -203,7 +221,14 @@ namespace EnergyUsage
             ((System.ComponentModel.ISupportInitialize)(this.chart_gas_import)).BeginInit();
             this.tab_tariff_info.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.tbcntrl_tariffs.SuspendLayout();
+            this.tab_import_electric.SuspendLayout();
+            this.tab_export_electric.SuspendLayout();
+            this.tab_import_gas.SuspendLayout();
             this.grpbx_tariff.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.grpbx_electric_rate.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbx_regions)).BeginInit();
             this.panel2.SuspendLayout();
@@ -214,13 +239,9 @@ namespace EnergyUsage
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.tbcntrl_tariffs.SuspendLayout();
-            this.tab_import_electric.SuspendLayout();
-            this.tab_export_electric.SuspendLayout();
-            this.tab_import_gas.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            this.grpbx_electric_rate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_import_electric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_export_electric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_import_gas)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_getinfo
@@ -1357,6 +1378,76 @@ namespace EnergyUsage
             this.panel11.Size = new System.Drawing.Size(1184, 644);
             this.panel11.TabIndex = 0;
             // 
+            // tbcntrl_tariffs
+            // 
+            this.tbcntrl_tariffs.Controls.Add(this.tab_import_electric);
+            this.tbcntrl_tariffs.Controls.Add(this.tab_export_electric);
+            this.tbcntrl_tariffs.Controls.Add(this.tab_import_gas);
+            this.tbcntrl_tariffs.Location = new System.Drawing.Point(20, 194);
+            this.tbcntrl_tariffs.Name = "tbcntrl_tariffs";
+            this.tbcntrl_tariffs.SelectedIndex = 0;
+            this.tbcntrl_tariffs.Size = new System.Drawing.Size(726, 435);
+            this.tbcntrl_tariffs.TabIndex = 10;
+            // 
+            // tab_import_electric
+            // 
+            this.tab_import_electric.Controls.Add(this.dGV_import_electric);
+            this.tab_import_electric.Controls.Add(this.rchtxbx_import_electric);
+            this.tab_import_electric.Location = new System.Drawing.Point(4, 29);
+            this.tab_import_electric.Name = "tab_import_electric";
+            this.tab_import_electric.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_import_electric.Size = new System.Drawing.Size(718, 402);
+            this.tab_import_electric.TabIndex = 0;
+            this.tab_import_electric.Text = "Import Electric";
+            this.tab_import_electric.UseVisualStyleBackColor = true;
+            // 
+            // rchtxbx_import_electric
+            // 
+            this.rchtxbx_import_electric.Location = new System.Drawing.Point(6, 6);
+            this.rchtxbx_import_electric.Name = "rchtxbx_import_electric";
+            this.rchtxbx_import_electric.Size = new System.Drawing.Size(692, 71);
+            this.rchtxbx_import_electric.TabIndex = 4;
+            this.rchtxbx_import_electric.Text = "";
+            // 
+            // tab_export_electric
+            // 
+            this.tab_export_electric.Controls.Add(this.dGV_export_electric);
+            this.tab_export_electric.Controls.Add(this.rchtxbx_export_electric);
+            this.tab_export_electric.Location = new System.Drawing.Point(4, 29);
+            this.tab_export_electric.Name = "tab_export_electric";
+            this.tab_export_electric.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_export_electric.Size = new System.Drawing.Size(718, 402);
+            this.tab_export_electric.TabIndex = 1;
+            this.tab_export_electric.Text = "Export Electric";
+            this.tab_export_electric.UseVisualStyleBackColor = true;
+            // 
+            // rchtxbx_export_electric
+            // 
+            this.rchtxbx_export_electric.Location = new System.Drawing.Point(6, 6);
+            this.rchtxbx_export_electric.Name = "rchtxbx_export_electric";
+            this.rchtxbx_export_electric.Size = new System.Drawing.Size(706, 51);
+            this.rchtxbx_export_electric.TabIndex = 5;
+            this.rchtxbx_export_electric.Text = "";
+            // 
+            // tab_import_gas
+            // 
+            this.tab_import_gas.Controls.Add(this.dGV_import_gas);
+            this.tab_import_gas.Controls.Add(this.rchtxbx_import_gas);
+            this.tab_import_gas.Location = new System.Drawing.Point(4, 29);
+            this.tab_import_gas.Name = "tab_import_gas";
+            this.tab_import_gas.Size = new System.Drawing.Size(718, 402);
+            this.tab_import_gas.TabIndex = 2;
+            this.tab_import_gas.Text = "Import Gas";
+            this.tab_import_gas.UseVisualStyleBackColor = true;
+            // 
+            // rchtxbx_import_gas
+            // 
+            this.rchtxbx_import_gas.Location = new System.Drawing.Point(6, 6);
+            this.rchtxbx_import_gas.Name = "rchtxbx_import_gas";
+            this.rchtxbx_import_gas.Size = new System.Drawing.Size(706, 52);
+            this.rchtxbx_import_gas.TabIndex = 5;
+            this.rchtxbx_import_gas.Text = "";
+            // 
             // lbl_choose_tariff
             // 
             this.lbl_choose_tariff.AutoSize = true;
@@ -1377,6 +1468,120 @@ namespace EnergyUsage
             this.grpbx_tariff.TabIndex = 8;
             this.grpbx_tariff.TabStop = false;
             this.grpbx_tariff.Text = "What type of Energy do you have?";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.grpbx_electric_rate);
+            this.groupBox10.Controls.Add(this.rdobtn_import_gas);
+            this.groupBox10.Controls.Add(this.rdobtn_export_electric);
+            this.groupBox10.Controls.Add(this.rdobtn_import_electric);
+            this.groupBox10.Location = new System.Drawing.Point(10, 14);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(400, 110);
+            this.groupBox10.TabIndex = 16;
+            this.groupBox10.TabStop = false;
+            // 
+            // grpbx_electric_rate
+            // 
+            this.grpbx_electric_rate.Controls.Add(this.rdobtn_single_rate);
+            this.grpbx_electric_rate.Controls.Add(this.rdobtn_dual_rate);
+            this.grpbx_electric_rate.Location = new System.Drawing.Point(159, 11);
+            this.grpbx_electric_rate.Name = "grpbx_electric_rate";
+            this.grpbx_electric_rate.Size = new System.Drawing.Size(241, 36);
+            this.grpbx_electric_rate.TabIndex = 6;
+            this.grpbx_electric_rate.TabStop = false;
+            // 
+            // rdobtn_single_rate
+            // 
+            this.rdobtn_single_rate.AutoSize = true;
+            this.rdobtn_single_rate.Checked = true;
+            this.rdobtn_single_rate.Location = new System.Drawing.Point(6, 8);
+            this.rdobtn_single_rate.Name = "rdobtn_single_rate";
+            this.rdobtn_single_rate.Size = new System.Drawing.Size(117, 24);
+            this.rdobtn_single_rate.TabIndex = 4;
+            this.rdobtn_single_rate.TabStop = true;
+            this.rdobtn_single_rate.Text = "Single Rate";
+            this.rdobtn_single_rate.UseVisualStyleBackColor = true;
+            this.rdobtn_single_rate.CheckedChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
+            // 
+            // rdobtn_dual_rate
+            // 
+            this.rdobtn_dual_rate.AutoSize = true;
+            this.rdobtn_dual_rate.Location = new System.Drawing.Point(129, 8);
+            this.rdobtn_dual_rate.Name = "rdobtn_dual_rate";
+            this.rdobtn_dual_rate.Size = new System.Drawing.Size(106, 24);
+            this.rdobtn_dual_rate.TabIndex = 5;
+            this.rdobtn_dual_rate.Text = "Dual Rate";
+            this.rdobtn_dual_rate.UseVisualStyleBackColor = true;
+            // 
+            // rdobtn_import_gas
+            // 
+            this.rdobtn_import_gas.AutoSize = true;
+            this.rdobtn_import_gas.Location = new System.Drawing.Point(6, 76);
+            this.rdobtn_import_gas.Name = "rdobtn_import_gas";
+            this.rdobtn_import_gas.Size = new System.Drawing.Size(114, 24);
+            this.rdobtn_import_gas.TabIndex = 2;
+            this.rdobtn_import_gas.Text = "Import Gas";
+            this.rdobtn_import_gas.UseVisualStyleBackColor = true;
+            this.rdobtn_import_gas.CheckedChanged += new System.EventHandler(this.rdobtn_energy_type_CheckedChanged);
+            // 
+            // rdobtn_export_electric
+            // 
+            this.rdobtn_export_electric.AutoSize = true;
+            this.rdobtn_export_electric.Location = new System.Drawing.Point(6, 46);
+            this.rdobtn_export_electric.Name = "rdobtn_export_electric";
+            this.rdobtn_export_electric.Size = new System.Drawing.Size(136, 24);
+            this.rdobtn_export_electric.TabIndex = 1;
+            this.rdobtn_export_electric.Text = "Export Electric";
+            this.rdobtn_export_electric.UseVisualStyleBackColor = true;
+            this.rdobtn_export_electric.CheckedChanged += new System.EventHandler(this.rdobtn_energy_type_CheckedChanged);
+            // 
+            // rdobtn_import_electric
+            // 
+            this.rdobtn_import_electric.AutoSize = true;
+            this.rdobtn_import_electric.Checked = true;
+            this.rdobtn_import_electric.Location = new System.Drawing.Point(6, 16);
+            this.rdobtn_import_electric.Name = "rdobtn_import_electric";
+            this.rdobtn_import_electric.Size = new System.Drawing.Size(136, 24);
+            this.rdobtn_import_electric.TabIndex = 0;
+            this.rdobtn_import_electric.TabStop = true;
+            this.rdobtn_import_electric.Text = "Import Electric";
+            this.rdobtn_import_electric.UseVisualStyleBackColor = true;
+            this.rdobtn_import_electric.CheckedChanged += new System.EventHandler(this.rdobtn_energy_type_CheckedChanged);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.cmbobx_regions);
+            this.groupBox9.Location = new System.Drawing.Point(597, 14);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(118, 110);
+            this.groupBox9.TabIndex = 15;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Region";
+            // 
+            // cmbobx_regions
+            // 
+            this.cmbobx_regions.FormattingEnabled = true;
+            this.cmbobx_regions.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "P"});
+            this.cmbobx_regions.Location = new System.Drawing.Point(8, 38);
+            this.cmbobx_regions.Name = "cmbobx_regions";
+            this.cmbobx_regions.Size = new System.Drawing.Size(97, 28);
+            this.cmbobx_regions.TabIndex = 1;
+            this.cmbobx_regions.SelectedIndexChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // groupBox8
             // 
@@ -1423,53 +1628,6 @@ namespace EnergyUsage
             this.rdobtn_directDebit.Text = "Direct Debit";
             this.rdobtn_directDebit.UseVisualStyleBackColor = true;
             this.rdobtn_directDebit.CheckedChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
-            // 
-            // rdobtn_dual_rate
-            // 
-            this.rdobtn_dual_rate.AutoSize = true;
-            this.rdobtn_dual_rate.Location = new System.Drawing.Point(129, 8);
-            this.rdobtn_dual_rate.Name = "rdobtn_dual_rate";
-            this.rdobtn_dual_rate.Size = new System.Drawing.Size(106, 24);
-            this.rdobtn_dual_rate.TabIndex = 5;
-            this.rdobtn_dual_rate.Text = "Dual Rate";
-            this.rdobtn_dual_rate.UseVisualStyleBackColor = true;
-            // 
-            // rdobtn_single_rate
-            // 
-            this.rdobtn_single_rate.AutoSize = true;
-            this.rdobtn_single_rate.Checked = true;
-            this.rdobtn_single_rate.Location = new System.Drawing.Point(6, 8);
-            this.rdobtn_single_rate.Name = "rdobtn_single_rate";
-            this.rdobtn_single_rate.Size = new System.Drawing.Size(117, 24);
-            this.rdobtn_single_rate.TabIndex = 4;
-            this.rdobtn_single_rate.TabStop = true;
-            this.rdobtn_single_rate.Text = "Single Rate";
-            this.rdobtn_single_rate.UseVisualStyleBackColor = true;
-            this.rdobtn_single_rate.CheckedChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
-            // 
-            // cmbobx_regions
-            // 
-            this.cmbobx_regions.FormattingEnabled = true;
-            this.cmbobx_regions.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G",
-            "H",
-            "J",
-            "K",
-            "L",
-            "M",
-            "N",
-            "P"});
-            this.cmbobx_regions.Location = new System.Drawing.Point(8, 38);
-            this.cmbobx_regions.Name = "cmbobx_regions";
-            this.cmbobx_regions.Size = new System.Drawing.Size(97, 28);
-            this.cmbobx_regions.TabIndex = 1;
-            this.cmbobx_regions.SelectedIndexChanged += new System.EventHandler(this.Something_changed_refresh_tariff_data);
             // 
             // picbx_regions
             // 
@@ -1615,139 +1773,182 @@ namespace EnergyUsage
             this.panel8.Size = new System.Drawing.Size(196, 68);
             this.panel8.TabIndex = 5;
             // 
-            // tbcntrl_tariffs
+            // dGV_import_electric
             // 
-            this.tbcntrl_tariffs.Controls.Add(this.tab_import_electric);
-            this.tbcntrl_tariffs.Controls.Add(this.tab_export_electric);
-            this.tbcntrl_tariffs.Controls.Add(this.tab_import_gas);
-            this.tbcntrl_tariffs.Location = new System.Drawing.Point(20, 194);
-            this.tbcntrl_tariffs.Name = "tbcntrl_tariffs";
-            this.tbcntrl_tariffs.SelectedIndex = 0;
-            this.tbcntrl_tariffs.Size = new System.Drawing.Size(726, 435);
-            this.tbcntrl_tariffs.TabIndex = 10;
+            this.dGV_import_electric.AllowUserToAddRows = false;
+            this.dGV_import_electric.AllowUserToDeleteRows = false;
+            this.dGV_import_electric.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_import_electric.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Type,
+            this.Valid_from,
+            this.ValidTo,
+            this.Price_incl_vat,
+            this.Price_ex_vat});
+            this.dGV_import_electric.Location = new System.Drawing.Point(7, 106);
+            this.dGV_import_electric.Name = "dGV_import_electric";
+            this.dGV_import_electric.ReadOnly = true;
+            this.dGV_import_electric.RowHeadersWidth = 62;
+            this.dGV_import_electric.RowTemplate.Height = 28;
+            this.dGV_import_electric.Size = new System.Drawing.Size(703, 286);
+            this.dGV_import_electric.TabIndex = 5;
             // 
-            // tab_import_electric
+            // Type
             // 
-            this.tab_import_electric.Controls.Add(this.rchtxbx_import_electric);
-            this.tab_import_electric.Location = new System.Drawing.Point(4, 29);
-            this.tab_import_electric.Name = "tab_import_electric";
-            this.tab_import_electric.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_import_electric.Size = new System.Drawing.Size(718, 402);
-            this.tab_import_electric.TabIndex = 0;
-            this.tab_import_electric.Text = "Import Electric";
-            this.tab_import_electric.UseVisualStyleBackColor = true;
+            this.Type.HeaderText = "Type";
+            this.Type.MinimumWidth = 8;
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.Width = 150;
             // 
-            // tab_export_electric
+            // Valid_from
             // 
-            this.tab_export_electric.Controls.Add(this.rchtxbx_export_electric);
-            this.tab_export_electric.Location = new System.Drawing.Point(4, 29);
-            this.tab_export_electric.Name = "tab_export_electric";
-            this.tab_export_electric.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_export_electric.Size = new System.Drawing.Size(718, 402);
-            this.tab_export_electric.TabIndex = 1;
-            this.tab_export_electric.Text = "Export Electric";
-            this.tab_export_electric.UseVisualStyleBackColor = true;
+            this.Valid_from.HeaderText = "Valid From";
+            this.Valid_from.MinimumWidth = 8;
+            this.Valid_from.Name = "Valid_from";
+            this.Valid_from.ReadOnly = true;
+            this.Valid_from.Width = 150;
             // 
-            // tab_import_gas
+            // ValidTo
             // 
-            this.tab_import_gas.Controls.Add(this.rchtxbx_import_gas);
-            this.tab_import_gas.Location = new System.Drawing.Point(4, 29);
-            this.tab_import_gas.Name = "tab_import_gas";
-            this.tab_import_gas.Size = new System.Drawing.Size(718, 402);
-            this.tab_import_gas.TabIndex = 2;
-            this.tab_import_gas.Text = "Import Gas";
-            this.tab_import_gas.UseVisualStyleBackColor = true;
+            this.ValidTo.HeaderText = "Valid To";
+            this.ValidTo.MinimumWidth = 8;
+            this.ValidTo.Name = "ValidTo";
+            this.ValidTo.ReadOnly = true;
+            this.ValidTo.Width = 150;
             // 
-            // rchtxbx_import_electric
+            // Price_incl_vat
             // 
-            this.rchtxbx_import_electric.Location = new System.Drawing.Point(6, 6);
-            this.rchtxbx_import_electric.Name = "rchtxbx_import_electric";
-            this.rchtxbx_import_electric.Size = new System.Drawing.Size(706, 390);
-            this.rchtxbx_import_electric.TabIndex = 4;
-            this.rchtxbx_import_electric.Text = "";
+            this.Price_incl_vat.HeaderText = "Price Inc VAT";
+            this.Price_incl_vat.MinimumWidth = 8;
+            this.Price_incl_vat.Name = "Price_incl_vat";
+            this.Price_incl_vat.ReadOnly = true;
+            this.Price_incl_vat.Width = 150;
             // 
-            // rchtxbx_export_electric
+            // Price_ex_vat
             // 
-            this.rchtxbx_export_electric.Location = new System.Drawing.Point(6, 6);
-            this.rchtxbx_export_electric.Name = "rchtxbx_export_electric";
-            this.rchtxbx_export_electric.Size = new System.Drawing.Size(706, 390);
-            this.rchtxbx_export_electric.TabIndex = 5;
-            this.rchtxbx_export_electric.Text = "";
+            this.Price_ex_vat.HeaderText = "Price Ex VAT";
+            this.Price_ex_vat.MinimumWidth = 8;
+            this.Price_ex_vat.Name = "Price_ex_vat";
+            this.Price_ex_vat.ReadOnly = true;
+            this.Price_ex_vat.Width = 150;
             // 
-            // rchtxbx_import_gas
+            // dGV_export_electric
             // 
-            this.rchtxbx_import_gas.Location = new System.Drawing.Point(6, 6);
-            this.rchtxbx_import_gas.Name = "rchtxbx_import_gas";
-            this.rchtxbx_import_gas.Size = new System.Drawing.Size(706, 379);
-            this.rchtxbx_import_gas.TabIndex = 5;
-            this.rchtxbx_import_gas.Text = "";
+            this.dGV_export_electric.AllowUserToAddRows = false;
+            this.dGV_export_electric.AllowUserToDeleteRows = false;
+            this.dGV_export_electric.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_export_electric.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dGV_export_electric.Location = new System.Drawing.Point(6, 110);
+            this.dGV_export_electric.Name = "dGV_export_electric";
+            this.dGV_export_electric.ReadOnly = true;
+            this.dGV_export_electric.RowHeadersWidth = 62;
+            this.dGV_export_electric.RowTemplate.Height = 28;
+            this.dGV_export_electric.Size = new System.Drawing.Size(703, 286);
+            this.dGV_export_electric.TabIndex = 6;
             // 
-            // groupBox9
+            // dataGridViewTextBoxColumn1
             // 
-            this.groupBox9.Controls.Add(this.cmbobx_regions);
-            this.groupBox9.Location = new System.Drawing.Point(597, 14);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(118, 110);
-            this.groupBox9.TabIndex = 15;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Region";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
             // 
-            // groupBox10
+            // dataGridViewTextBoxColumn2
             // 
-            this.groupBox10.Controls.Add(this.grpbx_electric_rate);
-            this.groupBox10.Controls.Add(this.rdobtn_import_gas);
-            this.groupBox10.Controls.Add(this.rdobtn_export_electric);
-            this.groupBox10.Controls.Add(this.rdobtn_import_electric);
-            this.groupBox10.Location = new System.Drawing.Point(10, 14);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(400, 110);
-            this.groupBox10.TabIndex = 16;
-            this.groupBox10.TabStop = false;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Valid From";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
             // 
-            // rdobtn_import_electric
+            // dataGridViewTextBoxColumn3
             // 
-            this.rdobtn_import_electric.AutoSize = true;
-            this.rdobtn_import_electric.Checked = true;
-            this.rdobtn_import_electric.Location = new System.Drawing.Point(6, 16);
-            this.rdobtn_import_electric.Name = "rdobtn_import_electric";
-            this.rdobtn_import_electric.Size = new System.Drawing.Size(136, 24);
-            this.rdobtn_import_electric.TabIndex = 0;
-            this.rdobtn_import_electric.TabStop = true;
-            this.rdobtn_import_electric.Text = "Import Electric";
-            this.rdobtn_import_electric.UseVisualStyleBackColor = true;
-            this.rdobtn_import_electric.CheckedChanged += new System.EventHandler(this.rdobtn_energy_type_CheckedChanged);
+            this.dataGridViewTextBoxColumn3.HeaderText = "Valid To";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 150;
             // 
-            // rdobtn_export_electric
+            // dataGridViewTextBoxColumn4
             // 
-            this.rdobtn_export_electric.AutoSize = true;
-            this.rdobtn_export_electric.Location = new System.Drawing.Point(6, 46);
-            this.rdobtn_export_electric.Name = "rdobtn_export_electric";
-            this.rdobtn_export_electric.Size = new System.Drawing.Size(136, 24);
-            this.rdobtn_export_electric.TabIndex = 1;
-            this.rdobtn_export_electric.Text = "Export Electric";
-            this.rdobtn_export_electric.UseVisualStyleBackColor = true;
-            this.rdobtn_export_electric.CheckedChanged += new System.EventHandler(this.rdobtn_energy_type_CheckedChanged);
+            this.dataGridViewTextBoxColumn4.HeaderText = "Price Inc VAT";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 150;
             // 
-            // rdobtn_import_gas
+            // dataGridViewTextBoxColumn5
             // 
-            this.rdobtn_import_gas.AutoSize = true;
-            this.rdobtn_import_gas.Location = new System.Drawing.Point(6, 76);
-            this.rdobtn_import_gas.Name = "rdobtn_import_gas";
-            this.rdobtn_import_gas.Size = new System.Drawing.Size(114, 24);
-            this.rdobtn_import_gas.TabIndex = 2;
-            this.rdobtn_import_gas.Text = "Import Gas";
-            this.rdobtn_import_gas.UseVisualStyleBackColor = true;
-            this.rdobtn_import_gas.CheckedChanged += new System.EventHandler(this.rdobtn_energy_type_CheckedChanged);
+            this.dataGridViewTextBoxColumn5.HeaderText = "Price Ex VAT";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
             // 
-            // grpbx_electric_rate
+            // dGV_import_gas
             // 
-            this.grpbx_electric_rate.Controls.Add(this.rdobtn_single_rate);
-            this.grpbx_electric_rate.Controls.Add(this.rdobtn_dual_rate);
-            this.grpbx_electric_rate.Location = new System.Drawing.Point(159, 11);
-            this.grpbx_electric_rate.Name = "grpbx_electric_rate";
-            this.grpbx_electric_rate.Size = new System.Drawing.Size(241, 36);
-            this.grpbx_electric_rate.TabIndex = 6;
-            this.grpbx_electric_rate.TabStop = false;
+            this.dGV_import_gas.AllowUserToAddRows = false;
+            this.dGV_import_gas.AllowUserToDeleteRows = false;
+            this.dGV_import_gas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV_import_gas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.dGV_import_gas.Location = new System.Drawing.Point(6, 86);
+            this.dGV_import_gas.Name = "dGV_import_gas";
+            this.dGV_import_gas.ReadOnly = true;
+            this.dGV_import_gas.RowHeadersWidth = 62;
+            this.dGV_import_gas.RowTemplate.Height = 28;
+            this.dGV_import_gas.Size = new System.Drawing.Size(703, 313);
+            this.dGV_import_gas.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Valid From";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Valid To";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Price Inc VAT";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Price Ex VAT";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 150;
             // 
             // Form1
             // 
@@ -1792,7 +1993,16 @@ namespace EnergyUsage
             this.tab_tariff_info.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.tbcntrl_tariffs.ResumeLayout(false);
+            this.tab_import_electric.ResumeLayout(false);
+            this.tab_export_electric.ResumeLayout(false);
+            this.tab_import_gas.ResumeLayout(false);
             this.grpbx_tariff.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.grpbx_electric_rate.ResumeLayout(false);
+            this.grpbx_electric_rate.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbx_regions)).EndInit();
@@ -1804,15 +2014,9 @@ namespace EnergyUsage
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.tbcntrl_tariffs.ResumeLayout(false);
-            this.tab_import_electric.ResumeLayout(false);
-            this.tab_export_electric.ResumeLayout(false);
-            this.tab_import_gas.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            this.grpbx_electric_rate.ResumeLayout(false);
-            this.grpbx_electric_rate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_import_electric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_export_electric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV_import_gas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1959,6 +2163,24 @@ namespace EnergyUsage
         private System.Windows.Forms.RadioButton rdobtn_export_electric;
         private System.Windows.Forms.RadioButton rdobtn_import_electric;
         private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.DataGridView dGV_import_electric;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valid_from;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValidTo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price_incl_vat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price_ex_vat;
+        private System.Windows.Forms.DataGridView dGV_export_electric;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridView dGV_import_gas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
     }
 }
 
